@@ -1,0 +1,8 @@
+0:conf3_novisual: pri nenastavenem EDITOR i VISUAL
+# ./wedi hello.c <stdin >>stdout 2>>stderr; echo $? >>errcode
+# diff -u stdout.ref stdout
+#   --- stdout.ref
+#   +++ stdout
+#   @@ -1,2 +0,0 @@
+#   -Zde editor vi. Presmerovavam...
+#   -spusten editor s: /.sanitized./hello.c (hash da427fd)

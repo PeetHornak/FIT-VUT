@@ -1,0 +1,239 @@
+#!/bin/sh
+POSIXLY_CORRECT=1
+CURRENT_DATE="$(date +%Y-%m-%d)"
+
+#Kontrola realpath
+(realpath . >/dev/null)
+if [ $? -gt 0 ]
+then 
+    echo ERROR: Utility realpath is not working properly >&2
+    exit 1
+fi
+
+#Funkcia ktora loguje subory na zaciatok suboru
+new_log(){
+    if [ ! -r "$1" ] || [ ! -w "$1" ]
+    then
+        echo ERROR: You do not have a permission to edit WEDI_RC >&2
+        exit 1
+    else
+        if [ -s "$WEDI_RC" ]
+        then
+            sed -i "1i $1:$CURRENT_DATE" "$WEDI_RC"
+        else
+            echo "$1:$CURRENT_DATE" > "$WEDI_RC"
+        fi
+    fi
+}
+
+    
+#Kontrola WEDI_RC a vytvorenie cesty a suboru
+if [ -z "$WEDI_RC" ]
+then
+    echo ERROR: WEDI_RC is not initalized >&2
+    exit 1
+elif [ ! -r "$WEDI_RC" ] || [ ! -w "$WEDI_RC" ]
+then
+    echo ERROR: You do not have a permission to edit WEDI_RC >&2
+    exit 1
+else
+    TEMP="$(echo "$WEDI_RC" | awk -F/ '{ for (i=1; i<NF; i++) printf("%s/", $i)}')"
+    if ! [ -z "$TEMP" ]
+    then
+        if [ -d "$TEMP" ]
+        then
+            mkdir -p "$TEMP"
+        else
+            echo ERROR: WEDI_RC is not a directory >&2
+            exit 1
+        fi
+    fi
+    touch "$WEDI_RC"
+    if ! [ -f "$WEDI_RC" ]
+    then
+        echo ERROR: WEDI_RC is not a file >&2
+        exit 1
+    fi
+fi
+
+#Kontrola editoru
+if [ -z "$EDITOR" ]
+then
+    if [ -z "$VISUAL" ]
+    then
+        EDITOR="vi"
+    else
+        EDITOR="$VISUAL"
+    fi
+fi
+
+#Otvori posledny editovany subor v pracovnom adresari
+if [ $# = 0 ]
+then
+    FILE_PATH="$(realpath "$(pwd)")"
+    MYNF="$(echo "$FILE_PATH" | awk -F/ '{print NF}')"
+    FILE_PATH="$(grep "$FILE_PATH" "$WEDI_RC" | awk -F/ -v NFMY="$MYNF" '{if(NFMY+1==NF){print $0}}' | head -1 | cut -d: -f1)"
+    if [ -z "$FILE_PATH" ]
+    then
+        echo ERROR: Was not found any modified file >&2
+        exit 1
+    else
+        new_log "$FILE_PATH"
+        "$EDITOR" "$FILE_PATH"
+        exit $?
+    fi
+
+#Vypise subor ktory bol najviac editovany v danom adresari a podpriecinkoch/momentalom adreasri
+elif [ "$1" = "-m" ]
+then
+    if [ $# = "1" ]
+    then
+        FILE_PATH="$(realpath "$(pwd)")"
+    elif [ $# = "2" ]  && [ -d "$2" ]
+    then
+        FILE_PATH="$(realpath "$2")"
+    else
+        echo ERROR: Not a directory >&2
+        exit 1
+    fi
+
+    MYNF="$(echo "$FILE_PATH" | awk -F/ '{print NF}')"
+    FILE_PATH="$(grep "$FILE_PATH" "$WEDI_RC" | awk -F/ -v NFMY="$MYNF" '{if(NFMY+1==NF){print $0}}' | cut -d: -f1 | sort | uniq -c | sort -rn | head -1)"
+    FILE_PATH="$(echo "$FILE_PATH" | awk '$1=$1')" #vymazanie divnych medzier ktore uniq vytvara
+    FILE_PATH="$(echo "$FILE_PATH" | cut -d" " -f2)"
+    if [ -z "$FILE_PATH" ]
+    then
+        echo ERROR: Was not found any modified file >&2
+        exit 1
+    elif [ -f "$FILE_PATH" ]
+    then
+        new_log "$FILE_PATH"
+        exec "$EDITOR" "$FILE_PATH"
+        exit $?
+    else 
+        echo ERROR: File does not exist >&2
+    fi
+
+#Vypisanie vsektych editovanych suborov v danom adresari a podpriecinkoch/momentalom adresari
+elif [ "$1" = "-l" ]
+then
+    if [ $# = "1" ]
+    then
+        FILE_PATH="$(realpath "$(pwd)")"
+    elif [ $# = "2" ]  && [ -d "$2" ]
+    then
+        FILE_PATH="$(realpath "$2")"
+    else
+        echo ERROR: Not a directory >&2
+        exit 1
+    fi
+    MYNF="$(echo "$FILE_PATH" | awk -F/ '{print NF}')"
+    FILE_PATH="$(grep "$FILE_PATH" "$WEDI_RC" |  awk -F/ -v NFMY="$MYNF" '{if(NFMY+1==NF){print $0}}' | cut -d: -f1 | sort | uniq)"
+    if [ -z "$FILE_PATH" ]
+    then
+        echo ERROR: Was not found any modified file >&2
+        exit 1
+    else
+      echo "$FILE_PATH"
+      exit $?
+    fi
+
+#Kontrola spravnych vstupov
+elif [ "$1" = "-a" ] || [ "$1" = "-b" ]
+then
+    if [ $# = "2" ]
+    then
+        if [ -z "$(date -d "$2" 2>/dev/null)" ]
+        then
+            echo ERROR: Wrong date >&2
+            exit 1
+        fi
+        FILE_PATH="$(realpath "$(pwd)")"
+    elif [ $# = "3" ]  && [ -d "$3" ]
+    then
+        if [ -z "$(date -d "$2" 2>/dev/null)" ]
+        then
+            echo ERROR: Wrong date >&2
+            exit 1
+        fi
+        FILE_PATH="$(realpath "$3")"
+    else
+        echo ERROR: Not a directory >&2
+        exit 1
+    fi
+
+#Vypisanie editovanych suborov po zadanom datume včetne
+    if [ "$1" = "-a" ]
+    then
+        MYNF="$(echo "$FILE_PATH" | awk -F/ '{print NF}')"
+        FILE_PATH="$(grep "$FILE_PATH" "$WEDI_RC" | awk -F/ -v NFMY="$MYNF" '{if(NFMY+1==NF){print $0}}' | awk -F: -v DATE="$2" '{if($2>=DATE){print $1}}'| sort | uniq)"
+        if [ -z "$FILE_PATH" ]
+        then
+            echo ERROR: Was not found any modified file >&2
+            exit 1
+        else
+            echo "$FILE_PATH"
+            exit $?
+        fi
+    fi
+
+#Vypisanie editovanych suborov pred zadanym datumom
+    if [ "$1" = "-b" ]
+    then
+        MYNF="$(echo "$FILE_PATH" | awk -F/ '{print NF}')"
+        FILE_PATH="$(grep "$FILE_PATH" "$WEDI_RC" | awk -F/ -v NFMY="$MYNF" '{if(NFMY+1==NF){print $0}}' | awk -F: -v DATE="$2" '{if($2<DATE){print $1}}'| sort | uniq)"
+        if [ -z "$FILE_PATH" ]
+        then
+            echo ERROR: Was not found any modified file >&2
+            exit 1
+        else
+            echo "$FILE_PATH"
+            exit $?
+        fi
+   fi
+
+#Ak je zly parameter vypis error
+elif [[ $1 =~ ^-.+ ]]
+then
+    echo 'ERROR: Wrong usage of "-"' >&2
+    exit 1
+
+#Otvorenie posledneho editu v danej adrese/podadrese
+elif [ $# = 1 ]
+then
+    if [ -d "$1" ]
+    then
+        FILE_PATH="$(realpath "$1")"
+        MYNF="$(echo "$FILE_PATH" | awk -F/ '{print NF}')"
+        FILE_PATH="$(grep "$FILE_PATH" "$WEDI_RC" | awk -F/ -v NFMY="$MYNF" '{if(NFMY+1==NF){print $0}}' | head -1 | cut -d: -f1)"
+                if [ -z "$FILE_PATH" ]
+        then
+            echo ERROR: Was not found any modified file >&2
+            exit 1
+        elif [ -f "$FILE_PATH" ]
+        then
+            new_log "$FILE_PATH"
+            exec "$EDITOR" "$FILE_PATH"
+            exit $?
+        else 
+            echo ERROR: File does not exist >&2
+            exit 1
+        fi
+
+#Otvorenie suboru
+    elif [ -f "$1" ]
+    then
+        FILE_PATH="$(realpath "$1")"
+        new_log "$FILE_PATH"
+        exec "$EDITOR" "$FILE_PATH"
+        exit $?
+    else
+        echo ERROR: Parameter is not file or directory >&2
+        exit 1
+    fi
+
+#Zly vstup
+else
+    echo ERROR: Wrong arguments >&2
+    exit 1
+fi

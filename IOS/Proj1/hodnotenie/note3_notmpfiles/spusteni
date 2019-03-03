@@ -1,0 +1,1 @@
+strace -f -o wedi.trace -e trace=open,creat ./wedi hello.c <stdin >>stdout 2>>stderr; echo $? >>errcode

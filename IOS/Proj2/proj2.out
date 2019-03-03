@@ -1,0 +1,23 @@
+1	: BUS	: start
+2	: BUS	: arrival
+3	: BUS	: depart
+4	: RID 1	: start
+5	: RID 1	: enter: 1
+6	: RID 2	: start
+7	: BUS	: end
+8	: BUS	: arrival
+9	: BUS	: start boarding: 1
+10	: RID 1	: boarding
+11	: BUS	: end boarding: 0
+12	: BUS	: depart
+13	: RID 2	: enter: 1
+14	: BUS	: end
+15	: BUS	: arrival
+16	: BUS	: start boarding: 1
+17	: RID 2	: boarding
+18	: BUS	: end boarding: 0
+19	: BUS	: depart
+20	: BUS	: end
+21	: BUS	: finish
+22	: RID 1	: finish
+23	: RID 2	: finish

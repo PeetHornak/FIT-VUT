@@ -1,0 +1,2 @@
+./wedi dir1/hello.c <stdin >>stdout 2>>stderr; echo $? >>errcode
+./wedi dir2/ <stdin >>stdout 2>>stderr; echo $? >>errcode

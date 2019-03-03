@@ -1,0 +1,24 @@
+0:note1m_deleted: neuvazuje smazany soubor (nejcastejsi)
+# ./wedi ahoj.c <stdin >>stdout 2>>stderr; echo $? >>errcode
+# ./wedi ahoj.c <stdin >>stdout 2>>stderr; echo $? >>errcode
+# ./wedi hello.c <stdin >>stdout 2>>stderr; echo $? >>errcode
+# ./wedi greeting.c <stdin >>stdout 2>>stderr; echo $? >>errcode
+# ./wedi hello.c <stdin >>stdout 2>>stderr; echo $? >>errcode
+# ./wedi hello.c <stdin >>stdout 2>>stderr; echo $? >>errcode
+# ./wedi ahoj.c <stdin >>stdout 2>>stderr; echo $? >>errcode
+# ./wedi greeting.c <stdin >>stdout 2>>stderr; echo $? >>errcode
+# ./wedi hello.c <stdin >>stdout 2>>stderr; echo $? >>errcode
+# ./wedi -m . <stdin >>stdout 2>>stderr; echo $? >>errcode
+# diff -u stdout.ref stdout
+#   --- stdout.ref
+#   +++ stdout
+#   @@ -7,4 +7,3 @@
+#    spusten editor s: /.sanitized./ahoj.c (hash 8c686a5)
+#    spusten editor s: /.sanitized./greeting.c (hash 1bcbc11)
+#    spusten editor s: /.sanitized./hello.c (hash da427fd)
+#   -spusten editor s: /.sanitized./ahoj.c (hash 8c686a5)
+# diff -u stderr.ref stderr
+#   --- stderr.ref
+#   +++ stderr
+#   @@ -0,0 +1 @@
+#   +ERROR: File does not exist

@@ -1,0 +1,63 @@
+Podrobny popis hodnoceni
+========================
+
+hodnoceni.tgz
+  |
+  +- hodnoceni              textovy soubor se souhrnym hodnocenim
+  +- <adresar_testu>
+  |     |
+  |     +- hodnoceni-auto   textove hodnoceni tohoto testu
+  |     +- spusteni         jak byl spusten testovany program
+  |     +- stdin            vstupni data programu
+  |     +- stdout           vystupni data programu pro porovnani
+  |     +- stderr           chybovy vystup programu
+  |     +- errcode          navratovy kod testovaneho programu
+  |     +- stdout.orig (pokud je) puvodni vystupni data programu, pokud
+  |     |                   byly nejak upraveny pro porovnani
+  |     +- {stdin,stdout,stderr,errcode}.ref (pokud jsou)
+  |     |                   referencni soubory (ocekavane spravne)
+  |     +- cmds.log (pokud je)  sekvence spusteni testovacich dvojniku
+  +- ... dalsi adresare testu stejneho formatu
+  +- *.vyucujici.patch (pokud je) patch, ktery provedl rucne vyucujici
+  |                         nad odevzdanymi soubory
+  +- *.patch                aplikovane patch soubory
+  
+
+Souhrne hodnoceni
+=================
+
+Soubor 'hodnoceni' obsahuje souhrne hodnoceni vsech testu (resp. kopie prvnich
+cca 25 radku vsech souboru <adresar_testu>/hodnoceni-auto).
+
+Radky v souboru 'hodnoceni' jsou techto druhu:
+
+1. radky informujici o celkovem bodovem hodnoceni/skore (prvni a posledni
+   radky):
+
+    13:celkove score
+    9:celkem bodu za projekt
+
+2. radky informujici o vysledku jednoho testu (zacinaji cislem):
+
+    1:ok:foo vola bar
+    ^ ^  ^
+    | |  +- kratky popis testu
+    | +---- vysledek testu (ok nebo nazev testu, ktery selhal)
+    +------ score za test
+
+3. radky komentujici vysledek (zacinaji mrizkou):
+
+    # ./sut params <stdin >>stdout 2>>stderr; echo 0 >>errcode
+    # diff -u stdout.ref stdout
+    #   --- stdout.ref
+    #   +++ stdout
+    #   @@ -0,0 +1 @@
+    #   -radek, ktery byl ocekavan
+    #   +radek, ktery se ve skutecnosti vypsal
+
+4. uzivatelem (vyucujicim) rucne upravene bodove hodnoceni, napr.
+
+    -2:nepouziva POSIXove utility
+
+Pokud nejaky test selhal, podrobnosti o testu jsou v jeho adresari (adresar
+testu nese jeho nazev). 

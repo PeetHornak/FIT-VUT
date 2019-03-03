@@ -1,0 +1,12 @@
+0:conf2_visual: EDITOR nezadan, VISUAL zadan
+# ./wedi hello.c <stdin >>stdout 2>>stderr; echo $? >>errcode
+# diff -u stdout.ref stdout
+#   --- stdout.ref
+#   +++ stdout
+#   @@ -1 +0,0 @@
+#   -spusten editor s: /.sanitized./hello.c (hash da427fd)
+# diff -u stderr.ref stderr
+#   --- stderr.ref
+#   +++ stderr
+#   @@ -0,0 +1 @@
+#   +ERROR: You do not have a permission to edit WEDI_RC

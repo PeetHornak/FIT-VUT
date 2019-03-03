@@ -1,0 +1,5 @@
+./wedi ahoj.c <stdin >>stdout 2>>stderr; echo $? >>errcode
+./wedi ahoj.c <stdin >>stdout 2>>stderr; echo $? >>errcode
+./wedi hello.c <stdin >>stdout 2>>stderr; echo $? >>errcode
+./wedi greeting.c <stdin >>stdout 2>>stderr; echo $? >>errcode
+./wedi -b 2018-04-01 . <stdin >>stdout 2>>stderr; echo $? >>errcode

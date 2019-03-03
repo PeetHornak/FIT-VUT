@@ -1,0 +1,4 @@
+./wedi hello.c <stdin >>stdout 2>>stderr; echo $? >>errcode
+./wedi hello.c <stdin >>stdout 2>>stderr; echo $? >>errcode
+./wedi ahoj.c <stdin >>stdout 2>>stderr; echo $? >>errcode
+./wedi -m . <stdin >>stdout 2>>stderr; echo $? >>errcode

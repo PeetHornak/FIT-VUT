@@ -1,0 +1,1 @@
+./wedi emptydir/ <stdin >>stdout 2>>stderr; echo $? >>errcode
