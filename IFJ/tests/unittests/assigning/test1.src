@@ -1,0 +1,5 @@
+#priradenie vyrazom
+
+a = 90 - 11 + 33 * (12.3 - 11.3) / 1
+
+print a,"\n"

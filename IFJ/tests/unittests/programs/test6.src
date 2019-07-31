@@ -1,0 +1,16 @@
+# funkcia vracia hodnotu druhej funkcie
+
+
+def foo()
+    inputi
+end
+
+a = foo
+
+
+b = foo()
+
+print "Toto je hodnota a = ", a, "\n"
+print "Toto je hodnota b = ", b, "\n"
+
+

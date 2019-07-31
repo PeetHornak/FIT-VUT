@@ -1,0 +1,9 @@
+#nekompatiblita operacie    
+
+a = "miroslav"
+b = 1
+
+c = a + b
+
+print c,"\n"
+

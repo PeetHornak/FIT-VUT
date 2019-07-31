@@ -1,0 +1,11 @@
+def foo()
+    inputi
+end
+
+
+a = foo
+
+print a,"\n"
+
+
+

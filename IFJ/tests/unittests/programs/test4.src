@@ -1,0 +1,15 @@
+#function def test - no args
+
+def foo()
+    print "Toto je funkcia foo\n"
+end
+
+print "Volam funkciu foo bez zatvoriek\n"
+
+foo
+
+print "Vola funckiu foo so zatvorkami\n"
+
+foo()
+
+

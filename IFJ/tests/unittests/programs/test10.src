@@ -1,0 +1,18 @@
+# Program 3: Prace s retezci a vestavenymi funkcemi
+s1 = "Toto je nejaky text"
+s2 = s1 + ", ktery jeste trochu obohatime"
+print s1, "\n", s2, "\n"
+s1len = length(s1)
+print s1len, " dlzka s1\n"
+s1len = s1len - 4 + 1
+s1 = substr(s2, s1len, 4)
+print "4 znaky od ", s1len, ". znaku v \"", s2, "\":", s1, "\n"
+print "Zadejte serazenou posloupnost vsech malych pismen a-h, "
+print "pricemz se pismena nesmeji v posloupnosti opakovat: "
+s1 = inputs
+while s1 != "abcdefgh\n" do
+    print "Spatne zadana posloupnost, zkuste znovu: "
+    s1 = inputs
+end
+
+

@@ -1,0 +1,25 @@
+print "Zadajte cislo v binarnej sustave\n"
+binary = inputs
+
+lbinary = length binary
+lbinary = lbinary - 2
+
+decimal = 0
+i = 0
+power = 1
+l1binary = length binary
+while  i < l1binary do
+    char = substr(binary,lbinary,1)
+    if (char == "1") then
+        decimal = decimal + power
+    else
+        decimal = decimal
+    end
+    power = power *2
+    lbinary = lbinary-1
+    i = i+1
+end
+
+print "Binarne cislo do desiatkoveho:"
+print decimal,"\n"
+

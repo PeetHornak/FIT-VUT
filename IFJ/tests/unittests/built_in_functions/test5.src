@@ -1,0 +1,7 @@
+a = "aaa"
+
+b = length a
+
+print b,"\n"
+
+

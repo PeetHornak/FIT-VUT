@@ -1,0 +1,9 @@
+#nekomp vol.2
+
+a = 23
+b = 11
+
+c = (a*b) * "miroslav"
+
+print c,"\n"
+

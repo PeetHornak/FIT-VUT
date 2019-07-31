@@ -1,0 +1,15 @@
+=begin
+
+a = 3
+b = 3
+c = "jezisko"
+
+=end
+
+c = "miroslav"
+
+print c,"\n"
+
+
+
+

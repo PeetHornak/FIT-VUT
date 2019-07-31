@@ -1,0 +1,12 @@
+def foo()
+end
+
+
+def foo()
+end
+
+
+print "ahoj\n"
+
+
+

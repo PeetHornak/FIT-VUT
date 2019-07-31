@@ -1,0 +1,18 @@
+#function def test - with args
+
+def foo(a,b,c)
+    print "Toto je a = ", a, "\n"
+    print "Toto je b = ", b, "\n"
+    print "Toto je c = ", c, "\n"
+end
+
+print "Vola funkciu so zatvorkami\n"
+
+foo(1,2,3)
+
+print "Volam funkciu bez zatvoriek\n"
+
+foo 4 5 6
+
+
+

@@ -1,0 +1,35 @@
+01: <st-list>           -> <stat> <st-list>
+02: <st-list>           -> EOF
+03: <stat>              -> id <id-item>
+04: <stat>              -> ( | value <expr>
+05: <stat>              -> fid <func>
+06: <stat>              -> if <expr> then EOL <else-st-list> EOL <end-list> EOL
+07: <stat>              -> while <expr> do EOL <end-st-list> EOL
+08: <stat>              -> def id ( <bracket> EOL <end-st-list> EOL
+09: <stat>              -> EOL
+10: <else-st-list>      -> else
+11: <else-st-list>      -> <stat> <else-st-list>
+12: <end-st-list>       -> end
+13: <end-st-list>       -> <stat> <end-st-list>
+14: <id-item>           -> = <assign>
+15: <id-item>           -> EOL/eps
+16: <id-item>           -> sign <expression>
+17: <id-item>           -> <func>
+18: <assign>            -> id <next>
+19: <assign>            -> fid <func>
+20: <assign>            -> ( | value <expr>
+21: <next>              -> EOL
+22: <next>              -> sign <expression>
+23: <next>              -> id | value <next-param>
+24: <next>              -> ( <bracket> EOL
+25: <func>              -> ( <bracket> EOL
+26: <func>              -> EOL/eps
+27: <func>              -> <param>
+28: <param>             -> id | value <next-param>
+29: <next-param>        -> EOL/eps
+30: <next-param>        -> , <param>
+31: <bracket>           -> )
+32: <bracket>           -> <brc-param>
+33: <brc-param>         -> id | value <next-brc-param>
+34: <next-brc-param>    -> )
+35: <next-brc-param>    -> , <brc-param>

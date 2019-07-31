@@ -1,0 +1,10 @@
+#line comment
+
+#a = 33
+b = "miroslav"
+
+#c = a
+
+c = b
+
+print c,"\n"

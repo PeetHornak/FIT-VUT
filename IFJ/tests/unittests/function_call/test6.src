@@ -1,0 +1,7 @@
+def foo(am,c)
+end
+
+
+foo 1 2 3
+
+

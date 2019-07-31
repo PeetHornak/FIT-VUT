@@ -1,0 +1,7 @@
+
+variable = 22
+
+variable = 11
+
+print variable,"n"
+

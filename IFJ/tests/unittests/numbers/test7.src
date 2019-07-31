@@ -1,0 +1,10 @@
+#expo tvar
+
+a = 3.2e10
+
+b = 33.22e-1
+
+vysledok = a * b
+
+print vysledok,"\n"
+

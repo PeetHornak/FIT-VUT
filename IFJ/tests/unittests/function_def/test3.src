@@ -1,0 +1,13 @@
+def foo()
+    foo2
+end
+
+def foo2()
+    a = 5
+    a
+end
+
+
+foo()
+
+

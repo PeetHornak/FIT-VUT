@@ -1,0 +1,6 @@
+#neinicializacia premenne a pouzivanie
+
+b = a + 3
+
+print b,"\n"
+

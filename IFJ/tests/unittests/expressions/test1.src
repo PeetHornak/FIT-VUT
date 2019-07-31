@@ -1,0 +1,10 @@
+a = 3
+b = 3.0
+
+if a == b then
+    print "ahoj\n"
+else 
+    print "kokot\n"
+end
+
+

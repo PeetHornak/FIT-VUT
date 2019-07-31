@@ -1,0 +1,6 @@
+def foo(a,d)
+end
+
+foo 1 2
+
+

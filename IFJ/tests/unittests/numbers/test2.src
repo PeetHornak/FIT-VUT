@@ -1,0 +1,12 @@
+#zmena znamienka
+
+a = 11
+b = 33
+
+c = a - b
+d = b * (-1)
+
+vysledok = d - c 
+
+print vysledok,"\n"
+

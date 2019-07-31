@@ -1,0 +1,24 @@
+#Vypocet fibonaci nerekurzivne
+
+def fibonacci(a)
+    number1 = 1
+    number2 = 1
+    vysledok = 0
+    if a == 0 then
+        print "0  1  1"
+    else 
+        counter = 3
+        print "0  1  1 "
+        while counter != a do 
+            vysledok = number1 + number2
+            number1 = number2
+            number2 = vysledok
+            print vysledok, "  "
+            counter = counter + 1
+        end
+    end
+    vysledok
+end
+
+b = fibonacci(5)
+

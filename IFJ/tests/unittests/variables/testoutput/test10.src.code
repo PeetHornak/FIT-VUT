@@ -1,0 +1,111 @@
+.IFJcode18
+JUMP $MAIN
+
+LABEL ord
+PUSHFRAME
+DEFVAR LF@$retval
+MOVE LF@$retval nil@nil
+DEFVAR LF@vysl
+DEFVAR LF@length
+STRLEN LF@length LF@$param1
+LT LF@vysl LF@$param2 int@0
+JUMPIFEQ $ENDIF$ORD LF@vysl bool@TRUE
+LT LF@vysl LF@$param2 LF@length
+JUMPIFEQ $ENDIF$ORD LF@vysl bool@FALSE
+STRI2INT LF@$retval LF@$param1 LF@$param2
+LABEL $ENDIF$ORD
+POPFRAME
+RETURN
+
+LABEL chr
+PUSHFRAME
+DEFVAR LF@$retval
+DEFVAR LF@vysl
+LT LF@vysl LF@$param1 int@0
+JUMPIFEQ $ENDIF$CHR LF@vysl bool@TRUE
+LT LF@vysl LF@$param1 int@256
+JUMPIFEQ $ENDIF$CHR LF@vysl bool@FALSE
+INT2CHAR LF@$retval LF@$param1
+JUMP $ISOK$CHR
+LABEL $ENDIF$CHR
+EXIT int@4
+LABEL $ISOK$CHRPOPFRAME
+RETURN
+
+LABEL substr
+PUSHFRAME
+DEFVAR LF@$retval
+MOVE LF@$retval string@
+DEFVAR LF@length_str
+CREATEFRAME
+DEFVAR TF@$param1
+MOVE TF@$param1 LF@$param1
+CALL length
+MOVE LF@length_str TF@$retval
+DEFVAR LF@ret_cond
+LT LF@ret_cond LF@length_str int@0
+JUMPIFEQ $SUBSTR$RETURN LF@ret_cond bool@true
+EQ LF@ret_cond LF@length_str int@0
+JUMPIFEQ $SUBSTR$RETURN LF@ret_cond bool@true
+LT LF@ret_cond LF@$param2 int@0
+JUMPIFEQ $SUBSTR$RETURN LF@ret_cond bool@true
+GT LF@ret_cond LF@$param2 LF@length_str
+JUMPIFEQ $SUBSTR$RETURN LF@ret_cond bool@true
+EQ LF@ret_cond LF@$param3 int@0
+JUMPIFEQ $SUBSTR$RETURN LF@ret_cond bool@true
+DEFVAR LF@max_n
+MOVE LF@max_n LF@length_str
+SUB LF@max_n LF@max_n LF@$param2
+DEFVAR LF@edit_n_cond
+LT LF@edit_n_cond LF@$param3 int@0
+JUMPIFEQ $substr$edit_n LF@edit_n_cond bool@true
+GT LF@edit_n_cond LF@$param3 LF@max_n
+JUMPIFEQ $substr$edit_n LF@edit_n_cond bool@true
+JUMP $substr$process
+LABEL $substr$edit_n
+MOVE LF@$param3 LF@max_n
+LABEL $substr$process
+DEFVAR LF@index
+MOVE LF@index LF@$param2
+DEFVAR LF@char
+DEFVAR LF@vysl
+LABEL $SUBSTR$LOOP
+GETCHAR LF@char LF@$param1 LF@index
+CONCAT LF@$retval LF@$retval LF@char
+ADD LF@index LF@index int@1
+SUB LF@$param3 LF@$param3 int@1
+GT LF@vysl LF@$param3 int@0
+JUMPIFEQ $SUBSTR$LOOP LF@vysl bool@true
+LABEL $SUBSTR$RETURN
+DEFVAR LF@final
+EQ LF@final LF@$retval string@
+JUMPIFEQ $NOTNIL LF@final bool@FALSE
+MOVE LF@$retval nil@nil
+LABEL $NOTNIL
+POPFRAME
+RETURN
+
+LABEL length
+PUSHFRAME
+DEFVAR LF@$retval
+STRLEN LF@$retval LF@$param1
+POPFRAME
+RETURN
+
+LABEL foo
+PUSHFRAME
+DEFVAR LF@$retval
+POPFRAME
+RETURN
+
+LABEL $MAIN
+CREATEFRAME
+PUSHFRAME
+DEFVAR LF@a
+CREATEFRAME
+CALL foo
+MOVE LF@a TF@$retval
+WRITE LF@a
+WRITE string@\010
+CLEARS
+POPFRAME

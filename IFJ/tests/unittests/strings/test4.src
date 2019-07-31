@@ -1,0 +1,12 @@
+#error state
+
+a = "mr"
+
+b = " Balaz"
+
+c = 2.3
+
+vysledok = a + b +c 
+
+print vysledok,"\n"
+

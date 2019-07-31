@@ -1,0 +1,12 @@
+#scitanie stringov
+
+a = "miroslav"
+
+b = " "
+
+
+c = a + b + a
+
+print c,"\n"
+
+

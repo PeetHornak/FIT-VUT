@@ -1,0 +1,9 @@
+# Sucet dvoch cisiel
+print "Zadajte dve cisla pre scitanie"
+number1 = inputi
+number2 = inputi
+number3 = number1 + number2
+
+print "this is sum of given numbers, ", number1, " + ", number2," = ",number3
+
+

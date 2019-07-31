@@ -1,0 +1,15 @@
+def average()
+    print "Zadajte postupnost cisel ktora konci nulou na vypocet priemeru\n"
+    count = 0
+    avg = 0
+    num =inputi
+    while num != 0 do
+        count = count + 1
+        avg = avg + num
+        num = inputi
+    end
+    avg = avg / count
+end
+
+priemer = average()
+print ("Priemer cisel je",priemer,"\n")

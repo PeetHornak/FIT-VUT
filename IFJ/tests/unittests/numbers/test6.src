@@ -1,0 +1,10 @@
+#exponent tvar cisla
+
+a = 3e0
+b = 1e-1
+
+vysledok = a + b
+
+print vysledok,"\n"
+
+

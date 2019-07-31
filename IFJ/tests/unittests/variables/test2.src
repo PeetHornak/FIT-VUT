@@ -1,0 +1,7 @@
+a = 100
+b = 50
+
+vysledok = a - b - a 
+
+print vysledok,"\n"
+

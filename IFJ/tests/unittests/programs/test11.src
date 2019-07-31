@@ -1,0 +1,11 @@
+def foo()
+    a = 5
+    a + 1 - 2 * ( 1 - a )
+end
+
+
+ b = foo()
+
+print "Toto je b = ",b,"\n"
+ 
+

@@ -1,0 +1,6 @@
+#Premenna s velkym pismenom na zaciatku
+
+Vysledok = 5 + 5
+
+print Vysledok
+

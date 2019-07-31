@@ -1,0 +1,8 @@
+def aa()
+end
+
+
+aa = 5
+
+print aa,"\n"
+

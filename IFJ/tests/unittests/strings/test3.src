@@ -1,0 +1,10 @@
+#kombinacia
+
+a = "\n\t\"toto je string\""
+
+b = "\\x22"
+
+print a,"\n"
+
+print b,"\n"
+

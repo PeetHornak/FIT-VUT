@@ -1,0 +1,7 @@
+premennaA = 33
+premennaa = 12
+
+vysledok = premennaA + premennaa
+
+print vysledok,"\n"
+

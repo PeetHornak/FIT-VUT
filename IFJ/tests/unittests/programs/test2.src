@@ -1,0 +1,29 @@
+#If-else test
+
+a = 5
+
+if a > 1 then
+    print "A je vacsie ako 1\n"
+else   
+    print "A je mensie ako 1\n"
+end
+
+if a >= 5 then 
+    print "A je rovne alebo vacsie ako 5\n"
+else    
+    print "A je mensie ako 5\n"
+end
+
+if a == 33 then
+    print "A je rovne 33\n"
+else
+    print "A nie je rovne 33\n"
+end
+
+if a != 33 then
+    print "A nie je rovne 33\n"
+else   
+    print "A je rovne 33\n"
+end
+
+
