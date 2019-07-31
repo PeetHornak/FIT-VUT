@@ -1,0 +1,16 @@
+/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /Users/peto/Documents/IZG/1project
+CMake Error at CMakeLists.txt:62 (find_package):
+  Could not find a package configuration file provided by "SDL2" (requested
+  version 2.0.9) with any of the following names:
+
+    SDL2Config.cmake
+    sdl2-config.cmake
+
+  Add the installation prefix of "SDL2" to CMAKE_PREFIX_PATH or set
+  "SDL2_DIR" to a directory containing one of the above files.  If "SDL2"
+  provides a separate development package or SDK, be sure it has been
+  installed.
+
+
+-- Configuring incomplete, errors occurred!
+See also "/Users/peto/Documents/IZG/1project/cmake-build-debug/CMakeFiles/CMakeOutput.log".

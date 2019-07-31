@@ -1,0 +1,3 @@
+.IPPcode19
+DEFVAR GF@counter
+MOVE lF@counter bOOl@true

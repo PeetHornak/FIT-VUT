@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<program language="IPPcode19">
+	<instruction order="1" opcode="PUSHS">
+		<arg1 type="int">29029</arg1>
+	</instruction>
+	<instruction order="2" opcode="POPS">
+		<arg1 type="int">29029</arg1>
+	</instruction>
+</program>

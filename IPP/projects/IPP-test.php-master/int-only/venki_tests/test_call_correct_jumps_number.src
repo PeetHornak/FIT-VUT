@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<program language="IPPcode19">
+  <instruction order="1" opcode="CALL">
+    <arg1 type="label">label</arg1>
+  </instruction>
+  <instruction order="2" opcode="JUMP">
+    <arg1 type="label">konec</arg1>
+  </instruction>
+  <instruction order="3" opcode="LABEL">
+    <arg1 type="label">label</arg1>
+  </instruction>
+  <instruction order="4" opcode="CALL">
+    <arg1 type="label">label2</arg1>
+  </instruction>
+  <instruction order="5" opcode="LABEL">
+    <arg1 type="label">label2</arg1>
+  </instruction>
+  <instruction order="6" opcode="CALL">
+    <arg1 type="label">label3</arg1>
+  </instruction>
+  <instruction order="7" opcode="LABEL">
+    <arg1 type="label">label3</arg1>
+  </instruction>
+  <instruction order="8" opcode="WRITE">
+    <arg1 type="string">23</arg1>
+  </instruction>
+  <instruction order="9" opcode="RETURN"/>
+  <instruction order="10" opcode="LABEL">
+    <arg1 type="label">konec</arg1>
+  </instruction>
+  <instruction order="11" opcode="WRITE">
+    <arg1 type="string">konec</arg1>
+  </instruction>
+</program>

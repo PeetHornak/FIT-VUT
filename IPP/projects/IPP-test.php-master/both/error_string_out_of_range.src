@@ -1,0 +1,4 @@
+.IPPcode19
+DEFVAR GF@a
+# indexace mimo meze
+GETCHAR GF@a string@a int@10

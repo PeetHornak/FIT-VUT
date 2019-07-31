@@ -1,0 +1,9 @@
+var searchData=
+[
+  ['perspective_5fmat4',['perspective_Mat4',['../camera_8c.html#a8da2a3e8adaa5a3515f7eecb5eb50de4',1,'perspective_Mat4(Mat4 *const output, float const fovy, float const aspect, float const near, float const far):&#160;camera.c'],['../camera_8h.html#a8da2a3e8adaa5a3515f7eecb5eb50de4',1,'perspective_Mat4(Mat4 *const output, float const fovy, float const aspect, float const near, float const far):&#160;camera.c']]],
+  ['phong_5ffs',['phong_FS',['../group__shader__side.html#gae61352614f36dbf1625c51d6963d1aeb',1,'phong_FS(GPUFragmentShaderData *const data):&#160;phongMethod.c'],['../group__shader__side.html#gae61352614f36dbf1625c51d6963d1aeb',1,'phong_FS(GPUFragmentShaderData *const data):&#160;phongMethod.c']]],
+  ['phong_5fondraw',['phong_onDraw',['../group__cpu__side.html#ga077fd875cff025bec23bb738ac61278a',1,'phong_onDraw(void *a):&#160;phongMethod.c'],['../group__cpu__side.html#ga077fd875cff025bec23bb738ac61278a',1,'phong_onDraw(void *a):&#160;phongMethod.c']]],
+  ['phong_5fonexit',['phong_onExit',['../group__cpu__side.html#gada78d4a6f5eb4c7cff394ae84b414e10',1,'phong_onExit(void *a):&#160;phongMethod.c'],['../group__cpu__side.html#gada78d4a6f5eb4c7cff394ae84b414e10',1,'phong_onExit(void *a):&#160;phongMethod.c']]],
+  ['phong_5foninit',['phong_onInit',['../group__cpu__side.html#gab4efb950833c87be9cd3b3850be50e77',1,'phong_onInit(void *a):&#160;phongMethod.c'],['../group__cpu__side.html#gab4efb950833c87be9cd3b3850be50e77',1,'phong_onInit(void *a):&#160;phongMethod.c']]],
+  ['phong_5fvs',['phong_VS',['../group__shader__side.html#gaed1d11e6e120b6a6513075c2e2c7ab19',1,'phong_VS(GPUVertexShaderData *const data):&#160;phongMethod.c'],['../group__shader__side.html#gaed1d11e6e120b6a6513075c2e2c7ab19',1,'phong_VS(GPUVertexShaderData *const data):&#160;phongMethod.c']]]
+];

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<program language="IPPcode19">
+	<instruction order="1" opcode="CREATEFRAME"/>
+	<instruction order="2" opcode="PUSHFRAME"/>
+	<instruction order="3" opcode="POPFRAME"/>
+	<instruction order="4" opcode="RETURN"/>
+	<instruction order="5" opcode="BREAK"/>
+</program>

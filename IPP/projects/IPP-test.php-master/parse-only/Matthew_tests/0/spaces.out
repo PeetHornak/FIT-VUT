@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<program language="IPPcode19">
+    <instruction order="1" opcode="DEFVAR">
+        <arg1 type="var">GF@counter</arg1>
+    </instruction>
+    <instruction order="2" opcode="MOVE">
+        <arg1 type="var">GF@counter</arg1>
+        <arg2 type="string">co\123unter</arg2>
+    </instruction>
+</program>

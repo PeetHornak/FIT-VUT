@@ -1,0 +1,58 @@
+.IPPcode19# anthuh
+
+defvar GF@a
+move GF@a string@\900atuh
+createframe
+pushframe
+popframe
+pushframe
+createframe
+# 
+#
+#
+
+
+
+#comment #tohuth
+defvar LF@a
+defvar TF@a
+call label1
+pushs int@209
+pops GF@a
+add GF@a GF@a int@3902
+sub GF@a int@902 int@642
+
+
+
+
+mul LF@a GF@a int@409
+idiv TF@a GF@a LF@a
+lt TF@a GF@a int@201
+gt TF@a string@natuh string@aathuh
+eq LF@a bool@true bool@true
+and GF@a TF@a LF@a
+or TF@a TF@a bool@false
+not LF@a GF@a
+int2char GF@a int@33
+stri2int LF@a GF@a int@0
+READ TF@a string
+write TF@a
+move LF@a string@adhu
+concat GF@a TF@a LF@a
+strlen GF@a GF@a
+getchar GF@a TF@a int@0
+setchar TF@a int@0 string@atou
+type LF@a GF@a
+jump label0
+#label labubalb
+write string@auhean
+label label0
+jumpifeq label1 bool@true bool@false
+jumpifneq label2 int@19 int@19
+write string@ntahu
+label label2
+exit int@0
+label label1
+dprint GF@a
+break
+return

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<program language="IPPcode19">
+  <instruction order="1" opcode="DEFVAR">
+    <arg1 type="var">GF@ahoj</arg1>
+  </instruction>
+  <instruction order="2" opcode="DEFVAR">
+    <arg1 type="var">GF@cau</arg1>
+  </instruction>
+  <instruction order="3" opcode="STRLEN">
+    <arg1 type="var">GF@cau</arg1>
+    <arg2 type="string">ahoj\020</arg2>
+  </instruction>
+  <instruction order="4" opcode="WRITE">
+    <arg1 type="var">GF@cau</arg1>
+  </instruction>
+  <instruction order="5" opcode="READ">
+    <arg1 type="var">GF@ahoj</arg1>
+    <arg2 type="type">string</arg2>
+  </instruction>
+  <instruction order="6" opcode="STRLEN">
+    <arg1 type="var">GF@cau</arg1>
+    <arg2 type="var">GF@ahoj</arg2>
+  </instruction>
+  <instruction order="7" opcode="WRITE">
+    <arg1 type="var">GF@cau</arg1>
+  </instruction>
+  <instruction order="8" opcode="STRLEN">
+    <arg1 type="var">GF@cau</arg1>
+    <arg2 type="var">GF@ahoj</arg2>
+  </instruction>
+  <instruction order="8" opcode="WRITE">
+    <arg1 type="var">GF@cau</arg1>
+  </instruction>
+</program>

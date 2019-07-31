@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<program language="IPPcode19">
+	<instruction order="1" opcode="CREATEFRAME">
+	</instruction>
+	<instruction order="2" opcode="PUSHFRAME">
+	</instruction>
+	<instruction order="3" opcode="POPFRAME">
+		<arg1 type="var">GF@antuh</arg1>
+	</instruction>
+</program>

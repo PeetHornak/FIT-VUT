@@ -1,0 +1,98 @@
+\hypertarget{group__cpu__side}{}\section{Úkoly v cpu části}
+\label{group__cpu__side}\index{Úkoly v cpu části@{Úkoly v cpu části}}
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structPhongData}{Phong\+Data}
+\begin{DoxyCompactList}\small\item\em This struct holds all variables of phong method. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{group__cpu__side_gab4efb950833c87be9cd3b3850be50e77}{phong\+\_\+on\+Init} (void $\ast$a)
+\begin{DoxyCompactList}\small\item\em This function initializes phong method. \end{DoxyCompactList}\item 
+void \hyperlink{group__cpu__side_ga077fd875cff025bec23bb738ac61278a}{phong\+\_\+on\+Draw} (void $\ast$a)
+\begin{DoxyCompactList}\small\item\em This function draws phong method. \end{DoxyCompactList}\item 
+void \hyperlink{group__cpu__side_gada78d4a6f5eb4c7cff394ae84b414e10}{phong\+\_\+on\+Exit} (void $\ast$a)
+\begin{DoxyCompactList}\small\item\em This functions frees all the phong data. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{group__cpu__side_gaf80898fd19b8fe287ae668bf03e6de72}\label{group__cpu__side_gaf80898fd19b8fe287ae668bf03e6de72}} 
+struct \hyperlink{structPhongData}{Phong\+Data} \hyperlink{group__cpu__side_gaf80898fd19b8fe287ae668bf03e6de72}{phong\+Data}
+\begin{DoxyCompactList}\small\item\em this variable holds all data for phong method \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{group__cpu__side_ga077fd875cff025bec23bb738ac61278a}\label{group__cpu__side_ga077fd875cff025bec23bb738ac61278a}} 
+\index{Úkoly v cpu části@{Úkoly v cpu části}!phong\+\_\+on\+Draw@{phong\+\_\+on\+Draw}}
+\index{phong\+\_\+on\+Draw@{phong\+\_\+on\+Draw}!Úkoly v cpu části@{Úkoly v cpu části}}
+\subsubsection{\texorpdfstring{phong\+\_\+on\+Draw()}{phong\_onDraw()}}
+{\footnotesize\ttfamily void phong\+\_\+on\+Draw (\begin{DoxyParamCaption}\item[{void $\ast$}]{a }\end{DoxyParamCaption})}
+
+
+
+This function draws phong method. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & data \\
+\hline
+\end{DoxyParams}
+\begin{DoxyRefDesc}{Todo}
+\item[\hyperlink{todo__todo000005}{Todo}]Doprogramujte kreslící funkci. Zde byste měli aktivovat shader program, aktivovat vertex puller, nahrát data do uniformních proměnných a vykreslit trojúhelníky pomocí funkce cpu\+\_\+draw\+Triangles. Data pro uniformní proměnné naleznete v externích globálních proměnnénych view\+Matrix, projection\+Matrix, camera\+Position a light\+Position {\bfseries Seznam funkcí, které jistě využijete\+:}
+\begin{DoxyItemize}
+\item \hyperlink{cpu_8c_abed0fbac42c4335409b29a19f13809f4}{cpu\+\_\+use\+Program()}
+\item \hyperlink{cpu_8c_a18a87fa3883575459a9d12bd8c2c4fea}{cpu\+\_\+bind\+Vertex\+Puller()}
+\item cpu\+\_\+uniform\+Matrix4f()
+\item cpu\+\_\+uniform3f()
+\item \hyperlink{cpu_8c_a13c52301446924ffbc425a07f8a14ed2}{cpu\+\_\+draw\+Triangles()}
+\item cpu\+\_\+unbind\+Vertex\+Puller 
+\end{DoxyItemize}\end{DoxyRefDesc}
+\mbox{\Hypertarget{group__cpu__side_gada78d4a6f5eb4c7cff394ae84b414e10}\label{group__cpu__side_gada78d4a6f5eb4c7cff394ae84b414e10}} 
+\index{Úkoly v cpu části@{Úkoly v cpu části}!phong\+\_\+on\+Exit@{phong\+\_\+on\+Exit}}
+\index{phong\+\_\+on\+Exit@{phong\+\_\+on\+Exit}!Úkoly v cpu části@{Úkoly v cpu části}}
+\subsubsection{\texorpdfstring{phong\+\_\+on\+Exit()}{phong\_onExit()}}
+{\footnotesize\ttfamily void phong\+\_\+on\+Exit (\begin{DoxyParamCaption}\item[{void $\ast$}]{a }\end{DoxyParamCaption})}
+
+
+
+This functions frees all the phong data. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & data \\
+\hline
+\end{DoxyParams}
+\begin{DoxyRefDesc}{Todo}
+\item[\hyperlink{todo__todo000006}{Todo}]Zde uvolněte alokované zdroje \end{DoxyRefDesc}
+\mbox{\Hypertarget{group__cpu__side_gab4efb950833c87be9cd3b3850be50e77}\label{group__cpu__side_gab4efb950833c87be9cd3b3850be50e77}} 
+\index{Úkoly v cpu části@{Úkoly v cpu části}!phong\+\_\+on\+Init@{phong\+\_\+on\+Init}}
+\index{phong\+\_\+on\+Init@{phong\+\_\+on\+Init}!Úkoly v cpu části@{Úkoly v cpu části}}
+\subsubsection{\texorpdfstring{phong\+\_\+on\+Init()}{phong\_onInit()}}
+{\footnotesize\ttfamily void phong\+\_\+on\+Init (\begin{DoxyParamCaption}\item[{void $\ast$}]{a }\end{DoxyParamCaption})}
+
+
+
+This function initializes phong method. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & data for initialization \\
+\hline
+\end{DoxyParams}
+\begin{DoxyRefDesc}{Todo}
+\item[\hyperlink{todo__todo000004}{Todo}]Doprogramujte inicializační funkci. Zde byste měli vytvořit buffery na \hyperlink{structGPU}{G\+PU}, nahrát data do bufferů, vytvořit vertex puller a správně jej nakonfigurovat, vytvořit program, připojit k němu shadery a nastavit atributy, které se posílají mezi vs a fs. Do bufferů nahrajte vrcholy králička (pozice, normály) a indexy na vrcholy ze souboru \hyperlink{bunny_8h}{bunny.\+h}. Shader program by měl odkazovat na funkce/shadery phong\+\_\+\+VS a phong\+\_\+\+FS. V konfiguraci vertex pulleru nastavte dvě čtecí hlavy. Jednu pro pozice vrcholů a druhou pro normály vrcholů. Nultý vertex/fragment atribut by měl obsahovat pozici vertexu. První vertex/fragment atribut by měl obsahovat normálu vertexu. Nastavte, které atributy (jaký typ) se posílají z vertex shaderu do fragment shaderu. {\bfseries Seznam funkcí, které jistě využijete\+:}
+\begin{DoxyItemize}
+\item \hyperlink{cpu_8c_a94245836b857a36f392bf86087e8e776}{cpu\+\_\+create\+Buffer()}
+\item \hyperlink{cpu_8c_aee5c818b862ef2e411f121fbdfb1c634}{cpu\+\_\+buffer\+Data()}
+\item \hyperlink{cpu_8c_a3ec68476772605b8be33329f88ae4d97}{cpu\+\_\+create\+Vertex\+Puller()}
+\item \hyperlink{cpu_8c_a4cb243dfeb6443e0f9a6110ce1dd27eb}{cpu\+\_\+set\+Vertex\+Puller()}
+\item \hyperlink{cpu_8c_a5a6ce215f054d26134c7598714cfb453}{cpu\+\_\+enable\+Vertex\+Puller\+Head()}
+\item \hyperlink{cpu_8c_a4159dbbc604685e544bc296708ced5f9}{cpu\+\_\+set\+Vertex\+Puller\+Indexing()}
+\item \hyperlink{cpu_8c_af3da8b71aea1c26e6a90af7da9d0e85c}{cpu\+\_\+create\+Program()}
+\item \hyperlink{cpu_8c_a76c50b0e120265198fe036abdc42d271}{cpu\+\_\+attach\+Shaders()}
+\item \hyperlink{cpu_8c_ae9a0898c1ebe8d914d0858f56028c591}{cpu\+\_\+set\+V\+S2\+F\+S\+Type()} 
+\end{DoxyItemize}\end{DoxyRefDesc}

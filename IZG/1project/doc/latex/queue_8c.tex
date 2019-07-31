@@ -1,0 +1,228 @@
+\hypertarget{queue_8c}{}\section{queue/src/queue/queue.c File Reference}
+\label{queue_8c}\index{queue/src/queue/queue.\+c@{queue/src/queue/queue.\+c}}
+
+
+This file contains implementation of uint32\+\_\+t queue.  
+
+
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$assert.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$queue/queue.\+h$>$}\newline
+{\ttfamily \#include $<$queue/private/element.\+h$>$}\newline
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{queue_8c_a516fda1eafe0d28c0065eb77bf6706b4}{queue\+\_\+init} (\hyperlink{structQueue}{Queue} $\ast$const queue, uint32\+\_\+t element\+Size)
+\begin{DoxyCompactList}\small\item\em This function inits queue. \end{DoxyCompactList}\item 
+void \hyperlink{queue_8c_a7afe39f27b5b41454668b0a7b2cdb3a7}{queue\+\_\+free} (\hyperlink{structQueue}{Queue} $\ast$const queue)
+\begin{DoxyCompactList}\small\item\em This function frees queue. \end{DoxyCompactList}\item 
+int \hyperlink{queue_8c_a1a6a7795f59cb7fedcfcc50be8528576}{queue\+\_\+empty} (\hyperlink{structQueue}{Queue} const $\ast$const queue)
+\begin{DoxyCompactList}\small\item\em This function returns 1 if the queue is empty. \end{DoxyCompactList}\item 
+uint32\+\_\+t \hyperlink{queue_8c_a7f98e59a17d2f8383b7254d31d9abbca}{queue\+\_\+elements} (\hyperlink{structQueue}{Queue} const $\ast$const queue)
+\begin{DoxyCompactList}\small\item\em This function returns the number of elements in the queue. \end{DoxyCompactList}\item 
+uint32\+\_\+t \hyperlink{queue_8c_acf54b3c19a6a2ba167fbd6b593a9fc3a}{queue\+\_\+element\+Size} (\hyperlink{structQueue}{Queue} const $\ast$const queue)
+\begin{DoxyCompactList}\small\item\em This function returns the element size in bytes. \end{DoxyCompactList}\item 
+Error\+Code \hyperlink{queue_8c_a4d600c3a10f99c96c46b9e26f0b0943e}{queue\+\_\+push} (\hyperlink{structQueue}{Queue} $\ast$const queue, void $\ast$const value)
+\begin{DoxyCompactList}\small\item\em This function pushes a new value to the end of the queue. \end{DoxyCompactList}\item 
+Error\+Code \hyperlink{queue_8c_ac0f92e06f3ab2b58afb1953becd2d40b}{queue\+\_\+pop} (\hyperlink{structQueue}{Queue} $\ast$const queue, void $\ast$const value)
+\begin{DoxyCompactList}\small\item\em This function pops elements from the front of the queue. \end{DoxyCompactList}\item 
+void $\ast$ \hyperlink{queue_8c_ad2ea6d2b088ccb0a7bb457e64b9d259c}{queue\+\_\+get\+End} (\hyperlink{structQueue}{Queue} const $\ast$const queue, int end)
+\begin{DoxyCompactList}\small\item\em This function returns pointer to one of the ends of the queue. \end{DoxyCompactList}\item 
+void $\ast$ \hyperlink{queue_8c_a93afd6194f622473b8e20fe2837b545b}{queue\+\_\+front} (\hyperlink{structQueue}{Queue} $\ast$const queue)
+\begin{DoxyCompactList}\small\item\em This function return front element data. \end{DoxyCompactList}\item 
+void $\ast$ \hyperlink{queue_8c_a47dcc6fa3aeb68fa8e9d83965ca56b47}{queue\+\_\+back} (\hyperlink{structQueue}{Queue} $\ast$const queue)
+\begin{DoxyCompactList}\small\item\em This function return back element data. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This file contains implementation of uint32\+\_\+t queue. 
+
+\begin{DoxyAuthor}{Author}
+Tomáš Milet, \href{mailto:imilet@fit.vutbr.cz}{\tt imilet@fit.\+vutbr.\+cz} 
+\end{DoxyAuthor}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{queue_8c_a47dcc6fa3aeb68fa8e9d83965ca56b47}\label{queue_8c_a47dcc6fa3aeb68fa8e9d83965ca56b47}} 
+\index{queue.\+c@{queue.\+c}!queue\+\_\+back@{queue\+\_\+back}}
+\index{queue\+\_\+back@{queue\+\_\+back}!queue.\+c@{queue.\+c}}
+\subsubsection{\texorpdfstring{queue\+\_\+back()}{queue\_back()}}
+{\footnotesize\ttfamily void$\ast$ queue\+\_\+back (\begin{DoxyParamCaption}\item[{\hyperlink{structQueue}{Queue} $\ast$const}]{queue }\end{DoxyParamCaption})}
+
+
+
+This function return back element data. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em queue} & queue\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+back element data or N\+U\+LL if the queue is empty 
+\end{DoxyReturn}
+\mbox{\Hypertarget{queue_8c_a7f98e59a17d2f8383b7254d31d9abbca}\label{queue_8c_a7f98e59a17d2f8383b7254d31d9abbca}} 
+\index{queue.\+c@{queue.\+c}!queue\+\_\+elements@{queue\+\_\+elements}}
+\index{queue\+\_\+elements@{queue\+\_\+elements}!queue.\+c@{queue.\+c}}
+\subsubsection{\texorpdfstring{queue\+\_\+elements()}{queue\_elements()}}
+{\footnotesize\ttfamily uint32\+\_\+t queue\+\_\+elements (\begin{DoxyParamCaption}\item[{\hyperlink{structQueue}{Queue} const $\ast$const}]{queue }\end{DoxyParamCaption})}
+
+
+
+This function returns the number of elements in the queue. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em queue} & queue\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+number of elements in the queue 
+\end{DoxyReturn}
+\mbox{\Hypertarget{queue_8c_acf54b3c19a6a2ba167fbd6b593a9fc3a}\label{queue_8c_acf54b3c19a6a2ba167fbd6b593a9fc3a}} 
+\index{queue.\+c@{queue.\+c}!queue\+\_\+element\+Size@{queue\+\_\+element\+Size}}
+\index{queue\+\_\+element\+Size@{queue\+\_\+element\+Size}!queue.\+c@{queue.\+c}}
+\subsubsection{\texorpdfstring{queue\+\_\+element\+Size()}{queue\_elementSize()}}
+{\footnotesize\ttfamily uint32\+\_\+t queue\+\_\+element\+Size (\begin{DoxyParamCaption}\item[{\hyperlink{structQueue}{Queue} const $\ast$const}]{queue }\end{DoxyParamCaption})}
+
+
+
+This function returns the element size in bytes. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em queue} & queue\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+element size in bytes 
+\end{DoxyReturn}
+\mbox{\Hypertarget{queue_8c_a1a6a7795f59cb7fedcfcc50be8528576}\label{queue_8c_a1a6a7795f59cb7fedcfcc50be8528576}} 
+\index{queue.\+c@{queue.\+c}!queue\+\_\+empty@{queue\+\_\+empty}}
+\index{queue\+\_\+empty@{queue\+\_\+empty}!queue.\+c@{queue.\+c}}
+\subsubsection{\texorpdfstring{queue\+\_\+empty()}{queue\_empty()}}
+{\footnotesize\ttfamily int queue\+\_\+empty (\begin{DoxyParamCaption}\item[{\hyperlink{structQueue}{Queue} const $\ast$const}]{queue }\end{DoxyParamCaption})}
+
+
+
+This function returns 1 if the queue is empty. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em queue} & queue\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if queue is empty, 0 otherwise 
+\end{DoxyReturn}
+\mbox{\Hypertarget{queue_8c_a7afe39f27b5b41454668b0a7b2cdb3a7}\label{queue_8c_a7afe39f27b5b41454668b0a7b2cdb3a7}} 
+\index{queue.\+c@{queue.\+c}!queue\+\_\+free@{queue\+\_\+free}}
+\index{queue\+\_\+free@{queue\+\_\+free}!queue.\+c@{queue.\+c}}
+\subsubsection{\texorpdfstring{queue\+\_\+free()}{queue\_free()}}
+{\footnotesize\ttfamily void queue\+\_\+free (\begin{DoxyParamCaption}\item[{\hyperlink{structQueue}{Queue} $\ast$const}]{queue }\end{DoxyParamCaption})}
+
+
+
+This function frees queue. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em queue} & queue \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{queue_8c_a93afd6194f622473b8e20fe2837b545b}\label{queue_8c_a93afd6194f622473b8e20fe2837b545b}} 
+\index{queue.\+c@{queue.\+c}!queue\+\_\+front@{queue\+\_\+front}}
+\index{queue\+\_\+front@{queue\+\_\+front}!queue.\+c@{queue.\+c}}
+\subsubsection{\texorpdfstring{queue\+\_\+front()}{queue\_front()}}
+{\footnotesize\ttfamily void$\ast$ queue\+\_\+front (\begin{DoxyParamCaption}\item[{\hyperlink{structQueue}{Queue} $\ast$const}]{queue }\end{DoxyParamCaption})}
+
+
+
+This function return front element data. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em queue} & queue\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+front element data or N\+U\+LL if the queue is empty 
+\end{DoxyReturn}
+\mbox{\Hypertarget{queue_8c_ad2ea6d2b088ccb0a7bb457e64b9d259c}\label{queue_8c_ad2ea6d2b088ccb0a7bb457e64b9d259c}} 
+\index{queue.\+c@{queue.\+c}!queue\+\_\+get\+End@{queue\+\_\+get\+End}}
+\index{queue\+\_\+get\+End@{queue\+\_\+get\+End}!queue.\+c@{queue.\+c}}
+\subsubsection{\texorpdfstring{queue\+\_\+get\+End()}{queue\_getEnd()}}
+{\footnotesize\ttfamily void$\ast$ queue\+\_\+get\+End (\begin{DoxyParamCaption}\item[{\hyperlink{structQueue}{Queue} const $\ast$const}]{queue,  }\item[{int}]{end }\end{DoxyParamCaption})}
+
+
+
+This function returns pointer to one of the ends of the queue. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em queue} & queue \\
+\hline
+{\em end} & queue end\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+pointer to queue end element 
+\end{DoxyReturn}
+\mbox{\Hypertarget{queue_8c_a516fda1eafe0d28c0065eb77bf6706b4}\label{queue_8c_a516fda1eafe0d28c0065eb77bf6706b4}} 
+\index{queue.\+c@{queue.\+c}!queue\+\_\+init@{queue\+\_\+init}}
+\index{queue\+\_\+init@{queue\+\_\+init}!queue.\+c@{queue.\+c}}
+\subsubsection{\texorpdfstring{queue\+\_\+init()}{queue\_init()}}
+{\footnotesize\ttfamily void queue\+\_\+init (\begin{DoxyParamCaption}\item[{\hyperlink{structQueue}{Queue} $\ast$const}]{queue,  }\item[{uint32\+\_\+t}]{element\+Size }\end{DoxyParamCaption})}
+
+
+
+This function inits queue. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em queue} & queue \\
+\hline
+{\em element\+Size} & size of one element in bytes \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{queue_8c_ac0f92e06f3ab2b58afb1953becd2d40b}\label{queue_8c_ac0f92e06f3ab2b58afb1953becd2d40b}} 
+\index{queue.\+c@{queue.\+c}!queue\+\_\+pop@{queue\+\_\+pop}}
+\index{queue\+\_\+pop@{queue\+\_\+pop}!queue.\+c@{queue.\+c}}
+\subsubsection{\texorpdfstring{queue\+\_\+pop()}{queue\_pop()}}
+{\footnotesize\ttfamily Error\+Code queue\+\_\+pop (\begin{DoxyParamCaption}\item[{\hyperlink{structQueue}{Queue} $\ast$const}]{queue,  }\item[{void $\ast$const}]{value }\end{DoxyParamCaption})}
+
+
+
+This function pops elements from the front of the queue. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em queue} & queue \\
+\hline
+{\em value} & the elements value of the queue\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+return E\+R\+R\+\_\+\+OK on success 
+\end{DoxyReturn}
+\mbox{\Hypertarget{queue_8c_a4d600c3a10f99c96c46b9e26f0b0943e}\label{queue_8c_a4d600c3a10f99c96c46b9e26f0b0943e}} 
+\index{queue.\+c@{queue.\+c}!queue\+\_\+push@{queue\+\_\+push}}
+\index{queue\+\_\+push@{queue\+\_\+push}!queue.\+c@{queue.\+c}}
+\subsubsection{\texorpdfstring{queue\+\_\+push()}{queue\_push()}}
+{\footnotesize\ttfamily Error\+Code queue\+\_\+push (\begin{DoxyParamCaption}\item[{\hyperlink{structQueue}{Queue} $\ast$const}]{queue,  }\item[{void $\ast$const}]{value }\end{DoxyParamCaption})}
+
+
+
+This function pushes a new value to the end of the queue. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em queue} & queue \\
+\hline
+{\em value} & a new value\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+return E\+R\+R\+\_\+\+OK on success 
+\end{DoxyReturn}

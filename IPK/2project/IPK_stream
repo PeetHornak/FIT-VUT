@@ -1,0 +1,42 @@
+teorie - high level what should be done
+
+1. argumenty
+
+2. ziskat IP adresu cile (pokud neni zadana primo IP)
+gethostbyname()
+getaddrinfo()
+
+3. ziskat source IP
+pokud je zadany interface, tak: 
+naplnit: 
+ifreq.ifr_addr.sa_family = AF_INET;
+ifreq.ifr_name = interface;
+ip =  ioctl(socket, SIOCGIFADDR, &ifrq)
+
+4. zinicializajat si pcap handle
+pcap_create()
+nejake nastaveni
+pcap_activate()
+
+5. otevrit rawsocket
+socket()
+setsockkopt(socket, IPPROTO_IP, IP_HDRINCL, ptr_one, sizeof(one));
+
+6. naplnit IP a TCP/UDP struktury
+wikipedie, RFC, priklady na netu
+
+7. nastavit si filter pro pcap
+pcap_compile()
+pcap_setfilter()
+
+8. pro kazdy zadany port:
+zadat port do TCP/UDP hlavicky
+nastavit checksum v IP a v TCP hlavicce na 0
+prepocitat checksum
+poslat packet: sendto(socket, packet, delka_packetu, 0, sockaddr *, sizeof(sockaddr))
+cekat na odpoved (pcap_loop(), nebo pcap_next())
+na prijaty packet namapovat ethernet, ip a TCP/UDP hlavicky:
+ether_header *eth = packet;
+iphdr *ip = (packet + sizeof(ether_header));
+tcphdr *tcp = (ip + sizeof(iphdr));
+vyhodnotit zachyceny packet a prejit na dalsi port / protokol

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<program language="IPPcode19">
+  <instruction order="1" opcode="CALL">
+    <arg1 type="label">label</arg1>
+  </instruction>
+  <instruction order="2" opcode="WRITE">
+    <arg1 type="string">tadyjo</arg1>
+  </instruction>
+  <instruction order="3" opcode="JUMP">
+    <arg1 type="label">konec</arg1>
+  </instruction>
+  <instruction order="4" opcode="LABEL">
+    <arg1 type="label">label</arg1>
+  </instruction>
+  <instruction order="5" opcode="WRITE">
+    <arg1 type="string">tadytakyjo</arg1>
+  </instruction>
+  <instruction order="6" opcode="RETURN"/>
+  <instruction order="7" opcode="LABEL">
+    <arg1 type="label">konec</arg1>
+  </instruction>
+  <instruction order="8" opcode="WRITE">
+    <arg1 type="string">atadytakyjo</arg1>
+  </instruction>
+</program>

@@ -1,0 +1,1028 @@
+\hypertarget{gpu_8h}{}\section{student/gpu.h File Reference}
+\label{gpu_8h}\index{student/gpu.\+h@{student/gpu.\+h}}
+
+
+This file contains structures and function declarations of \hyperlink{structGPU}{G\+PU} HW. Main structure is \hyperlink{structGPU}{G\+PU} that holds all components of the \hyperlink{structGPU}{G\+PU}. \hyperlink{structGPU}{G\+PU} is composed of list of buffers, list of vertex pullers and list of programs. \hyperlink{structGPU}{G\+PU} also contains framebuffer, active program and vertex puller and states. \hyperlink{structGPU}{G\+PU} executes commands that are stored in Command\+Queue.  
+
+
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include $<$student/linear\+Algebra.\+h$>$}\newline
+{\ttfamily \#include $<$vector/vector.\+h$>$}\newline
+{\ttfamily \#include $<$stack/stack.\+h$>$}\newline
+{\ttfamily \#include $<$queue/queue.\+h$>$}\newline
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structGPUAttribute}{G\+P\+U\+Attribute}
+\begin{DoxyCompactList}\small\item\em This struct represents one attribute (vertex or fragment) \end{DoxyCompactList}\item 
+struct \hyperlink{structGPUInVertex}{G\+P\+U\+In\+Vertex}
+\begin{DoxyCompactList}\small\item\em This struct represents input vertex of vertex shader. \end{DoxyCompactList}\item 
+struct \hyperlink{structGPUOutVertex}{G\+P\+U\+Out\+Vertex}
+\begin{DoxyCompactList}\small\item\em This struct represents output vertex of vertex shader. \end{DoxyCompactList}\item 
+struct \hyperlink{structGPUInFragment}{G\+P\+U\+In\+Fragment}
+\begin{DoxyCompactList}\small\item\em This struct represents input fragment. \end{DoxyCompactList}\item 
+struct \hyperlink{structGPUOutFragment}{G\+P\+U\+Out\+Fragment}
+\begin{DoxyCompactList}\small\item\em This struct represents output fragment. \end{DoxyCompactList}\item 
+struct \hyperlink{structGPUUniform}{G\+P\+U\+Uniform}
+\begin{DoxyCompactList}\small\item\em This struct represents one uniform. \end{DoxyCompactList}\item 
+struct \hyperlink{structGPUUniforms}{G\+P\+U\+Uniforms}
+\begin{DoxyCompactList}\small\item\em All uniforms. \end{DoxyCompactList}\item 
+struct \hyperlink{structGPUVertexShaderData}{G\+P\+U\+Vertex\+Shader\+Data}
+\begin{DoxyCompactList}\small\item\em Vertex shader data. \end{DoxyCompactList}\item 
+struct \hyperlink{structGPUFragmentShaderData}{G\+P\+U\+Fragment\+Shader\+Data}
+\begin{DoxyCompactList}\small\item\em Fragment shader data. \end{DoxyCompactList}\item 
+struct \hyperlink{structGPUVertexPullerHead}{G\+P\+U\+Vertex\+Puller\+Head}
+\begin{DoxyCompactList}\small\item\em This struct represents one vertex puller head. \end{DoxyCompactList}\item 
+struct \hyperlink{structGPUIndices}{G\+P\+U\+Indices}
+\begin{DoxyCompactList}\small\item\em This struct represents indices stored in vertex puller. \end{DoxyCompactList}\item 
+struct \hyperlink{structGPUVertexPuller}{G\+P\+U\+Vertex\+Puller}
+\begin{DoxyCompactList}\small\item\em This struct represents vertex puller;. \end{DoxyCompactList}\item 
+struct \hyperlink{structGPUBuffer}{G\+P\+U\+Buffer}
+\begin{DoxyCompactList}\small\item\em This struct represents one \hyperlink{structGPU}{G\+PU} buffer. \end{DoxyCompactList}\item 
+struct \hyperlink{structGPUBuffers}{G\+P\+U\+Buffers}
+\begin{DoxyCompactList}\small\item\em This struct represents all \hyperlink{structGPU}{G\+PU} buffers. \end{DoxyCompactList}\item 
+struct \hyperlink{structGPUVertexPullers}{G\+P\+U\+Vertex\+Pullers}
+\begin{DoxyCompactList}\small\item\em This struct represents all vertex pullers. \end{DoxyCompactList}\item 
+struct \hyperlink{structGPUProgram}{G\+P\+U\+Program}
+\begin{DoxyCompactList}\small\item\em This structure represents shader program. \end{DoxyCompactList}\item 
+struct \hyperlink{structGPUPrograms}{G\+P\+U\+Programs}
+\begin{DoxyCompactList}\small\item\em This struct represents all shader programs on \hyperlink{structGPU}{G\+PU}. \end{DoxyCompactList}\item 
+struct \hyperlink{structGPUCommand}{G\+P\+U\+Command}
+\begin{DoxyCompactList}\small\item\em This struct represents command for \hyperlink{structGPU}{G\+PU}. \end{DoxyCompactList}\item 
+struct \hyperlink{structGPUFramebuffer}{G\+P\+U\+Framebuffer}
+\begin{DoxyCompactList}\small\item\em This struct represents framebuffer. \end{DoxyCompactList}\item 
+struct \hyperlink{structGPU}{G\+PU}
+\begin{DoxyCompactList}\small\item\em This struct represents \hyperlink{structGPU}{G\+PU} data. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{gpu_8h_a4d68c6261a34b0ebce406bd262042e12}\label{gpu_8h_a4d68c6261a34b0ebce406bd262042e12}} 
+\#define \hyperlink{gpu_8h_a4d68c6261a34b0ebce406bd262042e12}{M\+A\+X\+\_\+\+U\+N\+I\+F\+O\+R\+MS}~16
+\begin{DoxyCompactList}\small\item\em This macro represents maximum number of uniform variables. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{gpu_8h_a3ac81405857dad64376c2b84d76fc3cf}\label{gpu_8h_a3ac81405857dad64376c2b84d76fc3cf}} 
+\#define \hyperlink{gpu_8h_a3ac81405857dad64376c2b84d76fc3cf}{M\+A\+X\+\_\+\+U\+N\+I\+F\+O\+R\+M\+\_\+\+S\+I\+ZE}~sizeof(\hyperlink{structMat4}{Mat4})
+\begin{DoxyCompactList}\small\item\em This macro represents maximum size of uniform variable. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{gpu_8h_a1edf85281de595fe1bc2b690074c1d21}\label{gpu_8h_a1edf85281de595fe1bc2b690074c1d21}} 
+\#define \hyperlink{gpu_8h_a1edf85281de595fe1bc2b690074c1d21}{M\+A\+X\+\_\+\+A\+T\+T\+R\+I\+B\+U\+T\+E\+\_\+\+S\+I\+ZE}~sizeof(\hyperlink{structVec4}{Vec4})
+\begin{DoxyCompactList}\small\item\em This macro represents maximum attribute size. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{gpu_8h_a7f86870481feb2a3f606c51b6109248d}\label{gpu_8h_a7f86870481feb2a3f606c51b6109248d}} 
+\#define \hyperlink{gpu_8h_a7f86870481feb2a3f606c51b6109248d}{E\+M\+P\+T\+Y\+\_\+\+ID}~0xffffffff
+\begin{DoxyCompactList}\small\item\em This macro represents empty object id. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{gpu_8h_a5236bd21daf81fc31b3d515a16e35048}\label{gpu_8h_a5236bd21daf81fc31b3d515a16e35048}} 
+typedef enum \hyperlink{gpu_8h_a349a9cde14be8097df865ba0469c0ab2}{Attribute\+Type} \hyperlink{gpu_8h_a5236bd21daf81fc31b3d515a16e35048}{Attribute\+Type}
+\begin{DoxyCompactList}\small\item\em shortcut \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{gpu_8h_aa202c434f5613efff9501b95036fa0e9}\label{gpu_8h_aa202c434f5613efff9501b95036fa0e9}} 
+typedef struct \hyperlink{structGPUAttribute}{G\+P\+U\+Attribute} \hyperlink{gpu_8h_aa202c434f5613efff9501b95036fa0e9}{G\+P\+U\+Attribute}
+\begin{DoxyCompactList}\small\item\em shortcut \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{gpu_8h_a2e228fac623164ac9d494e2d1a07b1fb}\label{gpu_8h_a2e228fac623164ac9d494e2d1a07b1fb}} 
+typedef struct \hyperlink{structGPUInVertex}{G\+P\+U\+In\+Vertex} \hyperlink{gpu_8h_a2e228fac623164ac9d494e2d1a07b1fb}{G\+P\+U\+In\+Vertex}
+\begin{DoxyCompactList}\small\item\em shortcut \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{gpu_8h_a2538a18d21112a97c0ea6bf04abdce6b}\label{gpu_8h_a2538a18d21112a97c0ea6bf04abdce6b}} 
+typedef struct \hyperlink{structGPUOutVertex}{G\+P\+U\+Out\+Vertex} \hyperlink{gpu_8h_a2538a18d21112a97c0ea6bf04abdce6b}{G\+P\+U\+Out\+Vertex}
+\begin{DoxyCompactList}\small\item\em shortcut \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{gpu_8h_a7d7d5454b7b11ef00fd5bce077c6ce6b}\label{gpu_8h_a7d7d5454b7b11ef00fd5bce077c6ce6b}} 
+typedef struct \hyperlink{structGPUInFragment}{G\+P\+U\+In\+Fragment} \hyperlink{gpu_8h_a7d7d5454b7b11ef00fd5bce077c6ce6b}{G\+P\+U\+In\+Fragment}
+\begin{DoxyCompactList}\small\item\em shortcut \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{gpu_8h_a8d6592eda8c2207bee027ca6e746770f}\label{gpu_8h_a8d6592eda8c2207bee027ca6e746770f}} 
+typedef struct \hyperlink{structGPUOutFragment}{G\+P\+U\+Out\+Fragment} \hyperlink{gpu_8h_a8d6592eda8c2207bee027ca6e746770f}{G\+P\+U\+Out\+Fragment}
+\begin{DoxyCompactList}\small\item\em shortcut \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{gpu_8h_a95469b0bed6e4312f0899b0a1c609f07}\label{gpu_8h_a95469b0bed6e4312f0899b0a1c609f07}} 
+typedef enum \hyperlink{gpu_8h_a0a09a0e8bfa0704522ea2be08aabbd44}{G\+P\+U\+Uniform\+Type} \hyperlink{gpu_8h_a95469b0bed6e4312f0899b0a1c609f07}{G\+P\+U\+Uniform\+Type}
+\begin{DoxyCompactList}\small\item\em shortcut \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{gpu_8h_a723d1de956ae0f183e146a289b1d5d44}\label{gpu_8h_a723d1de956ae0f183e146a289b1d5d44}} 
+typedef struct \hyperlink{structGPUUniform}{G\+P\+U\+Uniform} \hyperlink{gpu_8h_a723d1de956ae0f183e146a289b1d5d44}{G\+P\+U\+Uniform}
+\begin{DoxyCompactList}\small\item\em shortcut \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{gpu_8h_a921388727f6219b338c710b0466b54ec}\label{gpu_8h_a921388727f6219b338c710b0466b54ec}} 
+typedef struct \hyperlink{structGPUUniforms}{G\+P\+U\+Uniforms} \hyperlink{gpu_8h_a921388727f6219b338c710b0466b54ec}{G\+P\+U\+Uniforms}
+\begin{DoxyCompactList}\small\item\em shortcut \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{gpu_8h_ab788bd9f382952c26372800cdada6c8d}\label{gpu_8h_ab788bd9f382952c26372800cdada6c8d}} 
+typedef struct \hyperlink{structGPUVertexShaderData}{G\+P\+U\+Vertex\+Shader\+Data} \hyperlink{gpu_8h_ab788bd9f382952c26372800cdada6c8d}{G\+P\+U\+Vertex\+Shader\+Data}
+\begin{DoxyCompactList}\small\item\em shortcut \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{gpu_8h_a780afcb99900e1827031f53b02be796a}\label{gpu_8h_a780afcb99900e1827031f53b02be796a}} 
+typedef struct \hyperlink{structGPUFragmentShaderData}{G\+P\+U\+Fragment\+Shader\+Data} \hyperlink{gpu_8h_a780afcb99900e1827031f53b02be796a}{G\+P\+U\+Fragment\+Shader\+Data}
+\begin{DoxyCompactList}\small\item\em shortcut \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{gpu_8h_add19b2ac87272745c0da3ef10d2f4160}\label{gpu_8h_add19b2ac87272745c0da3ef10d2f4160}} 
+typedef void($\ast$ \hyperlink{gpu_8h_add19b2ac87272745c0da3ef10d2f4160}{Vertex\+Shader}) (\hyperlink{structGPUVertexShaderData}{G\+P\+U\+Vertex\+Shader\+Data} $\ast$const)
+\begin{DoxyCompactList}\small\item\em vertex shader type \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{gpu_8h_aa8727db7547712b2d7dbb9de657c6175}\label{gpu_8h_aa8727db7547712b2d7dbb9de657c6175}} 
+typedef void($\ast$ \hyperlink{gpu_8h_aa8727db7547712b2d7dbb9de657c6175}{Fragment\+Shader}) (\hyperlink{structGPUFragmentShaderData}{G\+P\+U\+Fragment\+Shader\+Data} $\ast$const)
+\begin{DoxyCompactList}\small\item\em fragment shader type \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{gpu_8h_a49a50fe3f4183344f60346f6172c966b}\label{gpu_8h_a49a50fe3f4183344f60346f6172c966b}} 
+typedef struct \hyperlink{structGPUVertexPullerHead}{G\+P\+U\+Vertex\+Puller\+Head} \hyperlink{gpu_8h_a49a50fe3f4183344f60346f6172c966b}{G\+P\+U\+Vertex\+Puller\+Head}
+\begin{DoxyCompactList}\small\item\em shortcut \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{gpu_8h_a86eb4663a9277131b889cd8829482527}\label{gpu_8h_a86eb4663a9277131b889cd8829482527}} 
+typedef enum \hyperlink{gpu_8h_a2bfb0a0ff1c379a8b4e8f9d24fdd4839}{Index\+Type} \hyperlink{gpu_8h_a86eb4663a9277131b889cd8829482527}{Index\+Type}
+\begin{DoxyCompactList}\small\item\em shortcut \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{gpu_8h_a9a2c46aa5116654e54ad23e621da869e}\label{gpu_8h_a9a2c46aa5116654e54ad23e621da869e}} 
+typedef struct \hyperlink{structGPUIndices}{G\+P\+U\+Indices} \hyperlink{gpu_8h_a9a2c46aa5116654e54ad23e621da869e}{G\+P\+U\+Indices}
+\begin{DoxyCompactList}\small\item\em shortcut \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{gpu_8h_ab450becbeb4e670415f36173ed151c1d}\label{gpu_8h_ab450becbeb4e670415f36173ed151c1d}} 
+typedef struct \hyperlink{structGPUVertexPuller}{G\+P\+U\+Vertex\+Puller} \hyperlink{gpu_8h_ab450becbeb4e670415f36173ed151c1d}{G\+P\+U\+Vertex\+Puller}
+\begin{DoxyCompactList}\small\item\em shortcut \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{gpu_8h_a9dc92356dab899b7bac2dccb01708677}\label{gpu_8h_a9dc92356dab899b7bac2dccb01708677}} 
+typedef struct \hyperlink{structGPUBuffer}{G\+P\+U\+Buffer} \hyperlink{gpu_8h_a9dc92356dab899b7bac2dccb01708677}{G\+P\+U\+Buffer}
+\begin{DoxyCompactList}\small\item\em shortcut \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{gpu_8h_a51f060959cc0bd2c4f0ed837505e9d92}\label{gpu_8h_a51f060959cc0bd2c4f0ed837505e9d92}} 
+typedef struct \hyperlink{structGPUBuffers}{G\+P\+U\+Buffers} \hyperlink{gpu_8h_a51f060959cc0bd2c4f0ed837505e9d92}{G\+P\+U\+Buffers}
+\begin{DoxyCompactList}\small\item\em shortcut \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{gpu_8h_aaaffccaa6fe395655f3709b258b6c35b}\label{gpu_8h_aaaffccaa6fe395655f3709b258b6c35b}} 
+typedef struct \hyperlink{structGPUVertexPullers}{G\+P\+U\+Vertex\+Pullers} \hyperlink{gpu_8h_aaaffccaa6fe395655f3709b258b6c35b}{G\+P\+U\+Vertex\+Pullers}
+\begin{DoxyCompactList}\small\item\em shortcut \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{gpu_8h_a97f2720bedf9fa70f0ad2d940a7659bb}\label{gpu_8h_a97f2720bedf9fa70f0ad2d940a7659bb}} 
+typedef struct \hyperlink{structGPUProgram}{G\+P\+U\+Program} \hyperlink{gpu_8h_a97f2720bedf9fa70f0ad2d940a7659bb}{G\+P\+U\+Program}
+\begin{DoxyCompactList}\small\item\em shortcut \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{gpu_8h_a83e1f7acb513daf1ce6875aa1c593105}\label{gpu_8h_a83e1f7acb513daf1ce6875aa1c593105}} 
+typedef struct \hyperlink{structGPUPrograms}{G\+P\+U\+Programs} \hyperlink{gpu_8h_a83e1f7acb513daf1ce6875aa1c593105}{G\+P\+U\+Programs}
+\begin{DoxyCompactList}\small\item\em shortcut \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{gpu_8h_aa76d465b9dbbea20cdb95a1352f36369}\label{gpu_8h_aa76d465b9dbbea20cdb95a1352f36369}} 
+typedef enum \hyperlink{gpu_8h_a0e570b421c70c09be4d05c1c0ac49a02}{G\+P\+U\+Command\+Type} \hyperlink{gpu_8h_aa76d465b9dbbea20cdb95a1352f36369}{G\+P\+U\+Command\+Type}
+\begin{DoxyCompactList}\small\item\em shortcut \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{gpu_8h_a416400391443c113f2ceb2577f8c90cd}\label{gpu_8h_a416400391443c113f2ceb2577f8c90cd}} 
+typedef enum \hyperlink{gpu_8h_a45f425941024027dee0f4c9e1831f4c9}{G\+P\+U\+Draw\+Type} \hyperlink{gpu_8h_a416400391443c113f2ceb2577f8c90cd}{G\+P\+U\+Draw\+Type}
+\begin{DoxyCompactList}\small\item\em shortcut \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{gpu_8h_a862b0beab3af75abfe46df070e032bbf}\label{gpu_8h_a862b0beab3af75abfe46df070e032bbf}} 
+typedef struct \hyperlink{structGPUCommand}{G\+P\+U\+Command} \hyperlink{gpu_8h_a862b0beab3af75abfe46df070e032bbf}{G\+P\+U\+Command}
+\begin{DoxyCompactList}\small\item\em shortcut \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{gpu_8h_a312b17b2b801eead68267982e7b908bc}\label{gpu_8h_a312b17b2b801eead68267982e7b908bc}} 
+typedef struct \hyperlink{structGPUFramebuffer}{G\+P\+U\+Framebuffer} \hyperlink{gpu_8h_a312b17b2b801eead68267982e7b908bc}{G\+P\+U\+Framebuffer}
+\begin{DoxyCompactList}\small\item\em shortcut \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{gpu_8h_ad125661313b17667204c8992cd9195b6}\label{gpu_8h_ad125661313b17667204c8992cd9195b6}} 
+typedef struct \hyperlink{structGPU}{G\+PU} \hyperlink{gpu_8h_ad125661313b17667204c8992cd9195b6}{G\+PU}
+\begin{DoxyCompactList}\small\item\em shortcut \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{gpu_8h_a349a9cde14be8097df865ba0469c0ab2}{Attribute\+Type} \{ \newline
+\hyperlink{gpu_8h_a349a9cde14be8097df865ba0469c0ab2a8eef2539e519e54813faecaa148c0402}{A\+T\+T\+R\+I\+B\+U\+T\+E\+\_\+\+E\+M\+P\+TY} = 0, 
+\hyperlink{gpu_8h_a349a9cde14be8097df865ba0469c0ab2a867d6787152af5a8946a072e66877e2d}{A\+T\+T\+R\+I\+B\+U\+T\+E\+\_\+\+F\+L\+O\+AT} = sizeof(float), 
+\hyperlink{gpu_8h_a349a9cde14be8097df865ba0469c0ab2aa40b951c88ca3811d7dc4a9f51f0149f}{A\+T\+T\+R\+I\+B\+U\+T\+E\+\_\+\+V\+E\+C2} = sizeof(Vec2 ), 
+\hyperlink{gpu_8h_a349a9cde14be8097df865ba0469c0ab2a1120973ba8a56da4ad6b342b628a72e2}{A\+T\+T\+R\+I\+B\+U\+T\+E\+\_\+\+V\+E\+C3} = sizeof(Vec3 ), 
+\newline
+\hyperlink{gpu_8h_a349a9cde14be8097df865ba0469c0ab2afab2733144891f23cc496e8929b83bf5}{A\+T\+T\+R\+I\+B\+U\+T\+E\+\_\+\+V\+E\+C4} = sizeof(Vec4 )
+ \}\begin{DoxyCompactList}\small\item\em This enum represents vertex/fragment attribute type. \end{DoxyCompactList}
+\item 
+enum \hyperlink{gpu_8h_a0a09a0e8bfa0704522ea2be08aabbd44}{G\+P\+U\+Uniform\+Type} \{ \newline
+\hyperlink{gpu_8h_a0a09a0e8bfa0704522ea2be08aabbd44abb3cc450caea79980ccd7f85ae2e482c}{U\+N\+I\+F\+O\+R\+M\+\_\+\+F\+L\+O\+AT} = sizeof(float), 
+\hyperlink{gpu_8h_a0a09a0e8bfa0704522ea2be08aabbd44a21db86f4d451261f8379f7a246756c64}{U\+N\+I\+F\+O\+R\+M\+\_\+\+V\+E\+C2} = sizeof(Vec2 ), 
+\hyperlink{gpu_8h_a0a09a0e8bfa0704522ea2be08aabbd44ae422c4b105ee47de5a917f388cd40590}{U\+N\+I\+F\+O\+R\+M\+\_\+\+V\+E\+C3} = sizeof(Vec3 ), 
+\hyperlink{gpu_8h_a0a09a0e8bfa0704522ea2be08aabbd44ab70abac24b581df66c1f5ac7d4268d1a}{U\+N\+I\+F\+O\+R\+M\+\_\+\+V\+E\+C4} = sizeof(Vec4 ), 
+\newline
+\hyperlink{gpu_8h_a0a09a0e8bfa0704522ea2be08aabbd44aa3eed90ee47c4ca58597e4115f3557d4}{U\+N\+I\+F\+O\+R\+M\+\_\+\+M\+A\+T4} = sizeof(Mat4 )
+ \}\begin{DoxyCompactList}\small\item\em This enum represents uniform type. \end{DoxyCompactList}
+\item 
+enum \hyperlink{gpu_8h_a2bfb0a0ff1c379a8b4e8f9d24fdd4839}{Index\+Type} \{ \hyperlink{gpu_8h_a2bfb0a0ff1c379a8b4e8f9d24fdd4839a13759b5b800cc50a6e10f73681f6fe9b}{U\+I\+N\+T8} = 1, 
+\hyperlink{gpu_8h_a2bfb0a0ff1c379a8b4e8f9d24fdd4839a8ed234b18120112ac09d0219a8f60d1b}{U\+I\+N\+T16} = 2, 
+\hyperlink{gpu_8h_a2bfb0a0ff1c379a8b4e8f9d24fdd4839a473815478d857d6a0dbe1f84f44a8592}{U\+I\+N\+T32} = 4
+ \}\begin{DoxyCompactList}\small\item\em This enum represents index type. \end{DoxyCompactList}
+\item 
+enum \hyperlink{gpu_8h_a0e570b421c70c09be4d05c1c0ac49a02}{G\+P\+U\+Command\+Type} \{ \newline
+\hyperlink{gpu_8h_a0e570b421c70c09be4d05c1c0ac49a02a66ad1398b267c48e81e39ba0010d568d}{C\+O\+M\+M\+A\+N\+D\+\_\+\+D\+R\+AW}, 
+\hyperlink{gpu_8h_a0e570b421c70c09be4d05c1c0ac49a02a1b6f5b0740906a0dbb360bbcfa7ee101}{C\+O\+M\+M\+A\+N\+D\+\_\+\+C\+L\+E\+AR}, 
+\hyperlink{gpu_8h_a0e570b421c70c09be4d05c1c0ac49a02a35bcdc2880f39469737ca77f2ede31ea}{C\+O\+M\+M\+A\+N\+D\+\_\+\+U\+S\+E\+\_\+\+P\+R\+O\+G\+R\+AM}, 
+\hyperlink{gpu_8h_a0e570b421c70c09be4d05c1c0ac49a02a54dba187ed6fadda5f472205556d24cb}{C\+O\+M\+M\+A\+N\+D\+\_\+\+B\+I\+N\+D\+\_\+\+P\+U\+L\+L\+ER}, 
+\newline
+\hyperlink{gpu_8h_a0e570b421c70c09be4d05c1c0ac49a02a1567de6efb0e779ddb45e027438c4728}{C\+O\+M\+M\+A\+N\+D\+\_\+\+U\+N\+B\+I\+N\+D\+\_\+\+P\+U\+L\+L\+ER}
+ \}\begin{DoxyCompactList}\small\item\em This enum represents type of \hyperlink{structGPU}{G\+PU} commands. \end{DoxyCompactList}
+\item 
+enum \hyperlink{gpu_8h_a45f425941024027dee0f4c9e1831f4c9}{G\+P\+U\+Draw\+Type} \{ \hyperlink{gpu_8h_a45f425941024027dee0f4c9e1831f4c9aa44cadab59c251bd3afb63ce919f8fa0}{D\+R\+A\+W\+\_\+\+P\+O\+I\+N\+TS}, 
+\hyperlink{gpu_8h_a45f425941024027dee0f4c9e1831f4c9aeb26430b829d2e378ee49937ea565dde}{D\+R\+A\+W\+\_\+\+T\+R\+I\+A\+N\+G\+L\+ES}
+ \}\begin{DoxyCompactList}\small\item\em This enum represents type of draw call. \end{DoxyCompactList}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{gpu_8h_a2cc8bc8399b7f12110f3afa922b1c35f}{gpu\+\_\+init\+Buffer} (\hyperlink{structGPUBuffer}{G\+P\+U\+Buffer} $\ast$const b)
+\begin{DoxyCompactList}\small\item\em This function inits \hyperlink{structGPU}{G\+PU} buffer. \end{DoxyCompactList}\item 
+void \hyperlink{gpu_8h_a3053c3bd95f28fccf7b0b02404dac78e}{gpu\+\_\+free\+Buffer} (\hyperlink{structGPUBuffer}{G\+P\+U\+Buffer} $\ast$const b)
+\begin{DoxyCompactList}\small\item\em This function frees the buffer. \end{DoxyCompactList}\item 
+void \hyperlink{gpu_8h_af1f98a1992bfd78dab9ffbb6bb3d2a62}{gpu\+\_\+buffer\+Data} (\hyperlink{structGPUBuffer}{G\+P\+U\+Buffer} $\ast$const b, uint64\+\_\+t size, void $\ast$data)
+\begin{DoxyCompactList}\small\item\em This function allocates and uploads data to buffer. \end{DoxyCompactList}\item 
+int \hyperlink{gpu_8h_a1f9b6e972b0a7d864c2ed519e87f62e9}{gpu\+\_\+is\+Buffer} (\hyperlink{structGPU}{G\+PU} const $\ast$const gpu, \hyperlink{student_2fwd_8h_a60a12bf4868ebe47cc571ce96a03f99c}{Buffer\+ID} id)
+\begin{DoxyCompactList}\small\item\em This function check if id points to valid buffer. \end{DoxyCompactList}\item 
+void \hyperlink{gpu_8h_ab4e449030a8bb8cb38d14eb0dfdddd5b}{gpu\+\_\+init\+Buffers} (\hyperlink{structGPUBuffers}{G\+P\+U\+Buffers} $\ast$const b)
+\begin{DoxyCompactList}\small\item\em This function inits \hyperlink{structGPU}{G\+PU} buffers. \end{DoxyCompactList}\item 
+void \hyperlink{gpu_8h_ac6d9877988fdbccfb295181dd04413bf}{gpu\+\_\+free\+Buffers} (\hyperlink{structGPUBuffers}{G\+P\+U\+Buffers} $\ast$const b)
+\begin{DoxyCompactList}\small\item\em This function frees all gpu buffers. \end{DoxyCompactList}\item 
+void \hyperlink{gpu_8h_a743153f4514ec830ce3f616efd2f5da1}{gpu\+\_\+init\+Vertex\+Puller\+Head} (\hyperlink{structGPUVertexPullerHead}{G\+P\+U\+Vertex\+Puller\+Head} $\ast$const head)
+\begin{DoxyCompactList}\small\item\em This functions inits vertex puller head. \end{DoxyCompactList}\item 
+void \hyperlink{gpu_8h_a71e7f8aeac76077e9671d902dbd83c99}{gpu\+\_\+init\+Indices} (\hyperlink{structGPUIndices}{G\+P\+U\+Indices} $\ast$const i)
+\begin{DoxyCompactList}\small\item\em This function inits indices. \end{DoxyCompactList}\item 
+void \hyperlink{gpu_8h_afa69014d4262ae24b28654039ac7c3a4}{gpu\+\_\+init\+Vertex\+Puller} (\hyperlink{structGPUVertexPuller}{G\+P\+U\+Vertex\+Puller} $\ast$const puller)
+\begin{DoxyCompactList}\small\item\em This function inits vertex puller. \end{DoxyCompactList}\item 
+void \hyperlink{gpu_8h_a04a53cfe9644242b16eea893e9fc21e1}{gpu\+\_\+activate\+Puller} (\hyperlink{structGPU}{G\+PU} $\ast$const gpu, \hyperlink{student_2fwd_8h_a23828e2281a794e193ebaf0df3e1f17c}{Vertex\+Puller\+ID} id)
+\begin{DoxyCompactList}\small\item\em This function activates selected vertex puller. \end{DoxyCompactList}\item 
+void \hyperlink{gpu_8h_abdc726ee99b14d504cac283156d95cc7}{gpu\+\_\+deactivate\+Puller} (\hyperlink{structGPU}{G\+PU} $\ast$const gpu)
+\begin{DoxyCompactList}\small\item\em This function deactivates vertex puller. \end{DoxyCompactList}\item 
+int \hyperlink{gpu_8h_a923923cf0856f8526ecf90a07b303b6e}{gpu\+\_\+is\+Puller} (\hyperlink{structGPU}{G\+PU} const $\ast$const gpu, \hyperlink{student_2fwd_8h_a23828e2281a794e193ebaf0df3e1f17c}{Vertex\+Puller\+ID} id)
+\begin{DoxyCompactList}\small\item\em This function check if id points to valid vertex puller. \end{DoxyCompactList}\item 
+void \hyperlink{gpu_8h_a7b3efebca2782e2e6a90b27ba454d8c0}{gpu\+\_\+init\+Vertex\+Pullers} (\hyperlink{structGPUVertexPullers}{G\+P\+U\+Vertex\+Pullers} $\ast$const v)
+\begin{DoxyCompactList}\small\item\em This function init vertex pullers. \end{DoxyCompactList}\item 
+void \hyperlink{gpu_8h_ad33a812fc890e6b7df9da1833aeb50e6}{gpu\+\_\+free\+Vertex\+Pullers} (\hyperlink{structGPUVertexPullers}{G\+P\+U\+Vertex\+Pullers} $\ast$const v)
+\begin{DoxyCompactList}\small\item\em This function free all vertex pullers. \end{DoxyCompactList}\item 
+void \hyperlink{gpu_8h_a8883d919f7b8f9d6c352fa2603a26884}{gpu\+\_\+init\+Uniform} (\hyperlink{structGPUUniform}{G\+P\+U\+Uniform} $\ast$const u)
+\begin{DoxyCompactList}\small\item\em This function inits one uniform variable. \end{DoxyCompactList}\item 
+void \hyperlink{gpu_8h_a2156449a1db6f93b0853903879f8ff98}{gpu\+\_\+init\+Uniforms} (\hyperlink{structGPUUniforms}{G\+P\+U\+Uniforms} $\ast$const u)
+\begin{DoxyCompactList}\small\item\em This function inits uniform variables. \end{DoxyCompactList}\item 
+void \hyperlink{gpu_8h_a53c57ff6adea9b0a0cd4e743bfbf4cd4}{gpu\+\_\+init\+Program} (\hyperlink{structGPUProgram}{G\+P\+U\+Program} $\ast$const p)
+\begin{DoxyCompactList}\small\item\em This functions inits shader program. \end{DoxyCompactList}\item 
+void \hyperlink{gpu_8h_a881e0af4b1f00a29cd7ab53453394c34}{gpu\+\_\+activate\+Program} (\hyperlink{structGPU}{G\+PU} $\ast$const gpu, \hyperlink{student_2fwd_8h_a15e62786033208aec9487a51e808f81d}{Program\+ID} id)
+\begin{DoxyCompactList}\small\item\em This function activates selected program. \end{DoxyCompactList}\item 
+int \hyperlink{gpu_8h_a5a2bcec1b575f2adebb048d837bc6fb1}{gpu\+\_\+is\+Program} (\hyperlink{structGPU}{G\+PU} const $\ast$const gpu, \hyperlink{student_2fwd_8h_a15e62786033208aec9487a51e808f81d}{Program\+ID} id)
+\begin{DoxyCompactList}\small\item\em This function check if id points to valid program. \end{DoxyCompactList}\item 
+void \hyperlink{gpu_8h_a09db2e86ac63470943d03b3165896209}{gpu\+\_\+init\+Programs} (\hyperlink{structGPUPrograms}{G\+P\+U\+Programs} $\ast$const p)
+\begin{DoxyCompactList}\small\item\em This function inits programs. \end{DoxyCompactList}\item 
+void \hyperlink{gpu_8h_a13c7fd40b75c34ec69e3aa70ffef6eed}{gpu\+\_\+free\+Programs} (\hyperlink{structGPUPrograms}{G\+P\+U\+Programs} $\ast$const p)
+\begin{DoxyCompactList}\small\item\em This function frees all gpu programs. \end{DoxyCompactList}\item 
+void \hyperlink{gpu_8h_a698e7eb20b79013c2218e0595c8eab01}{gpu\+\_\+push\+Command} (\hyperlink{structGPU}{G\+PU} $\ast$const gpu, \hyperlink{gpu_8h_a0e570b421c70c09be4d05c1c0ac49a02}{G\+P\+U\+Command\+Type} type)
+\begin{DoxyCompactList}\small\item\em This function pushes command to gpu\textquotesingle{}s command buffer. \end{DoxyCompactList}\item 
+void \hyperlink{gpu_8h_acb2777e0388b2fdf0d8367c41bb86118}{gpu\+\_\+push\+Command1} (\hyperlink{structGPU}{G\+PU} $\ast$const gpu, \hyperlink{gpu_8h_a0e570b421c70c09be4d05c1c0ac49a02}{G\+P\+U\+Command\+Type} type, uint64\+\_\+t p0)
+\begin{DoxyCompactList}\small\item\em This function pushes command to gpu\textquotesingle{}s command buffer. \end{DoxyCompactList}\item 
+void \hyperlink{gpu_8h_a7b54b5ee430347057a82a1f0bd6b4220}{gpu\+\_\+push\+Command2} (\hyperlink{structGPU}{G\+PU} $\ast$const gpu, \hyperlink{gpu_8h_a0e570b421c70c09be4d05c1c0ac49a02}{G\+P\+U\+Command\+Type} type, uint64\+\_\+t p0, uint64\+\_\+t p1)
+\begin{DoxyCompactList}\small\item\em This function pushes command to gpu\textquotesingle{}s command buffer. \end{DoxyCompactList}\item 
+void \hyperlink{gpu_8h_ad7cca645cd6396c31ff39bfad247b4ca}{gpu\+\_\+init\+Framebuffer} (\hyperlink{structGPUFramebuffer}{G\+P\+U\+Framebuffer} $\ast$const f)
+\begin{DoxyCompactList}\small\item\em This function inits framebuffer. \end{DoxyCompactList}\item 
+void \hyperlink{gpu_8h_ae478e572c88385f7bb182ed58cf08849}{gpu\+\_\+allocate\+Framebuffer} (\hyperlink{structGPUFramebuffer}{G\+P\+U\+Framebuffer} $\ast$const f, uint32\+\_\+t width, uint32\+\_\+t height)
+\begin{DoxyCompactList}\small\item\em This function allocates framebuffer. \end{DoxyCompactList}\item 
+void \hyperlink{gpu_8h_a684b99175d7317867e4655723c94348c}{gpu\+\_\+free\+Framebuffer} (\hyperlink{structGPUFramebuffer}{G\+P\+U\+Framebuffer} $\ast$const f)
+\begin{DoxyCompactList}\small\item\em This function frees the framebuffer. \end{DoxyCompactList}\item 
+void \hyperlink{gpu_8h_a808bed87d3c8520b4d0a8e53a0e4fcd5}{gpu\+\_\+clear\+Framebuffer} (\hyperlink{structGPU}{G\+PU} $\ast$const gpu)
+\begin{DoxyCompactList}\small\item\em This function clears framebuffer. \end{DoxyCompactList}\item 
+void \hyperlink{gpu_8h_ade19e622af460c7c863a2abc99723702}{gpu\+\_\+finish} (\hyperlink{structGPU}{G\+PU} $\ast$const gpu)
+\begin{DoxyCompactList}\small\item\em This function executes all commands in gpu\textquotesingle{}s command queue. \end{DoxyCompactList}\item 
+\hyperlink{structGPUUniform}{G\+P\+U\+Uniform} $\ast$ \hyperlink{gpu_8h_ae41e3e28b2af6568269d24e91b087a50}{gpu\+\_\+get\+Uniform} (\hyperlink{structGPU}{G\+PU} $\ast$const gpu, \hyperlink{student_2fwd_8h_a15e62786033208aec9487a51e808f81d}{Program\+ID} program\+Id, uint32\+\_\+t uniform\+Id)
+\begin{DoxyCompactList}\small\item\em This function returns pointer to selected uniform. \end{DoxyCompactList}\item 
+uint8\+\_\+t \hyperlink{gpu_8h_af9007f31171596847f0b2302a180b749}{gpu\+\_\+float\+Color\+To\+Uint32} (float const value)
+\begin{DoxyCompactList}\small\item\em This function converts float \mbox{[}0,1\mbox{]} to byte \mbox{[}0,255\mbox{]}. \end{DoxyCompactList}\item 
+\hyperlink{structGPUBuffer}{G\+P\+U\+Buffer} const  $\ast$ \hyperlink{gpu_8h_ac8dc166840aaca2b29d6fc2e31afca9b}{gpu\+\_\+get\+Buffer} (\hyperlink{structGPU}{G\+PU} const $\ast$const gpu, \hyperlink{student_2fwd_8h_a60a12bf4868ebe47cc571ce96a03f99c}{Buffer\+ID} id)
+\begin{DoxyCompactList}\small\item\em This function returns pointer to buffer. \end{DoxyCompactList}\item 
+\hyperlink{structGPUVertexPuller}{G\+P\+U\+Vertex\+Puller} const  $\ast$ \hyperlink{gpu_8h_ac7df8a38b608fcc9c3e3862fe57dbd2e}{gpu\+\_\+get\+Active\+Puller} (\hyperlink{structGPU}{G\+PU} const $\ast$const gpu)
+\begin{DoxyCompactList}\small\item\em This function returns pointer to active vertex puller. \end{DoxyCompactList}\item 
+\hyperlink{structGPUProgram}{G\+P\+U\+Program} const  $\ast$ \hyperlink{gpu_8h_ad3b191032ebdd19d6d6903eecc80e0a7}{gpu\+\_\+get\+Active\+Program} (\hyperlink{structGPU}{G\+PU} const $\ast$const gpu)
+\begin{DoxyCompactList}\small\item\em This function returns pointer to active program. \end{DoxyCompactList}\item 
+void \hyperlink{group__gpu__side_gad786da6785f12139855c4484767a45fb}{gpu\+\_\+draw\+Triangles} (\hyperlink{structGPU}{G\+PU} $\ast$const gpu, uint32\+\_\+t nof\+Vertices)
+\begin{DoxyCompactList}\small\item\em This function should draw triangles. \end{DoxyCompactList}\item 
+void \hyperlink{gpu_8h_abc60ebc6d0a9a0b0954ae7ee9adb5e6c}{gpu\+\_\+draw\+Points} (\hyperlink{structGPU}{G\+PU} $\ast$const gpu, uint32\+\_\+t nof\+Vertices)
+\begin{DoxyCompactList}\small\item\em This function draws points. \end{DoxyCompactList}\item 
+void \hyperlink{gpu_8h_afe328aa124cc88b73dfa359296624119}{gpu\+\_\+check\+Draw} (\hyperlink{structGPU}{G\+PU} const $\ast$const gpu, uint32\+\_\+t nof\+Vertices)
+\begin{DoxyCompactList}\small\item\em This function check gpu state for draw call. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This file contains structures and function declarations of \hyperlink{structGPU}{G\+PU} HW. Main structure is \hyperlink{structGPU}{G\+PU} that holds all components of the \hyperlink{structGPU}{G\+PU}. \hyperlink{structGPU}{G\+PU} is composed of list of buffers, list of vertex pullers and list of programs. \hyperlink{structGPU}{G\+PU} also contains framebuffer, active program and vertex puller and states. \hyperlink{structGPU}{G\+PU} executes commands that are stored in Command\+Queue. 
+
+\begin{DoxyAuthor}{Author}
+Tomáš Milet, \href{mailto:imilet@fit.vutbr.cz}{\tt imilet@fit.\+vutbr.\+cz} 
+\end{DoxyAuthor}
+
+
+\subsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{gpu_8h_a349a9cde14be8097df865ba0469c0ab2}\label{gpu_8h_a349a9cde14be8097df865ba0469c0ab2}} 
+\index{gpu.\+h@{gpu.\+h}!Attribute\+Type@{Attribute\+Type}}
+\index{Attribute\+Type@{Attribute\+Type}!gpu.\+h@{gpu.\+h}}
+\subsubsection{\texorpdfstring{Attribute\+Type}{AttributeType}}
+{\footnotesize\ttfamily enum \hyperlink{gpu_8h_a349a9cde14be8097df865ba0469c0ab2}{Attribute\+Type}}
+
+
+
+This enum represents vertex/fragment attribute type. 
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{A\+T\+T\+R\+I\+B\+U\+T\+E\+\_\+\+E\+M\+P\+TY@{A\+T\+T\+R\+I\+B\+U\+T\+E\+\_\+\+E\+M\+P\+TY}!gpu.\+h@{gpu.\+h}}\index{gpu.\+h@{gpu.\+h}!A\+T\+T\+R\+I\+B\+U\+T\+E\+\_\+\+E\+M\+P\+TY@{A\+T\+T\+R\+I\+B\+U\+T\+E\+\_\+\+E\+M\+P\+TY}}}\mbox{\Hypertarget{gpu_8h_a349a9cde14be8097df865ba0469c0ab2a8eef2539e519e54813faecaa148c0402}\label{gpu_8h_a349a9cde14be8097df865ba0469c0ab2a8eef2539e519e54813faecaa148c0402}} 
+A\+T\+T\+R\+I\+B\+U\+T\+E\+\_\+\+E\+M\+P\+TY&disabled attribute \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{A\+T\+T\+R\+I\+B\+U\+T\+E\+\_\+\+F\+L\+O\+AT@{A\+T\+T\+R\+I\+B\+U\+T\+E\+\_\+\+F\+L\+O\+AT}!gpu.\+h@{gpu.\+h}}\index{gpu.\+h@{gpu.\+h}!A\+T\+T\+R\+I\+B\+U\+T\+E\+\_\+\+F\+L\+O\+AT@{A\+T\+T\+R\+I\+B\+U\+T\+E\+\_\+\+F\+L\+O\+AT}}}\mbox{\Hypertarget{gpu_8h_a349a9cde14be8097df865ba0469c0ab2a867d6787152af5a8946a072e66877e2d}\label{gpu_8h_a349a9cde14be8097df865ba0469c0ab2a867d6787152af5a8946a072e66877e2d}} 
+A\+T\+T\+R\+I\+B\+U\+T\+E\+\_\+\+F\+L\+O\+AT&1 32-\/bit float \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{A\+T\+T\+R\+I\+B\+U\+T\+E\+\_\+\+V\+E\+C2@{A\+T\+T\+R\+I\+B\+U\+T\+E\+\_\+\+V\+E\+C2}!gpu.\+h@{gpu.\+h}}\index{gpu.\+h@{gpu.\+h}!A\+T\+T\+R\+I\+B\+U\+T\+E\+\_\+\+V\+E\+C2@{A\+T\+T\+R\+I\+B\+U\+T\+E\+\_\+\+V\+E\+C2}}}\mbox{\Hypertarget{gpu_8h_a349a9cde14be8097df865ba0469c0ab2aa40b951c88ca3811d7dc4a9f51f0149f}\label{gpu_8h_a349a9cde14be8097df865ba0469c0ab2aa40b951c88ca3811d7dc4a9f51f0149f}} 
+A\+T\+T\+R\+I\+B\+U\+T\+E\+\_\+\+V\+E\+C2&2 32-\/bit floats \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{A\+T\+T\+R\+I\+B\+U\+T\+E\+\_\+\+V\+E\+C3@{A\+T\+T\+R\+I\+B\+U\+T\+E\+\_\+\+V\+E\+C3}!gpu.\+h@{gpu.\+h}}\index{gpu.\+h@{gpu.\+h}!A\+T\+T\+R\+I\+B\+U\+T\+E\+\_\+\+V\+E\+C3@{A\+T\+T\+R\+I\+B\+U\+T\+E\+\_\+\+V\+E\+C3}}}\mbox{\Hypertarget{gpu_8h_a349a9cde14be8097df865ba0469c0ab2a1120973ba8a56da4ad6b342b628a72e2}\label{gpu_8h_a349a9cde14be8097df865ba0469c0ab2a1120973ba8a56da4ad6b342b628a72e2}} 
+A\+T\+T\+R\+I\+B\+U\+T\+E\+\_\+\+V\+E\+C3&3 32-\/bit floats \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{A\+T\+T\+R\+I\+B\+U\+T\+E\+\_\+\+V\+E\+C4@{A\+T\+T\+R\+I\+B\+U\+T\+E\+\_\+\+V\+E\+C4}!gpu.\+h@{gpu.\+h}}\index{gpu.\+h@{gpu.\+h}!A\+T\+T\+R\+I\+B\+U\+T\+E\+\_\+\+V\+E\+C4@{A\+T\+T\+R\+I\+B\+U\+T\+E\+\_\+\+V\+E\+C4}}}\mbox{\Hypertarget{gpu_8h_a349a9cde14be8097df865ba0469c0ab2afab2733144891f23cc496e8929b83bf5}\label{gpu_8h_a349a9cde14be8097df865ba0469c0ab2afab2733144891f23cc496e8929b83bf5}} 
+A\+T\+T\+R\+I\+B\+U\+T\+E\+\_\+\+V\+E\+C4&4 32-\/bit floats \\
+\hline
+
+\end{DoxyEnumFields}
+\mbox{\Hypertarget{gpu_8h_a0e570b421c70c09be4d05c1c0ac49a02}\label{gpu_8h_a0e570b421c70c09be4d05c1c0ac49a02}} 
+\index{gpu.\+h@{gpu.\+h}!G\+P\+U\+Command\+Type@{G\+P\+U\+Command\+Type}}
+\index{G\+P\+U\+Command\+Type@{G\+P\+U\+Command\+Type}!gpu.\+h@{gpu.\+h}}
+\subsubsection{\texorpdfstring{G\+P\+U\+Command\+Type}{GPUCommandType}}
+{\footnotesize\ttfamily enum \hyperlink{gpu_8h_a0e570b421c70c09be4d05c1c0ac49a02}{G\+P\+U\+Command\+Type}}
+
+
+
+This enum represents type of \hyperlink{structGPU}{G\+PU} commands. 
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{C\+O\+M\+M\+A\+N\+D\+\_\+\+D\+R\+AW@{C\+O\+M\+M\+A\+N\+D\+\_\+\+D\+R\+AW}!gpu.\+h@{gpu.\+h}}\index{gpu.\+h@{gpu.\+h}!C\+O\+M\+M\+A\+N\+D\+\_\+\+D\+R\+AW@{C\+O\+M\+M\+A\+N\+D\+\_\+\+D\+R\+AW}}}\mbox{\Hypertarget{gpu_8h_a0e570b421c70c09be4d05c1c0ac49a02a66ad1398b267c48e81e39ba0010d568d}\label{gpu_8h_a0e570b421c70c09be4d05c1c0ac49a02a66ad1398b267c48e81e39ba0010d568d}} 
+C\+O\+M\+M\+A\+N\+D\+\_\+\+D\+R\+AW&draw command -\/ forces \hyperlink{structGPU}{G\+PU} to draw \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{C\+O\+M\+M\+A\+N\+D\+\_\+\+C\+L\+E\+AR@{C\+O\+M\+M\+A\+N\+D\+\_\+\+C\+L\+E\+AR}!gpu.\+h@{gpu.\+h}}\index{gpu.\+h@{gpu.\+h}!C\+O\+M\+M\+A\+N\+D\+\_\+\+C\+L\+E\+AR@{C\+O\+M\+M\+A\+N\+D\+\_\+\+C\+L\+E\+AR}}}\mbox{\Hypertarget{gpu_8h_a0e570b421c70c09be4d05c1c0ac49a02a1b6f5b0740906a0dbb360bbcfa7ee101}\label{gpu_8h_a0e570b421c70c09be4d05c1c0ac49a02a1b6f5b0740906a0dbb360bbcfa7ee101}} 
+C\+O\+M\+M\+A\+N\+D\+\_\+\+C\+L\+E\+AR&clear command -\/ forces \hyperlink{structGPU}{G\+PU} to clear framebuffer \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{C\+O\+M\+M\+A\+N\+D\+\_\+\+U\+S\+E\+\_\+\+P\+R\+O\+G\+R\+AM@{C\+O\+M\+M\+A\+N\+D\+\_\+\+U\+S\+E\+\_\+\+P\+R\+O\+G\+R\+AM}!gpu.\+h@{gpu.\+h}}\index{gpu.\+h@{gpu.\+h}!C\+O\+M\+M\+A\+N\+D\+\_\+\+U\+S\+E\+\_\+\+P\+R\+O\+G\+R\+AM@{C\+O\+M\+M\+A\+N\+D\+\_\+\+U\+S\+E\+\_\+\+P\+R\+O\+G\+R\+AM}}}\mbox{\Hypertarget{gpu_8h_a0e570b421c70c09be4d05c1c0ac49a02a35bcdc2880f39469737ca77f2ede31ea}\label{gpu_8h_a0e570b421c70c09be4d05c1c0ac49a02a35bcdc2880f39469737ca77f2ede31ea}} 
+C\+O\+M\+M\+A\+N\+D\+\_\+\+U\+S\+E\+\_\+\+P\+R\+O\+G\+R\+AM&sets active program \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{C\+O\+M\+M\+A\+N\+D\+\_\+\+B\+I\+N\+D\+\_\+\+P\+U\+L\+L\+ER@{C\+O\+M\+M\+A\+N\+D\+\_\+\+B\+I\+N\+D\+\_\+\+P\+U\+L\+L\+ER}!gpu.\+h@{gpu.\+h}}\index{gpu.\+h@{gpu.\+h}!C\+O\+M\+M\+A\+N\+D\+\_\+\+B\+I\+N\+D\+\_\+\+P\+U\+L\+L\+ER@{C\+O\+M\+M\+A\+N\+D\+\_\+\+B\+I\+N\+D\+\_\+\+P\+U\+L\+L\+ER}}}\mbox{\Hypertarget{gpu_8h_a0e570b421c70c09be4d05c1c0ac49a02a54dba187ed6fadda5f472205556d24cb}\label{gpu_8h_a0e570b421c70c09be4d05c1c0ac49a02a54dba187ed6fadda5f472205556d24cb}} 
+C\+O\+M\+M\+A\+N\+D\+\_\+\+B\+I\+N\+D\+\_\+\+P\+U\+L\+L\+ER&sets active vertex puller \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{C\+O\+M\+M\+A\+N\+D\+\_\+\+U\+N\+B\+I\+N\+D\+\_\+\+P\+U\+L\+L\+ER@{C\+O\+M\+M\+A\+N\+D\+\_\+\+U\+N\+B\+I\+N\+D\+\_\+\+P\+U\+L\+L\+ER}!gpu.\+h@{gpu.\+h}}\index{gpu.\+h@{gpu.\+h}!C\+O\+M\+M\+A\+N\+D\+\_\+\+U\+N\+B\+I\+N\+D\+\_\+\+P\+U\+L\+L\+ER@{C\+O\+M\+M\+A\+N\+D\+\_\+\+U\+N\+B\+I\+N\+D\+\_\+\+P\+U\+L\+L\+ER}}}\mbox{\Hypertarget{gpu_8h_a0e570b421c70c09be4d05c1c0ac49a02a1567de6efb0e779ddb45e027438c4728}\label{gpu_8h_a0e570b421c70c09be4d05c1c0ac49a02a1567de6efb0e779ddb45e027438c4728}} 
+C\+O\+M\+M\+A\+N\+D\+\_\+\+U\+N\+B\+I\+N\+D\+\_\+\+P\+U\+L\+L\+ER&unsets active vertex puller \\
+\hline
+
+\end{DoxyEnumFields}
+\mbox{\Hypertarget{gpu_8h_a45f425941024027dee0f4c9e1831f4c9}\label{gpu_8h_a45f425941024027dee0f4c9e1831f4c9}} 
+\index{gpu.\+h@{gpu.\+h}!G\+P\+U\+Draw\+Type@{G\+P\+U\+Draw\+Type}}
+\index{G\+P\+U\+Draw\+Type@{G\+P\+U\+Draw\+Type}!gpu.\+h@{gpu.\+h}}
+\subsubsection{\texorpdfstring{G\+P\+U\+Draw\+Type}{GPUDrawType}}
+{\footnotesize\ttfamily enum \hyperlink{gpu_8h_a45f425941024027dee0f4c9e1831f4c9}{G\+P\+U\+Draw\+Type}}
+
+
+
+This enum represents type of draw call. 
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{D\+R\+A\+W\+\_\+\+P\+O\+I\+N\+TS@{D\+R\+A\+W\+\_\+\+P\+O\+I\+N\+TS}!gpu.\+h@{gpu.\+h}}\index{gpu.\+h@{gpu.\+h}!D\+R\+A\+W\+\_\+\+P\+O\+I\+N\+TS@{D\+R\+A\+W\+\_\+\+P\+O\+I\+N\+TS}}}\mbox{\Hypertarget{gpu_8h_a45f425941024027dee0f4c9e1831f4c9aa44cadab59c251bd3afb63ce919f8fa0}\label{gpu_8h_a45f425941024027dee0f4c9e1831f4c9aa44cadab59c251bd3afb63ce919f8fa0}} 
+D\+R\+A\+W\+\_\+\+P\+O\+I\+N\+TS&draw mesh using points \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{D\+R\+A\+W\+\_\+\+T\+R\+I\+A\+N\+G\+L\+ES@{D\+R\+A\+W\+\_\+\+T\+R\+I\+A\+N\+G\+L\+ES}!gpu.\+h@{gpu.\+h}}\index{gpu.\+h@{gpu.\+h}!D\+R\+A\+W\+\_\+\+T\+R\+I\+A\+N\+G\+L\+ES@{D\+R\+A\+W\+\_\+\+T\+R\+I\+A\+N\+G\+L\+ES}}}\mbox{\Hypertarget{gpu_8h_a45f425941024027dee0f4c9e1831f4c9aeb26430b829d2e378ee49937ea565dde}\label{gpu_8h_a45f425941024027dee0f4c9e1831f4c9aeb26430b829d2e378ee49937ea565dde}} 
+D\+R\+A\+W\+\_\+\+T\+R\+I\+A\+N\+G\+L\+ES&draw mesh using triangles \\
+\hline
+
+\end{DoxyEnumFields}
+\mbox{\Hypertarget{gpu_8h_a0a09a0e8bfa0704522ea2be08aabbd44}\label{gpu_8h_a0a09a0e8bfa0704522ea2be08aabbd44}} 
+\index{gpu.\+h@{gpu.\+h}!G\+P\+U\+Uniform\+Type@{G\+P\+U\+Uniform\+Type}}
+\index{G\+P\+U\+Uniform\+Type@{G\+P\+U\+Uniform\+Type}!gpu.\+h@{gpu.\+h}}
+\subsubsection{\texorpdfstring{G\+P\+U\+Uniform\+Type}{GPUUniformType}}
+{\footnotesize\ttfamily enum \hyperlink{gpu_8h_a0a09a0e8bfa0704522ea2be08aabbd44}{G\+P\+U\+Uniform\+Type}}
+
+
+
+This enum represents uniform type. 
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{U\+N\+I\+F\+O\+R\+M\+\_\+\+F\+L\+O\+AT@{U\+N\+I\+F\+O\+R\+M\+\_\+\+F\+L\+O\+AT}!gpu.\+h@{gpu.\+h}}\index{gpu.\+h@{gpu.\+h}!U\+N\+I\+F\+O\+R\+M\+\_\+\+F\+L\+O\+AT@{U\+N\+I\+F\+O\+R\+M\+\_\+\+F\+L\+O\+AT}}}\mbox{\Hypertarget{gpu_8h_a0a09a0e8bfa0704522ea2be08aabbd44abb3cc450caea79980ccd7f85ae2e482c}\label{gpu_8h_a0a09a0e8bfa0704522ea2be08aabbd44abb3cc450caea79980ccd7f85ae2e482c}} 
+U\+N\+I\+F\+O\+R\+M\+\_\+\+F\+L\+O\+AT&single 32-\/bit float \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{U\+N\+I\+F\+O\+R\+M\+\_\+\+V\+E\+C2@{U\+N\+I\+F\+O\+R\+M\+\_\+\+V\+E\+C2}!gpu.\+h@{gpu.\+h}}\index{gpu.\+h@{gpu.\+h}!U\+N\+I\+F\+O\+R\+M\+\_\+\+V\+E\+C2@{U\+N\+I\+F\+O\+R\+M\+\_\+\+V\+E\+C2}}}\mbox{\Hypertarget{gpu_8h_a0a09a0e8bfa0704522ea2be08aabbd44a21db86f4d451261f8379f7a246756c64}\label{gpu_8h_a0a09a0e8bfa0704522ea2be08aabbd44a21db86f4d451261f8379f7a246756c64}} 
+U\+N\+I\+F\+O\+R\+M\+\_\+\+V\+E\+C2&two 32-\/bit floats \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{U\+N\+I\+F\+O\+R\+M\+\_\+\+V\+E\+C3@{U\+N\+I\+F\+O\+R\+M\+\_\+\+V\+E\+C3}!gpu.\+h@{gpu.\+h}}\index{gpu.\+h@{gpu.\+h}!U\+N\+I\+F\+O\+R\+M\+\_\+\+V\+E\+C3@{U\+N\+I\+F\+O\+R\+M\+\_\+\+V\+E\+C3}}}\mbox{\Hypertarget{gpu_8h_a0a09a0e8bfa0704522ea2be08aabbd44ae422c4b105ee47de5a917f388cd40590}\label{gpu_8h_a0a09a0e8bfa0704522ea2be08aabbd44ae422c4b105ee47de5a917f388cd40590}} 
+U\+N\+I\+F\+O\+R\+M\+\_\+\+V\+E\+C3&three 32-\/bit floats \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{U\+N\+I\+F\+O\+R\+M\+\_\+\+V\+E\+C4@{U\+N\+I\+F\+O\+R\+M\+\_\+\+V\+E\+C4}!gpu.\+h@{gpu.\+h}}\index{gpu.\+h@{gpu.\+h}!U\+N\+I\+F\+O\+R\+M\+\_\+\+V\+E\+C4@{U\+N\+I\+F\+O\+R\+M\+\_\+\+V\+E\+C4}}}\mbox{\Hypertarget{gpu_8h_a0a09a0e8bfa0704522ea2be08aabbd44ab70abac24b581df66c1f5ac7d4268d1a}\label{gpu_8h_a0a09a0e8bfa0704522ea2be08aabbd44ab70abac24b581df66c1f5ac7d4268d1a}} 
+U\+N\+I\+F\+O\+R\+M\+\_\+\+V\+E\+C4&four 32-\/bit floats \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{U\+N\+I\+F\+O\+R\+M\+\_\+\+M\+A\+T4@{U\+N\+I\+F\+O\+R\+M\+\_\+\+M\+A\+T4}!gpu.\+h@{gpu.\+h}}\index{gpu.\+h@{gpu.\+h}!U\+N\+I\+F\+O\+R\+M\+\_\+\+M\+A\+T4@{U\+N\+I\+F\+O\+R\+M\+\_\+\+M\+A\+T4}}}\mbox{\Hypertarget{gpu_8h_a0a09a0e8bfa0704522ea2be08aabbd44aa3eed90ee47c4ca58597e4115f3557d4}\label{gpu_8h_a0a09a0e8bfa0704522ea2be08aabbd44aa3eed90ee47c4ca58597e4115f3557d4}} 
+U\+N\+I\+F\+O\+R\+M\+\_\+\+M\+A\+T4&matrix 4x4, base type is 32-\/bit float \\
+\hline
+
+\end{DoxyEnumFields}
+\mbox{\Hypertarget{gpu_8h_a2bfb0a0ff1c379a8b4e8f9d24fdd4839}\label{gpu_8h_a2bfb0a0ff1c379a8b4e8f9d24fdd4839}} 
+\index{gpu.\+h@{gpu.\+h}!Index\+Type@{Index\+Type}}
+\index{Index\+Type@{Index\+Type}!gpu.\+h@{gpu.\+h}}
+\subsubsection{\texorpdfstring{Index\+Type}{IndexType}}
+{\footnotesize\ttfamily enum \hyperlink{gpu_8h_a2bfb0a0ff1c379a8b4e8f9d24fdd4839}{Index\+Type}}
+
+
+
+This enum represents index type. 
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{U\+I\+N\+T8@{U\+I\+N\+T8}!gpu.\+h@{gpu.\+h}}\index{gpu.\+h@{gpu.\+h}!U\+I\+N\+T8@{U\+I\+N\+T8}}}\mbox{\Hypertarget{gpu_8h_a2bfb0a0ff1c379a8b4e8f9d24fdd4839a13759b5b800cc50a6e10f73681f6fe9b}\label{gpu_8h_a2bfb0a0ff1c379a8b4e8f9d24fdd4839a13759b5b800cc50a6e10f73681f6fe9b}} 
+U\+I\+N\+T8&uin8\+\_\+t type \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{U\+I\+N\+T16@{U\+I\+N\+T16}!gpu.\+h@{gpu.\+h}}\index{gpu.\+h@{gpu.\+h}!U\+I\+N\+T16@{U\+I\+N\+T16}}}\mbox{\Hypertarget{gpu_8h_a2bfb0a0ff1c379a8b4e8f9d24fdd4839a8ed234b18120112ac09d0219a8f60d1b}\label{gpu_8h_a2bfb0a0ff1c379a8b4e8f9d24fdd4839a8ed234b18120112ac09d0219a8f60d1b}} 
+U\+I\+N\+T16&uin16\+\_\+t type \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{U\+I\+N\+T32@{U\+I\+N\+T32}!gpu.\+h@{gpu.\+h}}\index{gpu.\+h@{gpu.\+h}!U\+I\+N\+T32@{U\+I\+N\+T32}}}\mbox{\Hypertarget{gpu_8h_a2bfb0a0ff1c379a8b4e8f9d24fdd4839a473815478d857d6a0dbe1f84f44a8592}\label{gpu_8h_a2bfb0a0ff1c379a8b4e8f9d24fdd4839a473815478d857d6a0dbe1f84f44a8592}} 
+U\+I\+N\+T32&uint32\+\_\+t type \\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{gpu_8h_a881e0af4b1f00a29cd7ab53453394c34}\label{gpu_8h_a881e0af4b1f00a29cd7ab53453394c34}} 
+\index{gpu.\+h@{gpu.\+h}!gpu\+\_\+activate\+Program@{gpu\+\_\+activate\+Program}}
+\index{gpu\+\_\+activate\+Program@{gpu\+\_\+activate\+Program}!gpu.\+h@{gpu.\+h}}
+\subsubsection{\texorpdfstring{gpu\+\_\+activate\+Program()}{gpu\_activateProgram()}}
+{\footnotesize\ttfamily void gpu\+\_\+activate\+Program (\begin{DoxyParamCaption}\item[{\hyperlink{structGPU}{G\+PU} $\ast$const}]{gpu,  }\item[{\hyperlink{student_2fwd_8h_a15e62786033208aec9487a51e808f81d}{Program\+ID}}]{id }\end{DoxyParamCaption})}
+
+
+
+This function activates selected program. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em gpu} & gpu \\
+\hline
+{\em id} & program id \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{gpu_8h_a04a53cfe9644242b16eea893e9fc21e1}\label{gpu_8h_a04a53cfe9644242b16eea893e9fc21e1}} 
+\index{gpu.\+h@{gpu.\+h}!gpu\+\_\+activate\+Puller@{gpu\+\_\+activate\+Puller}}
+\index{gpu\+\_\+activate\+Puller@{gpu\+\_\+activate\+Puller}!gpu.\+h@{gpu.\+h}}
+\subsubsection{\texorpdfstring{gpu\+\_\+activate\+Puller()}{gpu\_activatePuller()}}
+{\footnotesize\ttfamily void gpu\+\_\+activate\+Puller (\begin{DoxyParamCaption}\item[{\hyperlink{structGPU}{G\+PU} $\ast$const}]{gpu,  }\item[{\hyperlink{student_2fwd_8h_a23828e2281a794e193ebaf0df3e1f17c}{Vertex\+Puller\+ID}}]{id }\end{DoxyParamCaption})}
+
+
+
+This function activates selected vertex puller. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em gpu} & gpu \\
+\hline
+{\em id} & vertex puller id \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{gpu_8h_ae478e572c88385f7bb182ed58cf08849}\label{gpu_8h_ae478e572c88385f7bb182ed58cf08849}} 
+\index{gpu.\+h@{gpu.\+h}!gpu\+\_\+allocate\+Framebuffer@{gpu\+\_\+allocate\+Framebuffer}}
+\index{gpu\+\_\+allocate\+Framebuffer@{gpu\+\_\+allocate\+Framebuffer}!gpu.\+h@{gpu.\+h}}
+\subsubsection{\texorpdfstring{gpu\+\_\+allocate\+Framebuffer()}{gpu\_allocateFramebuffer()}}
+{\footnotesize\ttfamily void gpu\+\_\+allocate\+Framebuffer (\begin{DoxyParamCaption}\item[{\hyperlink{structGPUFramebuffer}{G\+P\+U\+Framebuffer} $\ast$const}]{f,  }\item[{uint32\+\_\+t}]{width,  }\item[{uint32\+\_\+t}]{height }\end{DoxyParamCaption})}
+
+
+
+This function allocates framebuffer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em f} & framebuffer \\
+\hline
+{\em width} & width of the framebuffer \\
+\hline
+{\em height} & height of the framebuffer \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{gpu_8h_af1f98a1992bfd78dab9ffbb6bb3d2a62}\label{gpu_8h_af1f98a1992bfd78dab9ffbb6bb3d2a62}} 
+\index{gpu.\+h@{gpu.\+h}!gpu\+\_\+buffer\+Data@{gpu\+\_\+buffer\+Data}}
+\index{gpu\+\_\+buffer\+Data@{gpu\+\_\+buffer\+Data}!gpu.\+h@{gpu.\+h}}
+\subsubsection{\texorpdfstring{gpu\+\_\+buffer\+Data()}{gpu\_bufferData()}}
+{\footnotesize\ttfamily void gpu\+\_\+buffer\+Data (\begin{DoxyParamCaption}\item[{\hyperlink{structGPUBuffer}{G\+P\+U\+Buffer} $\ast$const}]{b,  }\item[{uint64\+\_\+t}]{size,  }\item[{void $\ast$}]{data }\end{DoxyParamCaption})}
+
+
+
+This function allocates and uploads data to buffer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em b} & buffer \\
+\hline
+{\em size} & size of new buffer \\
+\hline
+{\em data} & optional data pointer \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{gpu_8h_afe328aa124cc88b73dfa359296624119}\label{gpu_8h_afe328aa124cc88b73dfa359296624119}} 
+\index{gpu.\+h@{gpu.\+h}!gpu\+\_\+check\+Draw@{gpu\+\_\+check\+Draw}}
+\index{gpu\+\_\+check\+Draw@{gpu\+\_\+check\+Draw}!gpu.\+h@{gpu.\+h}}
+\subsubsection{\texorpdfstring{gpu\+\_\+check\+Draw()}{gpu\_checkDraw()}}
+{\footnotesize\ttfamily void gpu\+\_\+check\+Draw (\begin{DoxyParamCaption}\item[{\hyperlink{structGPU}{G\+PU} const $\ast$const}]{gpu,  }\item[{uint32\+\_\+t}]{nof\+Vertices }\end{DoxyParamCaption})}
+
+
+
+This function check gpu state for draw call. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em gpu} & gpu \\
+\hline
+{\em nof\+Vertices} & number of vertices \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{gpu_8h_a808bed87d3c8520b4d0a8e53a0e4fcd5}\label{gpu_8h_a808bed87d3c8520b4d0a8e53a0e4fcd5}} 
+\index{gpu.\+h@{gpu.\+h}!gpu\+\_\+clear\+Framebuffer@{gpu\+\_\+clear\+Framebuffer}}
+\index{gpu\+\_\+clear\+Framebuffer@{gpu\+\_\+clear\+Framebuffer}!gpu.\+h@{gpu.\+h}}
+\subsubsection{\texorpdfstring{gpu\+\_\+clear\+Framebuffer()}{gpu\_clearFramebuffer()}}
+{\footnotesize\ttfamily void gpu\+\_\+clear\+Framebuffer (\begin{DoxyParamCaption}\item[{\hyperlink{structGPU}{G\+PU} $\ast$const}]{gpu }\end{DoxyParamCaption})}
+
+
+
+This function clears framebuffer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em gpu} & framebuffer \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{gpu_8h_abdc726ee99b14d504cac283156d95cc7}\label{gpu_8h_abdc726ee99b14d504cac283156d95cc7}} 
+\index{gpu.\+h@{gpu.\+h}!gpu\+\_\+deactivate\+Puller@{gpu\+\_\+deactivate\+Puller}}
+\index{gpu\+\_\+deactivate\+Puller@{gpu\+\_\+deactivate\+Puller}!gpu.\+h@{gpu.\+h}}
+\subsubsection{\texorpdfstring{gpu\+\_\+deactivate\+Puller()}{gpu\_deactivatePuller()}}
+{\footnotesize\ttfamily void gpu\+\_\+deactivate\+Puller (\begin{DoxyParamCaption}\item[{\hyperlink{structGPU}{G\+PU} $\ast$const}]{gpu }\end{DoxyParamCaption})}
+
+
+
+This function deactivates vertex puller. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em gpu} & gpu \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{gpu_8h_abc60ebc6d0a9a0b0954ae7ee9adb5e6c}\label{gpu_8h_abc60ebc6d0a9a0b0954ae7ee9adb5e6c}} 
+\index{gpu.\+h@{gpu.\+h}!gpu\+\_\+draw\+Points@{gpu\+\_\+draw\+Points}}
+\index{gpu\+\_\+draw\+Points@{gpu\+\_\+draw\+Points}!gpu.\+h@{gpu.\+h}}
+\subsubsection{\texorpdfstring{gpu\+\_\+draw\+Points()}{gpu\_drawPoints()}}
+{\footnotesize\ttfamily void gpu\+\_\+draw\+Points (\begin{DoxyParamCaption}\item[{\hyperlink{structGPU}{G\+PU} $\ast$const}]{gpu,  }\item[{uint32\+\_\+t}]{nof\+Vertices }\end{DoxyParamCaption})}
+
+
+
+This function draws points. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em gpu} & gpu \\
+\hline
+{\em nof\+Vertices} & number of vertices \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{gpu_8h_ade19e622af460c7c863a2abc99723702}\label{gpu_8h_ade19e622af460c7c863a2abc99723702}} 
+\index{gpu.\+h@{gpu.\+h}!gpu\+\_\+finish@{gpu\+\_\+finish}}
+\index{gpu\+\_\+finish@{gpu\+\_\+finish}!gpu.\+h@{gpu.\+h}}
+\subsubsection{\texorpdfstring{gpu\+\_\+finish()}{gpu\_finish()}}
+{\footnotesize\ttfamily void gpu\+\_\+finish (\begin{DoxyParamCaption}\item[{\hyperlink{structGPU}{G\+PU} $\ast$const}]{gpu }\end{DoxyParamCaption})}
+
+
+
+This function executes all commands in gpu\textquotesingle{}s command queue. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em gpu} & gpu \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{gpu_8h_af9007f31171596847f0b2302a180b749}\label{gpu_8h_af9007f31171596847f0b2302a180b749}} 
+\index{gpu.\+h@{gpu.\+h}!gpu\+\_\+float\+Color\+To\+Uint32@{gpu\+\_\+float\+Color\+To\+Uint32}}
+\index{gpu\+\_\+float\+Color\+To\+Uint32@{gpu\+\_\+float\+Color\+To\+Uint32}!gpu.\+h@{gpu.\+h}}
+\subsubsection{\texorpdfstring{gpu\+\_\+float\+Color\+To\+Uint32()}{gpu\_floatColorToUint32()}}
+{\footnotesize\ttfamily uint8\+\_\+t gpu\+\_\+float\+Color\+To\+Uint32 (\begin{DoxyParamCaption}\item[{float const}]{value }\end{DoxyParamCaption})}
+
+
+
+This function converts float \mbox{[}0,1\mbox{]} to byte \mbox{[}0,255\mbox{]}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & float value in range \mbox{[}0,1\mbox{]}\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+byte value in range \mbox{[}0,255\mbox{]} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{gpu_8h_a3053c3bd95f28fccf7b0b02404dac78e}\label{gpu_8h_a3053c3bd95f28fccf7b0b02404dac78e}} 
+\index{gpu.\+h@{gpu.\+h}!gpu\+\_\+free\+Buffer@{gpu\+\_\+free\+Buffer}}
+\index{gpu\+\_\+free\+Buffer@{gpu\+\_\+free\+Buffer}!gpu.\+h@{gpu.\+h}}
+\subsubsection{\texorpdfstring{gpu\+\_\+free\+Buffer()}{gpu\_freeBuffer()}}
+{\footnotesize\ttfamily void gpu\+\_\+free\+Buffer (\begin{DoxyParamCaption}\item[{\hyperlink{structGPUBuffer}{G\+P\+U\+Buffer} $\ast$const}]{b }\end{DoxyParamCaption})}
+
+
+
+This function frees the buffer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em b} & buffer \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{gpu_8h_ac6d9877988fdbccfb295181dd04413bf}\label{gpu_8h_ac6d9877988fdbccfb295181dd04413bf}} 
+\index{gpu.\+h@{gpu.\+h}!gpu\+\_\+free\+Buffers@{gpu\+\_\+free\+Buffers}}
+\index{gpu\+\_\+free\+Buffers@{gpu\+\_\+free\+Buffers}!gpu.\+h@{gpu.\+h}}
+\subsubsection{\texorpdfstring{gpu\+\_\+free\+Buffers()}{gpu\_freeBuffers()}}
+{\footnotesize\ttfamily void gpu\+\_\+free\+Buffers (\begin{DoxyParamCaption}\item[{\hyperlink{structGPUBuffers}{G\+P\+U\+Buffers} $\ast$const}]{b }\end{DoxyParamCaption})}
+
+
+
+This function frees all gpu buffers. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em b} & buffers \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{gpu_8h_a684b99175d7317867e4655723c94348c}\label{gpu_8h_a684b99175d7317867e4655723c94348c}} 
+\index{gpu.\+h@{gpu.\+h}!gpu\+\_\+free\+Framebuffer@{gpu\+\_\+free\+Framebuffer}}
+\index{gpu\+\_\+free\+Framebuffer@{gpu\+\_\+free\+Framebuffer}!gpu.\+h@{gpu.\+h}}
+\subsubsection{\texorpdfstring{gpu\+\_\+free\+Framebuffer()}{gpu\_freeFramebuffer()}}
+{\footnotesize\ttfamily void gpu\+\_\+free\+Framebuffer (\begin{DoxyParamCaption}\item[{\hyperlink{structGPUFramebuffer}{G\+P\+U\+Framebuffer} $\ast$const}]{f }\end{DoxyParamCaption})}
+
+
+
+This function frees the framebuffer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em f} & framebuffer \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{gpu_8h_a13c7fd40b75c34ec69e3aa70ffef6eed}\label{gpu_8h_a13c7fd40b75c34ec69e3aa70ffef6eed}} 
+\index{gpu.\+h@{gpu.\+h}!gpu\+\_\+free\+Programs@{gpu\+\_\+free\+Programs}}
+\index{gpu\+\_\+free\+Programs@{gpu\+\_\+free\+Programs}!gpu.\+h@{gpu.\+h}}
+\subsubsection{\texorpdfstring{gpu\+\_\+free\+Programs()}{gpu\_freePrograms()}}
+{\footnotesize\ttfamily void gpu\+\_\+free\+Programs (\begin{DoxyParamCaption}\item[{\hyperlink{structGPUPrograms}{G\+P\+U\+Programs} $\ast$const}]{p }\end{DoxyParamCaption})}
+
+
+
+This function frees all gpu programs. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p} & programs \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{gpu_8h_ad33a812fc890e6b7df9da1833aeb50e6}\label{gpu_8h_ad33a812fc890e6b7df9da1833aeb50e6}} 
+\index{gpu.\+h@{gpu.\+h}!gpu\+\_\+free\+Vertex\+Pullers@{gpu\+\_\+free\+Vertex\+Pullers}}
+\index{gpu\+\_\+free\+Vertex\+Pullers@{gpu\+\_\+free\+Vertex\+Pullers}!gpu.\+h@{gpu.\+h}}
+\subsubsection{\texorpdfstring{gpu\+\_\+free\+Vertex\+Pullers()}{gpu\_freeVertexPullers()}}
+{\footnotesize\ttfamily void gpu\+\_\+free\+Vertex\+Pullers (\begin{DoxyParamCaption}\item[{\hyperlink{structGPUVertexPullers}{G\+P\+U\+Vertex\+Pullers} $\ast$const}]{v }\end{DoxyParamCaption})}
+
+
+
+This function free all vertex pullers. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em v} & vertex pullers \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{gpu_8h_ad3b191032ebdd19d6d6903eecc80e0a7}\label{gpu_8h_ad3b191032ebdd19d6d6903eecc80e0a7}} 
+\index{gpu.\+h@{gpu.\+h}!gpu\+\_\+get\+Active\+Program@{gpu\+\_\+get\+Active\+Program}}
+\index{gpu\+\_\+get\+Active\+Program@{gpu\+\_\+get\+Active\+Program}!gpu.\+h@{gpu.\+h}}
+\subsubsection{\texorpdfstring{gpu\+\_\+get\+Active\+Program()}{gpu\_getActiveProgram()}}
+{\footnotesize\ttfamily \hyperlink{structGPUProgram}{G\+P\+U\+Program} const$\ast$ gpu\+\_\+get\+Active\+Program (\begin{DoxyParamCaption}\item[{\hyperlink{structGPU}{G\+PU} const $\ast$const}]{gpu }\end{DoxyParamCaption})}
+
+
+
+This function returns pointer to active program. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em gpu} & gpu\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+pointer to active program or N\+U\+LL 
+\end{DoxyReturn}
+\mbox{\Hypertarget{gpu_8h_ac7df8a38b608fcc9c3e3862fe57dbd2e}\label{gpu_8h_ac7df8a38b608fcc9c3e3862fe57dbd2e}} 
+\index{gpu.\+h@{gpu.\+h}!gpu\+\_\+get\+Active\+Puller@{gpu\+\_\+get\+Active\+Puller}}
+\index{gpu\+\_\+get\+Active\+Puller@{gpu\+\_\+get\+Active\+Puller}!gpu.\+h@{gpu.\+h}}
+\subsubsection{\texorpdfstring{gpu\+\_\+get\+Active\+Puller()}{gpu\_getActivePuller()}}
+{\footnotesize\ttfamily \hyperlink{structGPUVertexPuller}{G\+P\+U\+Vertex\+Puller} const$\ast$ gpu\+\_\+get\+Active\+Puller (\begin{DoxyParamCaption}\item[{\hyperlink{structGPU}{G\+PU} const $\ast$const}]{gpu }\end{DoxyParamCaption})}
+
+
+
+This function returns pointer to active vertex puller. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em gpu} & gpu\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+vertex puller pointer 
+\end{DoxyReturn}
+\mbox{\Hypertarget{gpu_8h_ac8dc166840aaca2b29d6fc2e31afca9b}\label{gpu_8h_ac8dc166840aaca2b29d6fc2e31afca9b}} 
+\index{gpu.\+h@{gpu.\+h}!gpu\+\_\+get\+Buffer@{gpu\+\_\+get\+Buffer}}
+\index{gpu\+\_\+get\+Buffer@{gpu\+\_\+get\+Buffer}!gpu.\+h@{gpu.\+h}}
+\subsubsection{\texorpdfstring{gpu\+\_\+get\+Buffer()}{gpu\_getBuffer()}}
+{\footnotesize\ttfamily \hyperlink{structGPUBuffer}{G\+P\+U\+Buffer} const$\ast$ gpu\+\_\+get\+Buffer (\begin{DoxyParamCaption}\item[{\hyperlink{structGPU}{G\+PU} const $\ast$const}]{gpu,  }\item[{\hyperlink{student_2fwd_8h_a60a12bf4868ebe47cc571ce96a03f99c}{Buffer\+ID}}]{id }\end{DoxyParamCaption})}
+
+
+
+This function returns pointer to buffer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em gpu} & gpu \\
+\hline
+{\em id} & id of buffer\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+pointer to buffer 
+\end{DoxyReturn}
+\mbox{\Hypertarget{gpu_8h_ae41e3e28b2af6568269d24e91b087a50}\label{gpu_8h_ae41e3e28b2af6568269d24e91b087a50}} 
+\index{gpu.\+h@{gpu.\+h}!gpu\+\_\+get\+Uniform@{gpu\+\_\+get\+Uniform}}
+\index{gpu\+\_\+get\+Uniform@{gpu\+\_\+get\+Uniform}!gpu.\+h@{gpu.\+h}}
+\subsubsection{\texorpdfstring{gpu\+\_\+get\+Uniform()}{gpu\_getUniform()}}
+{\footnotesize\ttfamily \hyperlink{structGPUUniform}{G\+P\+U\+Uniform}$\ast$ gpu\+\_\+get\+Uniform (\begin{DoxyParamCaption}\item[{\hyperlink{structGPU}{G\+PU} $\ast$const}]{gpu,  }\item[{\hyperlink{student_2fwd_8h_a15e62786033208aec9487a51e808f81d}{Program\+ID}}]{program\+Id,  }\item[{uint32\+\_\+t}]{uniform\+Id }\end{DoxyParamCaption})}
+
+
+
+This function returns pointer to selected uniform. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em gpu} & gpu \\
+\hline
+{\em program\+Id} & program id \\
+\hline
+{\em uniform\+Id} & uniform id\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{gpu_8h_a2cc8bc8399b7f12110f3afa922b1c35f}\label{gpu_8h_a2cc8bc8399b7f12110f3afa922b1c35f}} 
+\index{gpu.\+h@{gpu.\+h}!gpu\+\_\+init\+Buffer@{gpu\+\_\+init\+Buffer}}
+\index{gpu\+\_\+init\+Buffer@{gpu\+\_\+init\+Buffer}!gpu.\+h@{gpu.\+h}}
+\subsubsection{\texorpdfstring{gpu\+\_\+init\+Buffer()}{gpu\_initBuffer()}}
+{\footnotesize\ttfamily void gpu\+\_\+init\+Buffer (\begin{DoxyParamCaption}\item[{\hyperlink{structGPUBuffer}{G\+P\+U\+Buffer} $\ast$const}]{b }\end{DoxyParamCaption})}
+
+
+
+This function inits \hyperlink{structGPU}{G\+PU} buffer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em b} & buffer \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{gpu_8h_ab4e449030a8bb8cb38d14eb0dfdddd5b}\label{gpu_8h_ab4e449030a8bb8cb38d14eb0dfdddd5b}} 
+\index{gpu.\+h@{gpu.\+h}!gpu\+\_\+init\+Buffers@{gpu\+\_\+init\+Buffers}}
+\index{gpu\+\_\+init\+Buffers@{gpu\+\_\+init\+Buffers}!gpu.\+h@{gpu.\+h}}
+\subsubsection{\texorpdfstring{gpu\+\_\+init\+Buffers()}{gpu\_initBuffers()}}
+{\footnotesize\ttfamily void gpu\+\_\+init\+Buffers (\begin{DoxyParamCaption}\item[{\hyperlink{structGPUBuffers}{G\+P\+U\+Buffers} $\ast$const}]{b }\end{DoxyParamCaption})}
+
+
+
+This function inits \hyperlink{structGPU}{G\+PU} buffers. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em b} & biffers \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{gpu_8h_ad7cca645cd6396c31ff39bfad247b4ca}\label{gpu_8h_ad7cca645cd6396c31ff39bfad247b4ca}} 
+\index{gpu.\+h@{gpu.\+h}!gpu\+\_\+init\+Framebuffer@{gpu\+\_\+init\+Framebuffer}}
+\index{gpu\+\_\+init\+Framebuffer@{gpu\+\_\+init\+Framebuffer}!gpu.\+h@{gpu.\+h}}
+\subsubsection{\texorpdfstring{gpu\+\_\+init\+Framebuffer()}{gpu\_initFramebuffer()}}
+{\footnotesize\ttfamily void gpu\+\_\+init\+Framebuffer (\begin{DoxyParamCaption}\item[{\hyperlink{structGPUFramebuffer}{G\+P\+U\+Framebuffer} $\ast$const}]{f }\end{DoxyParamCaption})}
+
+
+
+This function inits framebuffer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em f} & framebuffer \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{gpu_8h_a71e7f8aeac76077e9671d902dbd83c99}\label{gpu_8h_a71e7f8aeac76077e9671d902dbd83c99}} 
+\index{gpu.\+h@{gpu.\+h}!gpu\+\_\+init\+Indices@{gpu\+\_\+init\+Indices}}
+\index{gpu\+\_\+init\+Indices@{gpu\+\_\+init\+Indices}!gpu.\+h@{gpu.\+h}}
+\subsubsection{\texorpdfstring{gpu\+\_\+init\+Indices()}{gpu\_initIndices()}}
+{\footnotesize\ttfamily void gpu\+\_\+init\+Indices (\begin{DoxyParamCaption}\item[{\hyperlink{structGPUIndices}{G\+P\+U\+Indices} $\ast$const}]{i }\end{DoxyParamCaption})}
+
+
+
+This function inits indices. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i} & indices \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{gpu_8h_a53c57ff6adea9b0a0cd4e743bfbf4cd4}\label{gpu_8h_a53c57ff6adea9b0a0cd4e743bfbf4cd4}} 
+\index{gpu.\+h@{gpu.\+h}!gpu\+\_\+init\+Program@{gpu\+\_\+init\+Program}}
+\index{gpu\+\_\+init\+Program@{gpu\+\_\+init\+Program}!gpu.\+h@{gpu.\+h}}
+\subsubsection{\texorpdfstring{gpu\+\_\+init\+Program()}{gpu\_initProgram()}}
+{\footnotesize\ttfamily void gpu\+\_\+init\+Program (\begin{DoxyParamCaption}\item[{\hyperlink{structGPUProgram}{G\+P\+U\+Program} $\ast$const}]{p }\end{DoxyParamCaption})}
+
+
+
+This functions inits shader program. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p} & shader program \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{gpu_8h_a09db2e86ac63470943d03b3165896209}\label{gpu_8h_a09db2e86ac63470943d03b3165896209}} 
+\index{gpu.\+h@{gpu.\+h}!gpu\+\_\+init\+Programs@{gpu\+\_\+init\+Programs}}
+\index{gpu\+\_\+init\+Programs@{gpu\+\_\+init\+Programs}!gpu.\+h@{gpu.\+h}}
+\subsubsection{\texorpdfstring{gpu\+\_\+init\+Programs()}{gpu\_initPrograms()}}
+{\footnotesize\ttfamily void gpu\+\_\+init\+Programs (\begin{DoxyParamCaption}\item[{\hyperlink{structGPUPrograms}{G\+P\+U\+Programs} $\ast$const}]{p }\end{DoxyParamCaption})}
+
+
+
+This function inits programs. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p} & programs \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{gpu_8h_a8883d919f7b8f9d6c352fa2603a26884}\label{gpu_8h_a8883d919f7b8f9d6c352fa2603a26884}} 
+\index{gpu.\+h@{gpu.\+h}!gpu\+\_\+init\+Uniform@{gpu\+\_\+init\+Uniform}}
+\index{gpu\+\_\+init\+Uniform@{gpu\+\_\+init\+Uniform}!gpu.\+h@{gpu.\+h}}
+\subsubsection{\texorpdfstring{gpu\+\_\+init\+Uniform()}{gpu\_initUniform()}}
+{\footnotesize\ttfamily void gpu\+\_\+init\+Uniform (\begin{DoxyParamCaption}\item[{\hyperlink{structGPUUniform}{G\+P\+U\+Uniform} $\ast$const}]{u }\end{DoxyParamCaption})}
+
+
+
+This function inits one uniform variable. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em u} & uniform variable \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{gpu_8h_a2156449a1db6f93b0853903879f8ff98}\label{gpu_8h_a2156449a1db6f93b0853903879f8ff98}} 
+\index{gpu.\+h@{gpu.\+h}!gpu\+\_\+init\+Uniforms@{gpu\+\_\+init\+Uniforms}}
+\index{gpu\+\_\+init\+Uniforms@{gpu\+\_\+init\+Uniforms}!gpu.\+h@{gpu.\+h}}
+\subsubsection{\texorpdfstring{gpu\+\_\+init\+Uniforms()}{gpu\_initUniforms()}}
+{\footnotesize\ttfamily void gpu\+\_\+init\+Uniforms (\begin{DoxyParamCaption}\item[{\hyperlink{structGPUUniforms}{G\+P\+U\+Uniforms} $\ast$const}]{u }\end{DoxyParamCaption})}
+
+
+
+This function inits uniform variables. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em u} & uniform variables \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{gpu_8h_afa69014d4262ae24b28654039ac7c3a4}\label{gpu_8h_afa69014d4262ae24b28654039ac7c3a4}} 
+\index{gpu.\+h@{gpu.\+h}!gpu\+\_\+init\+Vertex\+Puller@{gpu\+\_\+init\+Vertex\+Puller}}
+\index{gpu\+\_\+init\+Vertex\+Puller@{gpu\+\_\+init\+Vertex\+Puller}!gpu.\+h@{gpu.\+h}}
+\subsubsection{\texorpdfstring{gpu\+\_\+init\+Vertex\+Puller()}{gpu\_initVertexPuller()}}
+{\footnotesize\ttfamily void gpu\+\_\+init\+Vertex\+Puller (\begin{DoxyParamCaption}\item[{\hyperlink{structGPUVertexPuller}{G\+P\+U\+Vertex\+Puller} $\ast$const}]{puller }\end{DoxyParamCaption})}
+
+
+
+This function inits vertex puller. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em puller} & puller \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{gpu_8h_a743153f4514ec830ce3f616efd2f5da1}\label{gpu_8h_a743153f4514ec830ce3f616efd2f5da1}} 
+\index{gpu.\+h@{gpu.\+h}!gpu\+\_\+init\+Vertex\+Puller\+Head@{gpu\+\_\+init\+Vertex\+Puller\+Head}}
+\index{gpu\+\_\+init\+Vertex\+Puller\+Head@{gpu\+\_\+init\+Vertex\+Puller\+Head}!gpu.\+h@{gpu.\+h}}
+\subsubsection{\texorpdfstring{gpu\+\_\+init\+Vertex\+Puller\+Head()}{gpu\_initVertexPullerHead()}}
+{\footnotesize\ttfamily void gpu\+\_\+init\+Vertex\+Puller\+Head (\begin{DoxyParamCaption}\item[{\hyperlink{structGPUVertexPullerHead}{G\+P\+U\+Vertex\+Puller\+Head} $\ast$const}]{head }\end{DoxyParamCaption})}
+
+
+
+This functions inits vertex puller head. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em head} & head \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{gpu_8h_a7b3efebca2782e2e6a90b27ba454d8c0}\label{gpu_8h_a7b3efebca2782e2e6a90b27ba454d8c0}} 
+\index{gpu.\+h@{gpu.\+h}!gpu\+\_\+init\+Vertex\+Pullers@{gpu\+\_\+init\+Vertex\+Pullers}}
+\index{gpu\+\_\+init\+Vertex\+Pullers@{gpu\+\_\+init\+Vertex\+Pullers}!gpu.\+h@{gpu.\+h}}
+\subsubsection{\texorpdfstring{gpu\+\_\+init\+Vertex\+Pullers()}{gpu\_initVertexPullers()}}
+{\footnotesize\ttfamily void gpu\+\_\+init\+Vertex\+Pullers (\begin{DoxyParamCaption}\item[{\hyperlink{structGPUVertexPullers}{G\+P\+U\+Vertex\+Pullers} $\ast$const}]{v }\end{DoxyParamCaption})}
+
+
+
+This function init vertex pullers. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em v} & vertex pullers \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{gpu_8h_a1f9b6e972b0a7d864c2ed519e87f62e9}\label{gpu_8h_a1f9b6e972b0a7d864c2ed519e87f62e9}} 
+\index{gpu.\+h@{gpu.\+h}!gpu\+\_\+is\+Buffer@{gpu\+\_\+is\+Buffer}}
+\index{gpu\+\_\+is\+Buffer@{gpu\+\_\+is\+Buffer}!gpu.\+h@{gpu.\+h}}
+\subsubsection{\texorpdfstring{gpu\+\_\+is\+Buffer()}{gpu\_isBuffer()}}
+{\footnotesize\ttfamily int gpu\+\_\+is\+Buffer (\begin{DoxyParamCaption}\item[{\hyperlink{structGPU}{G\+PU} const $\ast$const}]{gpu,  }\item[{\hyperlink{student_2fwd_8h_a60a12bf4868ebe47cc571ce96a03f99c}{Buffer\+ID}}]{id }\end{DoxyParamCaption})}
+
+
+
+This function check if id points to valid buffer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em gpu} & gpu \\
+\hline
+{\em id} & buffer id\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if id points to buffer, 0 otherwise 
+\end{DoxyReturn}
+\mbox{\Hypertarget{gpu_8h_a5a2bcec1b575f2adebb048d837bc6fb1}\label{gpu_8h_a5a2bcec1b575f2adebb048d837bc6fb1}} 
+\index{gpu.\+h@{gpu.\+h}!gpu\+\_\+is\+Program@{gpu\+\_\+is\+Program}}
+\index{gpu\+\_\+is\+Program@{gpu\+\_\+is\+Program}!gpu.\+h@{gpu.\+h}}
+\subsubsection{\texorpdfstring{gpu\+\_\+is\+Program()}{gpu\_isProgram()}}
+{\footnotesize\ttfamily int gpu\+\_\+is\+Program (\begin{DoxyParamCaption}\item[{\hyperlink{structGPU}{G\+PU} const $\ast$const}]{gpu,  }\item[{\hyperlink{student_2fwd_8h_a15e62786033208aec9487a51e808f81d}{Program\+ID}}]{id }\end{DoxyParamCaption})}
+
+
+
+This function check if id points to valid program. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em gpu} & gpu \\
+\hline
+{\em id} & vertex puller id\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if id points to valid program, 0 otherwise 
+\end{DoxyReturn}
+\mbox{\Hypertarget{gpu_8h_a923923cf0856f8526ecf90a07b303b6e}\label{gpu_8h_a923923cf0856f8526ecf90a07b303b6e}} 
+\index{gpu.\+h@{gpu.\+h}!gpu\+\_\+is\+Puller@{gpu\+\_\+is\+Puller}}
+\index{gpu\+\_\+is\+Puller@{gpu\+\_\+is\+Puller}!gpu.\+h@{gpu.\+h}}
+\subsubsection{\texorpdfstring{gpu\+\_\+is\+Puller()}{gpu\_isPuller()}}
+{\footnotesize\ttfamily int gpu\+\_\+is\+Puller (\begin{DoxyParamCaption}\item[{\hyperlink{structGPU}{G\+PU} const $\ast$const}]{gpu,  }\item[{\hyperlink{student_2fwd_8h_a23828e2281a794e193ebaf0df3e1f17c}{Vertex\+Puller\+ID}}]{id }\end{DoxyParamCaption})}
+
+
+
+This function check if id points to valid vertex puller. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em gpu} & gpu \\
+\hline
+{\em id} & vertex puller id\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if id points to valid puller, 0 otherwise 
+\end{DoxyReturn}
+\mbox{\Hypertarget{gpu_8h_a698e7eb20b79013c2218e0595c8eab01}\label{gpu_8h_a698e7eb20b79013c2218e0595c8eab01}} 
+\index{gpu.\+h@{gpu.\+h}!gpu\+\_\+push\+Command@{gpu\+\_\+push\+Command}}
+\index{gpu\+\_\+push\+Command@{gpu\+\_\+push\+Command}!gpu.\+h@{gpu.\+h}}
+\subsubsection{\texorpdfstring{gpu\+\_\+push\+Command()}{gpu\_pushCommand()}}
+{\footnotesize\ttfamily void gpu\+\_\+push\+Command (\begin{DoxyParamCaption}\item[{\hyperlink{structGPU}{G\+PU} $\ast$const}]{gpu,  }\item[{\hyperlink{gpu_8h_a0e570b421c70c09be4d05c1c0ac49a02}{G\+P\+U\+Command\+Type}}]{type }\end{DoxyParamCaption})}
+
+
+
+This function pushes command to gpu\textquotesingle{}s command buffer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em gpu} & gpu \\
+\hline
+{\em type} & command type \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{gpu_8h_acb2777e0388b2fdf0d8367c41bb86118}\label{gpu_8h_acb2777e0388b2fdf0d8367c41bb86118}} 
+\index{gpu.\+h@{gpu.\+h}!gpu\+\_\+push\+Command1@{gpu\+\_\+push\+Command1}}
+\index{gpu\+\_\+push\+Command1@{gpu\+\_\+push\+Command1}!gpu.\+h@{gpu.\+h}}
+\subsubsection{\texorpdfstring{gpu\+\_\+push\+Command1()}{gpu\_pushCommand1()}}
+{\footnotesize\ttfamily void gpu\+\_\+push\+Command1 (\begin{DoxyParamCaption}\item[{\hyperlink{structGPU}{G\+PU} $\ast$const}]{gpu,  }\item[{\hyperlink{gpu_8h_a0e570b421c70c09be4d05c1c0ac49a02}{G\+P\+U\+Command\+Type}}]{type,  }\item[{uint64\+\_\+t}]{p0 }\end{DoxyParamCaption})}
+
+
+
+This function pushes command to gpu\textquotesingle{}s command buffer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em gpu} & gpu \\
+\hline
+{\em type} & command type \\
+\hline
+{\em p0} & first parameter of command \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{gpu_8h_a7b54b5ee430347057a82a1f0bd6b4220}\label{gpu_8h_a7b54b5ee430347057a82a1f0bd6b4220}} 
+\index{gpu.\+h@{gpu.\+h}!gpu\+\_\+push\+Command2@{gpu\+\_\+push\+Command2}}
+\index{gpu\+\_\+push\+Command2@{gpu\+\_\+push\+Command2}!gpu.\+h@{gpu.\+h}}
+\subsubsection{\texorpdfstring{gpu\+\_\+push\+Command2()}{gpu\_pushCommand2()}}
+{\footnotesize\ttfamily void gpu\+\_\+push\+Command2 (\begin{DoxyParamCaption}\item[{\hyperlink{structGPU}{G\+PU} $\ast$const}]{gpu,  }\item[{\hyperlink{gpu_8h_a0e570b421c70c09be4d05c1c0ac49a02}{G\+P\+U\+Command\+Type}}]{type,  }\item[{uint64\+\_\+t}]{p0,  }\item[{uint64\+\_\+t}]{p1 }\end{DoxyParamCaption})}
+
+
+
+This function pushes command to gpu\textquotesingle{}s command buffer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em gpu} & gpu \\
+\hline
+{\em type} & command type \\
+\hline
+{\em p0} & first parameter of command \\
+\hline
+{\em p1} & second parameter of command \\
+\hline
+\end{DoxyParams}

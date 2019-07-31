@@ -1,0 +1,740 @@
+\hypertarget{cpu_8h}{}\section{student/cpu.h File Reference}
+\label{cpu_8h}\index{student/cpu.\+h@{student/cpu.\+h}}
+
+
+This file contains declarations of A\+PI for controling of software \hyperlink{structGPU}{G\+PU}. A\+PI contains\+: functions for \hyperlink{structGPU}{G\+PU} buffer management functions for Vertex Pullers management functions for Shader Programs management functions for drawing, clearing framebuffer and setting \hyperlink{structGPU}{G\+PU} state.  
+
+
+{\ttfamily \#include $<$S\+D\+L.\+h$>$}\newline
+{\ttfamily \#include $<$student/gpu.\+h$>$}\newline
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{cpu_8h_afb6f1bb5286860ac584b34c310c8c704}{cpu\+\_\+init\+G\+PU} (\hyperlink{structGPU}{G\+PU} $\ast$const gpu, uint32\+\_\+t width, uint32\+\_\+t height)
+\begin{DoxyCompactList}\small\item\em This function inits the \hyperlink{structGPU}{G\+PU}. \end{DoxyCompactList}\item 
+void \hyperlink{cpu_8h_a9e8ff78225dbbecbd5e9c87f07aa5e90}{cpu\+\_\+free\+G\+PU} (\hyperlink{structGPU}{G\+PU} $\ast$const gpu)
+\begin{DoxyCompactList}\small\item\em This function frees the gpu. \end{DoxyCompactList}\item 
+void \hyperlink{cpu_8h_ae2735d6b22346331d93d2fd3970a7a63}{cpu\+\_\+enable\+Debug} (\hyperlink{structGPU}{G\+PU} $\ast$const gpu)
+\begin{DoxyCompactList}\small\item\em This function enables debug outputs. \end{DoxyCompactList}\item 
+void \hyperlink{cpu_8h_a5396d4cef6e6cca84432f32545242aba}{cpu\+\_\+disable\+Debug} (\hyperlink{structGPU}{G\+PU} $\ast$const gpu)
+\begin{DoxyCompactList}\small\item\em This function disables debug outputs. \end{DoxyCompactList}\item 
+\hyperlink{student_2fwd_8h_a60a12bf4868ebe47cc571ce96a03f99c}{Buffer\+ID} \hyperlink{cpu_8h_a94245836b857a36f392bf86087e8e776}{cpu\+\_\+create\+Buffer} (\hyperlink{structGPU}{G\+PU} $\ast$const gpu)
+\begin{DoxyCompactList}\small\item\em This function reserves buffer id. \end{DoxyCompactList}\item 
+void \hyperlink{cpu_8h_afbd73ba2ae2e15f3ed4c4563b0d33eac}{cpu\+\_\+delete\+Buffer} (\hyperlink{structGPU}{G\+PU} $\ast$const gpu, \hyperlink{student_2fwd_8h_a60a12bf4868ebe47cc571ce96a03f99c}{Buffer\+ID} id)
+\begin{DoxyCompactList}\small\item\em This function deletes buffer. \end{DoxyCompactList}\item 
+void \hyperlink{cpu_8h_aee5c818b862ef2e411f121fbdfb1c634}{cpu\+\_\+buffer\+Data} (\hyperlink{structGPU}{G\+PU} $\ast$const gpu, \hyperlink{student_2fwd_8h_a60a12bf4868ebe47cc571ce96a03f99c}{Buffer\+ID} id, uint64\+\_\+t size, void $\ast$data)
+\begin{DoxyCompactList}\small\item\em This function allocates data on gpu and upload data (if specified) \end{DoxyCompactList}\item 
+int \hyperlink{cpu_8h_adb793bcafb95b9de45765d64e17030d6}{cpu\+\_\+is\+Buffer} (\hyperlink{structGPU}{G\+PU} const $\ast$const gpu, \hyperlink{student_2fwd_8h_a60a12bf4868ebe47cc571ce96a03f99c}{Buffer\+ID} id)
+\begin{DoxyCompactList}\small\item\em This function check if id points to valid buffer. \end{DoxyCompactList}\item 
+\hyperlink{student_2fwd_8h_a23828e2281a794e193ebaf0df3e1f17c}{Vertex\+Puller\+ID} \hyperlink{cpu_8h_a3ec68476772605b8be33329f88ae4d97}{cpu\+\_\+create\+Vertex\+Puller} (\hyperlink{structGPU}{G\+PU} $\ast$const gpu)
+\begin{DoxyCompactList}\small\item\em This function reserves new vertex puller. \end{DoxyCompactList}\item 
+void \hyperlink{cpu_8h_a48128b06ac5672b842ab4733a93c8270}{cpu\+\_\+delete\+Vertex\+Puller} (\hyperlink{structGPU}{G\+PU} $\ast$const gpu, \hyperlink{student_2fwd_8h_a23828e2281a794e193ebaf0df3e1f17c}{Vertex\+Puller\+ID} id)
+\begin{DoxyCompactList}\small\item\em This function deletes vertex puller. \end{DoxyCompactList}\item 
+void \hyperlink{cpu_8h_a4cb243dfeb6443e0f9a6110ce1dd27eb}{cpu\+\_\+set\+Vertex\+Puller} (\hyperlink{structGPU}{G\+PU} $\ast$const gpu, \hyperlink{student_2fwd_8h_a23828e2281a794e193ebaf0df3e1f17c}{Vertex\+Puller\+ID} puller\+Id, uint32\+\_\+t head, \hyperlink{gpu_8h_a349a9cde14be8097df865ba0469c0ab2}{Attribute\+Type} type, uint64\+\_\+t stride, uint64\+\_\+t offset, \hyperlink{student_2fwd_8h_a60a12bf4868ebe47cc571ce96a03f99c}{Buffer\+ID} buffer\+Id)
+\begin{DoxyCompactList}\small\item\em This function sets vertex puller head. \end{DoxyCompactList}\item 
+void \hyperlink{cpu_8h_a4159dbbc604685e544bc296708ced5f9}{cpu\+\_\+set\+Vertex\+Puller\+Indexing} (\hyperlink{structGPU}{G\+PU} $\ast$const gpu, \hyperlink{student_2fwd_8h_a23828e2281a794e193ebaf0df3e1f17c}{Vertex\+Puller\+ID} puller\+Id, \hyperlink{gpu_8h_a2bfb0a0ff1c379a8b4e8f9d24fdd4839}{Index\+Type} type, \hyperlink{student_2fwd_8h_a60a12bf4868ebe47cc571ce96a03f99c}{Buffer\+ID} buffer)
+\begin{DoxyCompactList}\small\item\em This function sets vertex puller indexing. \end{DoxyCompactList}\item 
+void \hyperlink{cpu_8h_a5a6ce215f054d26134c7598714cfb453}{cpu\+\_\+enable\+Vertex\+Puller\+Head} (\hyperlink{structGPU}{G\+PU} $\ast$const gpu, \hyperlink{student_2fwd_8h_a23828e2281a794e193ebaf0df3e1f17c}{Vertex\+Puller\+ID} puller\+Id, uint32\+\_\+t head)
+\begin{DoxyCompactList}\small\item\em This function enables vertex puller head. \end{DoxyCompactList}\item 
+void \hyperlink{cpu_8h_ab3da70ed8c49ac4c4d746e0bd0d0415b}{cpu\+\_\+disable\+Vertex\+Puller\+Head} (\hyperlink{structGPU}{G\+PU} $\ast$const gpu, \hyperlink{student_2fwd_8h_a23828e2281a794e193ebaf0df3e1f17c}{Vertex\+Puller\+ID} puller\+Id, uint32\+\_\+t head)
+\begin{DoxyCompactList}\small\item\em This function disables vertex puller head. \end{DoxyCompactList}\item 
+void \hyperlink{cpu_8h_a18a87fa3883575459a9d12bd8c2c4fea}{cpu\+\_\+bind\+Vertex\+Puller} (\hyperlink{structGPU}{G\+PU} $\ast$const gpu, \hyperlink{student_2fwd_8h_a23828e2281a794e193ebaf0df3e1f17c}{Vertex\+Puller\+ID} id)
+\begin{DoxyCompactList}\small\item\em This functions activates vertex puller. \end{DoxyCompactList}\item 
+void \hyperlink{cpu_8h_a749385b47b393259d3ee7cc7f44121dc}{cpu\+\_\+unbind\+Vertex\+Puller} (\hyperlink{structGPU}{G\+PU} $\ast$const gpu)
+\begin{DoxyCompactList}\small\item\em This function deactivates vertex puller. \end{DoxyCompactList}\item 
+int \hyperlink{cpu_8h_af86ae607a7a32847069be519358a41d1}{cpu\+\_\+is\+Vertex\+Puller} (\hyperlink{structGPU}{G\+PU} const $\ast$const gpu, \hyperlink{student_2fwd_8h_a23828e2281a794e193ebaf0df3e1f17c}{Vertex\+Puller\+ID} id)
+\begin{DoxyCompactList}\small\item\em This function check if id points to valid vertex puller. \end{DoxyCompactList}\item 
+\hyperlink{student_2fwd_8h_a15e62786033208aec9487a51e808f81d}{Program\+ID} \hyperlink{cpu_8h_af3da8b71aea1c26e6a90af7da9d0e85c}{cpu\+\_\+create\+Program} (\hyperlink{structGPU}{G\+PU} $\ast$const gpu)
+\begin{DoxyCompactList}\small\item\em This function reserves new shader program id. \end{DoxyCompactList}\item 
+void \hyperlink{cpu_8h_a76c50b0e120265198fe036abdc42d271}{cpu\+\_\+attach\+Shaders} (\hyperlink{structGPU}{G\+PU} $\ast$const gpu, \hyperlink{student_2fwd_8h_a15e62786033208aec9487a51e808f81d}{Program\+ID} program\+Id, \hyperlink{gpu_8h_add19b2ac87272745c0da3ef10d2f4160}{Vertex\+Shader} vs, \hyperlink{gpu_8h_aa8727db7547712b2d7dbb9de657c6175}{Fragment\+Shader} fs)
+\begin{DoxyCompactList}\small\item\em This function attaches shaders to shader program. \end{DoxyCompactList}\item 
+void \hyperlink{cpu_8h_ae9a0898c1ebe8d914d0858f56028c591}{cpu\+\_\+set\+V\+S2\+F\+S\+Type} (\hyperlink{structGPU}{G\+PU} $\ast$const gpu, \hyperlink{student_2fwd_8h_a15e62786033208aec9487a51e808f81d}{Program\+ID} program\+Id, uint32\+\_\+t attrib, \hyperlink{gpu_8h_a349a9cde14be8097df865ba0469c0ab2}{Attribute\+Type} type)
+\begin{DoxyCompactList}\small\item\em This function sets type of attributes that are interpolated by rasterizer. \end{DoxyCompactList}\item 
+void \hyperlink{cpu_8h_a734afc152da07de95f0059aa989af713}{cpu\+\_\+delete\+Program} (\hyperlink{structGPU}{G\+PU} $\ast$const gpu, \hyperlink{student_2fwd_8h_a15e62786033208aec9487a51e808f81d}{Program\+ID} program\+Id)
+\begin{DoxyCompactList}\small\item\em This function deletes shader program. \end{DoxyCompactList}\item 
+void \hyperlink{cpu_8h_abed0fbac42c4335409b29a19f13809f4}{cpu\+\_\+use\+Program} (\hyperlink{structGPU}{G\+PU} $\ast$const gpu, \hyperlink{student_2fwd_8h_a15e62786033208aec9487a51e808f81d}{Program\+ID} program\+Id)
+\begin{DoxyCompactList}\small\item\em This function activates selected program. \end{DoxyCompactList}\item 
+int \hyperlink{cpu_8h_aa46306844fdddafab3bfb788583354ef}{cpu\+\_\+is\+Program} (\hyperlink{structGPU}{G\+PU} const $\ast$const gpu, \hyperlink{student_2fwd_8h_a15e62786033208aec9487a51e808f81d}{Program\+ID} id)
+\begin{DoxyCompactList}\small\item\em This function check if id points to valid program. \end{DoxyCompactList}\item 
+void \hyperlink{cpu_8h_af17be71262ac6e7516869cf736765917}{cpu\+\_\+program\+Uniform1f} (\hyperlink{structGPU}{G\+PU} $\ast$const gpu, \hyperlink{student_2fwd_8h_a15e62786033208aec9487a51e808f81d}{Program\+ID} program\+Id, uint32\+\_\+t uniform\+Id, float const d)
+\begin{DoxyCompactList}\small\item\em This function sets uniform variable for selected program. \end{DoxyCompactList}\item 
+void \hyperlink{cpu_8h_a7eb40de0cfce0d3b53bbc3f12b3400d0}{cpu\+\_\+program\+Uniform2f} (\hyperlink{structGPU}{G\+PU} $\ast$const gpu, \hyperlink{student_2fwd_8h_a15e62786033208aec9487a51e808f81d}{Program\+ID} program\+Id, uint32\+\_\+t uniform\+Id, \hyperlink{structVec2}{Vec2} const d)
+\begin{DoxyCompactList}\small\item\em This function sets uniform variable for selected program. \end{DoxyCompactList}\item 
+void \hyperlink{cpu_8h_ae4e52628af21c7d6f9a4fb5acbc7d345}{cpu\+\_\+program\+Uniform3f} (\hyperlink{structGPU}{G\+PU} $\ast$const gpu, \hyperlink{student_2fwd_8h_a15e62786033208aec9487a51e808f81d}{Program\+ID} program\+Id, uint32\+\_\+t uniform\+Id, \hyperlink{structVec3}{Vec3} const d)
+\begin{DoxyCompactList}\small\item\em This function sets uniform variable for selected program. \end{DoxyCompactList}\item 
+void \hyperlink{cpu_8h_aaa07bfa15a5042885acebafbb37d1794}{cpu\+\_\+program\+Uniform4f} (\hyperlink{structGPU}{G\+PU} $\ast$const gpu, \hyperlink{student_2fwd_8h_a15e62786033208aec9487a51e808f81d}{Program\+ID} program\+Id, uint32\+\_\+t uniform\+Id, \hyperlink{structVec4}{Vec4} const d)
+\begin{DoxyCompactList}\small\item\em This function sets uniform variable for selected program. \end{DoxyCompactList}\item 
+void \hyperlink{cpu_8h_ae0c2608a426f5a4671505f174258d19b}{cpu\+\_\+program\+Uniform\+Matrix4f} (\hyperlink{structGPU}{G\+PU} $\ast$const gpu, \hyperlink{student_2fwd_8h_a15e62786033208aec9487a51e808f81d}{Program\+ID} program\+Id, uint32\+\_\+t uniform\+Id, \hyperlink{structMat4}{Mat4} const d)
+\begin{DoxyCompactList}\small\item\em This function sets uniform variable for selected program. \end{DoxyCompactList}\item 
+void \hyperlink{cpu_8h_a87eaf38fef863175a1b77f2816c946b3}{cpu\+\_\+clear\+Color} (\hyperlink{structGPU}{G\+PU} $\ast$const gpu, \hyperlink{structVec4}{Vec4} color)
+\begin{DoxyCompactList}\small\item\em This function sets clearing color of framebuffer. \end{DoxyCompactList}\item 
+void \hyperlink{cpu_8h_aa55e778caf0e0bf4554258ded1230daa}{cpu\+\_\+clear\+Depth} (\hyperlink{structGPU}{G\+PU} $\ast$const gpu, float depth)
+\begin{DoxyCompactList}\small\item\em This function sets clearing depth of framebuffer. \end{DoxyCompactList}\item 
+void \hyperlink{cpu_8h_a58fde5b5ff71499123b6c8ad0a70e560}{cpu\+\_\+draw\+Points} (\hyperlink{structGPU}{G\+PU} $\ast$const gpu, uint32\+\_\+t nof\+Vertices)
+\begin{DoxyCompactList}\small\item\em This function inserts draw points command into gpu\textquotesingle{}s command queue. \end{DoxyCompactList}\item 
+void \hyperlink{cpu_8h_a13c52301446924ffbc425a07f8a14ed2}{cpu\+\_\+draw\+Triangles} (\hyperlink{structGPU}{G\+PU} $\ast$const gpu, uint32\+\_\+t nof\+Vertices)
+\begin{DoxyCompactList}\small\item\em This function inserts draw triangles command into gpu\textquotesingle{}s command queue. \end{DoxyCompactList}\item 
+void \hyperlink{cpu_8h_afbf6dfbd40b067a4b4fea7091fce26c0}{cpu\+\_\+clear} (\hyperlink{structGPU}{G\+PU} $\ast$const gpu)
+\begin{DoxyCompactList}\small\item\em This function inserts clear command into gpu\textquotesingle{}s command queue. \end{DoxyCompactList}\item 
+void \hyperlink{cpu_8h_adf92934b1267c443695de9a19877f3e1}{cpu\+\_\+finish} (\hyperlink{structGPU}{G\+PU} $\ast$const gpu)
+\begin{DoxyCompactList}\small\item\em This function executes all commands in command queue of the gpu. \end{DoxyCompactList}\item 
+void \hyperlink{cpu_8h_abafe6cf31c497f0eec3550474cfb4aee}{cpu\+\_\+swap\+Buffers} (S\+D\+L\+\_\+\+Surface $\ast$const surface, \hyperlink{structGPU}{G\+PU} $\ast$const gpu)
+\begin{DoxyCompactList}\small\item\em This function swaps \hyperlink{structGPU}{G\+PU} framebuffer to S\+D\+Lsurface. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This file contains declarations of A\+PI for controling of software \hyperlink{structGPU}{G\+PU}. A\+PI contains\+: functions for \hyperlink{structGPU}{G\+PU} buffer management functions for Vertex Pullers management functions for Shader Programs management functions for drawing, clearing framebuffer and setting \hyperlink{structGPU}{G\+PU} state. 
+
+\begin{DoxyAuthor}{Author}
+Tomáš Milet, \href{mailto:imilet@fit.vutbr.cz}{\tt imilet@fit.\+vutbr.\+cz} 
+\end{DoxyAuthor}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{cpu_8h_a76c50b0e120265198fe036abdc42d271}\label{cpu_8h_a76c50b0e120265198fe036abdc42d271}} 
+\index{cpu.\+h@{cpu.\+h}!cpu\+\_\+attach\+Shaders@{cpu\+\_\+attach\+Shaders}}
+\index{cpu\+\_\+attach\+Shaders@{cpu\+\_\+attach\+Shaders}!cpu.\+h@{cpu.\+h}}
+\subsubsection{\texorpdfstring{cpu\+\_\+attach\+Shaders()}{cpu\_attachShaders()}}
+{\footnotesize\ttfamily void cpu\+\_\+attach\+Shaders (\begin{DoxyParamCaption}\item[{\hyperlink{structGPU}{G\+PU} $\ast$const}]{gpu,  }\item[{\hyperlink{student_2fwd_8h_a15e62786033208aec9487a51e808f81d}{Program\+ID}}]{program\+Id,  }\item[{\hyperlink{gpu_8h_add19b2ac87272745c0da3ef10d2f4160}{Vertex\+Shader}}]{vs,  }\item[{\hyperlink{gpu_8h_aa8727db7547712b2d7dbb9de657c6175}{Fragment\+Shader}}]{fs }\end{DoxyParamCaption})}
+
+
+
+This function attaches shaders to shader program. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em gpu} & gpu \\
+\hline
+{\em program\+Id} & selected program \\
+\hline
+{\em vs} & vertex shader function pointer \\
+\hline
+{\em fs} & fragment shader function pointer \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{cpu_8h_a18a87fa3883575459a9d12bd8c2c4fea}\label{cpu_8h_a18a87fa3883575459a9d12bd8c2c4fea}} 
+\index{cpu.\+h@{cpu.\+h}!cpu\+\_\+bind\+Vertex\+Puller@{cpu\+\_\+bind\+Vertex\+Puller}}
+\index{cpu\+\_\+bind\+Vertex\+Puller@{cpu\+\_\+bind\+Vertex\+Puller}!cpu.\+h@{cpu.\+h}}
+\subsubsection{\texorpdfstring{cpu\+\_\+bind\+Vertex\+Puller()}{cpu\_bindVertexPuller()}}
+{\footnotesize\ttfamily void cpu\+\_\+bind\+Vertex\+Puller (\begin{DoxyParamCaption}\item[{\hyperlink{structGPU}{G\+PU} $\ast$const}]{gpu,  }\item[{\hyperlink{student_2fwd_8h_a23828e2281a794e193ebaf0df3e1f17c}{Vertex\+Puller\+ID}}]{id }\end{DoxyParamCaption})}
+
+
+
+This functions activates vertex puller. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em gpu} & gpu \\
+\hline
+{\em id} & vertex puller id \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{cpu_8h_aee5c818b862ef2e411f121fbdfb1c634}\label{cpu_8h_aee5c818b862ef2e411f121fbdfb1c634}} 
+\index{cpu.\+h@{cpu.\+h}!cpu\+\_\+buffer\+Data@{cpu\+\_\+buffer\+Data}}
+\index{cpu\+\_\+buffer\+Data@{cpu\+\_\+buffer\+Data}!cpu.\+h@{cpu.\+h}}
+\subsubsection{\texorpdfstring{cpu\+\_\+buffer\+Data()}{cpu\_bufferData()}}
+{\footnotesize\ttfamily void cpu\+\_\+buffer\+Data (\begin{DoxyParamCaption}\item[{\hyperlink{structGPU}{G\+PU} $\ast$const}]{gpu,  }\item[{\hyperlink{student_2fwd_8h_a60a12bf4868ebe47cc571ce96a03f99c}{Buffer\+ID}}]{id,  }\item[{uint64\+\_\+t}]{size,  }\item[{void $\ast$}]{data }\end{DoxyParamCaption})}
+
+
+
+This function allocates data on gpu and upload data (if specified) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em gpu} & gpu \\
+\hline
+{\em id} & buffer id \\
+\hline
+{\em size} & size of buffer in bytes \\
+\hline
+{\em data} & N\+U\+LL (allocation only) or pointer to cpu data \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{cpu_8h_afbf6dfbd40b067a4b4fea7091fce26c0}\label{cpu_8h_afbf6dfbd40b067a4b4fea7091fce26c0}} 
+\index{cpu.\+h@{cpu.\+h}!cpu\+\_\+clear@{cpu\+\_\+clear}}
+\index{cpu\+\_\+clear@{cpu\+\_\+clear}!cpu.\+h@{cpu.\+h}}
+\subsubsection{\texorpdfstring{cpu\+\_\+clear()}{cpu\_clear()}}
+{\footnotesize\ttfamily void cpu\+\_\+clear (\begin{DoxyParamCaption}\item[{\hyperlink{structGPU}{G\+PU} $\ast$const}]{gpu }\end{DoxyParamCaption})}
+
+
+
+This function inserts clear command into gpu\textquotesingle{}s command queue. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em gpu} & gpu \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{cpu_8h_a87eaf38fef863175a1b77f2816c946b3}\label{cpu_8h_a87eaf38fef863175a1b77f2816c946b3}} 
+\index{cpu.\+h@{cpu.\+h}!cpu\+\_\+clear\+Color@{cpu\+\_\+clear\+Color}}
+\index{cpu\+\_\+clear\+Color@{cpu\+\_\+clear\+Color}!cpu.\+h@{cpu.\+h}}
+\subsubsection{\texorpdfstring{cpu\+\_\+clear\+Color()}{cpu\_clearColor()}}
+{\footnotesize\ttfamily void cpu\+\_\+clear\+Color (\begin{DoxyParamCaption}\item[{\hyperlink{structGPU}{G\+PU} $\ast$const}]{gpu,  }\item[{\hyperlink{structVec4}{Vec4}}]{color }\end{DoxyParamCaption})}
+
+
+
+This function sets clearing color of framebuffer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em gpu} & gpu \\
+\hline
+{\em color} & clear color \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{cpu_8h_aa55e778caf0e0bf4554258ded1230daa}\label{cpu_8h_aa55e778caf0e0bf4554258ded1230daa}} 
+\index{cpu.\+h@{cpu.\+h}!cpu\+\_\+clear\+Depth@{cpu\+\_\+clear\+Depth}}
+\index{cpu\+\_\+clear\+Depth@{cpu\+\_\+clear\+Depth}!cpu.\+h@{cpu.\+h}}
+\subsubsection{\texorpdfstring{cpu\+\_\+clear\+Depth()}{cpu\_clearDepth()}}
+{\footnotesize\ttfamily void cpu\+\_\+clear\+Depth (\begin{DoxyParamCaption}\item[{\hyperlink{structGPU}{G\+PU} $\ast$const}]{gpu,  }\item[{float}]{depth }\end{DoxyParamCaption})}
+
+
+
+This function sets clearing depth of framebuffer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em gpu} & gpu \\
+\hline
+{\em depth} & clear depth \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{cpu_8h_a94245836b857a36f392bf86087e8e776}\label{cpu_8h_a94245836b857a36f392bf86087e8e776}} 
+\index{cpu.\+h@{cpu.\+h}!cpu\+\_\+create\+Buffer@{cpu\+\_\+create\+Buffer}}
+\index{cpu\+\_\+create\+Buffer@{cpu\+\_\+create\+Buffer}!cpu.\+h@{cpu.\+h}}
+\subsubsection{\texorpdfstring{cpu\+\_\+create\+Buffer()}{cpu\_createBuffer()}}
+{\footnotesize\ttfamily \hyperlink{student_2fwd_8h_a60a12bf4868ebe47cc571ce96a03f99c}{Buffer\+ID} cpu\+\_\+create\+Buffer (\begin{DoxyParamCaption}\item[{\hyperlink{structGPU}{G\+PU} $\ast$const}]{gpu }\end{DoxyParamCaption})}
+
+
+
+This function reserves buffer id. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em gpu} & gpu\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+id of reserved buffer 
+\end{DoxyReturn}
+\mbox{\Hypertarget{cpu_8h_af3da8b71aea1c26e6a90af7da9d0e85c}\label{cpu_8h_af3da8b71aea1c26e6a90af7da9d0e85c}} 
+\index{cpu.\+h@{cpu.\+h}!cpu\+\_\+create\+Program@{cpu\+\_\+create\+Program}}
+\index{cpu\+\_\+create\+Program@{cpu\+\_\+create\+Program}!cpu.\+h@{cpu.\+h}}
+\subsubsection{\texorpdfstring{cpu\+\_\+create\+Program()}{cpu\_createProgram()}}
+{\footnotesize\ttfamily \hyperlink{student_2fwd_8h_a15e62786033208aec9487a51e808f81d}{Program\+ID} cpu\+\_\+create\+Program (\begin{DoxyParamCaption}\item[{\hyperlink{structGPU}{G\+PU} $\ast$const}]{gpu }\end{DoxyParamCaption})}
+
+
+
+This function reserves new shader program id. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em gpu} & gpu\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+new program id 
+\end{DoxyReturn}
+\mbox{\Hypertarget{cpu_8h_a3ec68476772605b8be33329f88ae4d97}\label{cpu_8h_a3ec68476772605b8be33329f88ae4d97}} 
+\index{cpu.\+h@{cpu.\+h}!cpu\+\_\+create\+Vertex\+Puller@{cpu\+\_\+create\+Vertex\+Puller}}
+\index{cpu\+\_\+create\+Vertex\+Puller@{cpu\+\_\+create\+Vertex\+Puller}!cpu.\+h@{cpu.\+h}}
+\subsubsection{\texorpdfstring{cpu\+\_\+create\+Vertex\+Puller()}{cpu\_createVertexPuller()}}
+{\footnotesize\ttfamily \hyperlink{student_2fwd_8h_a23828e2281a794e193ebaf0df3e1f17c}{Vertex\+Puller\+ID} cpu\+\_\+create\+Vertex\+Puller (\begin{DoxyParamCaption}\item[{\hyperlink{structGPU}{G\+PU} $\ast$const}]{gpu }\end{DoxyParamCaption})}
+
+
+
+This function reserves new vertex puller. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em gpu} & gpu\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+id of new vertex puller 
+\end{DoxyReturn}
+\mbox{\Hypertarget{cpu_8h_afbd73ba2ae2e15f3ed4c4563b0d33eac}\label{cpu_8h_afbd73ba2ae2e15f3ed4c4563b0d33eac}} 
+\index{cpu.\+h@{cpu.\+h}!cpu\+\_\+delete\+Buffer@{cpu\+\_\+delete\+Buffer}}
+\index{cpu\+\_\+delete\+Buffer@{cpu\+\_\+delete\+Buffer}!cpu.\+h@{cpu.\+h}}
+\subsubsection{\texorpdfstring{cpu\+\_\+delete\+Buffer()}{cpu\_deleteBuffer()}}
+{\footnotesize\ttfamily void cpu\+\_\+delete\+Buffer (\begin{DoxyParamCaption}\item[{\hyperlink{structGPU}{G\+PU} $\ast$const}]{gpu,  }\item[{\hyperlink{student_2fwd_8h_a60a12bf4868ebe47cc571ce96a03f99c}{Buffer\+ID}}]{id }\end{DoxyParamCaption})}
+
+
+
+This function deletes buffer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em gpu} & gpu \\
+\hline
+{\em id} & buffer id \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{cpu_8h_a734afc152da07de95f0059aa989af713}\label{cpu_8h_a734afc152da07de95f0059aa989af713}} 
+\index{cpu.\+h@{cpu.\+h}!cpu\+\_\+delete\+Program@{cpu\+\_\+delete\+Program}}
+\index{cpu\+\_\+delete\+Program@{cpu\+\_\+delete\+Program}!cpu.\+h@{cpu.\+h}}
+\subsubsection{\texorpdfstring{cpu\+\_\+delete\+Program()}{cpu\_deleteProgram()}}
+{\footnotesize\ttfamily void cpu\+\_\+delete\+Program (\begin{DoxyParamCaption}\item[{\hyperlink{structGPU}{G\+PU} $\ast$const}]{gpu,  }\item[{\hyperlink{student_2fwd_8h_a15e62786033208aec9487a51e808f81d}{Program\+ID}}]{program\+Id }\end{DoxyParamCaption})}
+
+
+
+This function deletes shader program. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em gpu} & gpu \\
+\hline
+{\em program\+Id} & shader program id \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{cpu_8h_a48128b06ac5672b842ab4733a93c8270}\label{cpu_8h_a48128b06ac5672b842ab4733a93c8270}} 
+\index{cpu.\+h@{cpu.\+h}!cpu\+\_\+delete\+Vertex\+Puller@{cpu\+\_\+delete\+Vertex\+Puller}}
+\index{cpu\+\_\+delete\+Vertex\+Puller@{cpu\+\_\+delete\+Vertex\+Puller}!cpu.\+h@{cpu.\+h}}
+\subsubsection{\texorpdfstring{cpu\+\_\+delete\+Vertex\+Puller()}{cpu\_deleteVertexPuller()}}
+{\footnotesize\ttfamily void cpu\+\_\+delete\+Vertex\+Puller (\begin{DoxyParamCaption}\item[{\hyperlink{structGPU}{G\+PU} $\ast$const}]{gpu,  }\item[{\hyperlink{student_2fwd_8h_a23828e2281a794e193ebaf0df3e1f17c}{Vertex\+Puller\+ID}}]{id }\end{DoxyParamCaption})}
+
+
+
+This function deletes vertex puller. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em gpu} & gpu \\
+\hline
+{\em id} & id of vertex puller \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{cpu_8h_a5396d4cef6e6cca84432f32545242aba}\label{cpu_8h_a5396d4cef6e6cca84432f32545242aba}} 
+\index{cpu.\+h@{cpu.\+h}!cpu\+\_\+disable\+Debug@{cpu\+\_\+disable\+Debug}}
+\index{cpu\+\_\+disable\+Debug@{cpu\+\_\+disable\+Debug}!cpu.\+h@{cpu.\+h}}
+\subsubsection{\texorpdfstring{cpu\+\_\+disable\+Debug()}{cpu\_disableDebug()}}
+{\footnotesize\ttfamily void cpu\+\_\+disable\+Debug (\begin{DoxyParamCaption}\item[{\hyperlink{structGPU}{G\+PU} $\ast$const}]{gpu }\end{DoxyParamCaption})}
+
+
+
+This function disables debug outputs. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em gpu} & gpu \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{cpu_8h_ab3da70ed8c49ac4c4d746e0bd0d0415b}\label{cpu_8h_ab3da70ed8c49ac4c4d746e0bd0d0415b}} 
+\index{cpu.\+h@{cpu.\+h}!cpu\+\_\+disable\+Vertex\+Puller\+Head@{cpu\+\_\+disable\+Vertex\+Puller\+Head}}
+\index{cpu\+\_\+disable\+Vertex\+Puller\+Head@{cpu\+\_\+disable\+Vertex\+Puller\+Head}!cpu.\+h@{cpu.\+h}}
+\subsubsection{\texorpdfstring{cpu\+\_\+disable\+Vertex\+Puller\+Head()}{cpu\_disableVertexPullerHead()}}
+{\footnotesize\ttfamily void cpu\+\_\+disable\+Vertex\+Puller\+Head (\begin{DoxyParamCaption}\item[{\hyperlink{structGPU}{G\+PU} $\ast$const}]{gpu,  }\item[{\hyperlink{student_2fwd_8h_a23828e2281a794e193ebaf0df3e1f17c}{Vertex\+Puller\+ID}}]{puller\+Id,  }\item[{uint32\+\_\+t}]{head }\end{DoxyParamCaption})}
+
+
+
+This function disables vertex puller head. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em gpu} & gpu \\
+\hline
+{\em puller\+Id} & id of vertex puller \\
+\hline
+{\em head} & id of reading head \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{cpu_8h_a58fde5b5ff71499123b6c8ad0a70e560}\label{cpu_8h_a58fde5b5ff71499123b6c8ad0a70e560}} 
+\index{cpu.\+h@{cpu.\+h}!cpu\+\_\+draw\+Points@{cpu\+\_\+draw\+Points}}
+\index{cpu\+\_\+draw\+Points@{cpu\+\_\+draw\+Points}!cpu.\+h@{cpu.\+h}}
+\subsubsection{\texorpdfstring{cpu\+\_\+draw\+Points()}{cpu\_drawPoints()}}
+{\footnotesize\ttfamily void cpu\+\_\+draw\+Points (\begin{DoxyParamCaption}\item[{\hyperlink{structGPU}{G\+PU} $\ast$const}]{gpu,  }\item[{uint32\+\_\+t}]{nof\+Vertices }\end{DoxyParamCaption})}
+
+
+
+This function inserts draw points command into gpu\textquotesingle{}s command queue. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em gpu} & gpu \\
+\hline
+{\em nof\+Vertices} & number of vertices \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{cpu_8h_a13c52301446924ffbc425a07f8a14ed2}\label{cpu_8h_a13c52301446924ffbc425a07f8a14ed2}} 
+\index{cpu.\+h@{cpu.\+h}!cpu\+\_\+draw\+Triangles@{cpu\+\_\+draw\+Triangles}}
+\index{cpu\+\_\+draw\+Triangles@{cpu\+\_\+draw\+Triangles}!cpu.\+h@{cpu.\+h}}
+\subsubsection{\texorpdfstring{cpu\+\_\+draw\+Triangles()}{cpu\_drawTriangles()}}
+{\footnotesize\ttfamily void cpu\+\_\+draw\+Triangles (\begin{DoxyParamCaption}\item[{\hyperlink{structGPU}{G\+PU} $\ast$const}]{gpu,  }\item[{uint32\+\_\+t}]{nof\+Vertices }\end{DoxyParamCaption})}
+
+
+
+This function inserts draw triangles command into gpu\textquotesingle{}s command queue. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em gpu} & gpu \\
+\hline
+{\em nof\+Vertices} & number of vertices \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{cpu_8h_ae2735d6b22346331d93d2fd3970a7a63}\label{cpu_8h_ae2735d6b22346331d93d2fd3970a7a63}} 
+\index{cpu.\+h@{cpu.\+h}!cpu\+\_\+enable\+Debug@{cpu\+\_\+enable\+Debug}}
+\index{cpu\+\_\+enable\+Debug@{cpu\+\_\+enable\+Debug}!cpu.\+h@{cpu.\+h}}
+\subsubsection{\texorpdfstring{cpu\+\_\+enable\+Debug()}{cpu\_enableDebug()}}
+{\footnotesize\ttfamily void cpu\+\_\+enable\+Debug (\begin{DoxyParamCaption}\item[{\hyperlink{structGPU}{G\+PU} $\ast$const}]{gpu }\end{DoxyParamCaption})}
+
+
+
+This function enables debug outputs. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em gpu} & gpu \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{cpu_8h_a5a6ce215f054d26134c7598714cfb453}\label{cpu_8h_a5a6ce215f054d26134c7598714cfb453}} 
+\index{cpu.\+h@{cpu.\+h}!cpu\+\_\+enable\+Vertex\+Puller\+Head@{cpu\+\_\+enable\+Vertex\+Puller\+Head}}
+\index{cpu\+\_\+enable\+Vertex\+Puller\+Head@{cpu\+\_\+enable\+Vertex\+Puller\+Head}!cpu.\+h@{cpu.\+h}}
+\subsubsection{\texorpdfstring{cpu\+\_\+enable\+Vertex\+Puller\+Head()}{cpu\_enableVertexPullerHead()}}
+{\footnotesize\ttfamily void cpu\+\_\+enable\+Vertex\+Puller\+Head (\begin{DoxyParamCaption}\item[{\hyperlink{structGPU}{G\+PU} $\ast$const}]{gpu,  }\item[{\hyperlink{student_2fwd_8h_a23828e2281a794e193ebaf0df3e1f17c}{Vertex\+Puller\+ID}}]{puller\+Id,  }\item[{uint32\+\_\+t}]{head }\end{DoxyParamCaption})}
+
+
+
+This function enables vertex puller head. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em gpu} & gpu \\
+\hline
+{\em puller\+Id} & id of vertex puller \\
+\hline
+{\em head} & id of reading head \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{cpu_8h_adf92934b1267c443695de9a19877f3e1}\label{cpu_8h_adf92934b1267c443695de9a19877f3e1}} 
+\index{cpu.\+h@{cpu.\+h}!cpu\+\_\+finish@{cpu\+\_\+finish}}
+\index{cpu\+\_\+finish@{cpu\+\_\+finish}!cpu.\+h@{cpu.\+h}}
+\subsubsection{\texorpdfstring{cpu\+\_\+finish()}{cpu\_finish()}}
+{\footnotesize\ttfamily void cpu\+\_\+finish (\begin{DoxyParamCaption}\item[{\hyperlink{structGPU}{G\+PU} $\ast$const}]{gpu }\end{DoxyParamCaption})}
+
+
+
+This function executes all commands in command queue of the gpu. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em gpu} & gpu \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{cpu_8h_a9e8ff78225dbbecbd5e9c87f07aa5e90}\label{cpu_8h_a9e8ff78225dbbecbd5e9c87f07aa5e90}} 
+\index{cpu.\+h@{cpu.\+h}!cpu\+\_\+free\+G\+PU@{cpu\+\_\+free\+G\+PU}}
+\index{cpu\+\_\+free\+G\+PU@{cpu\+\_\+free\+G\+PU}!cpu.\+h@{cpu.\+h}}
+\subsubsection{\texorpdfstring{cpu\+\_\+free\+G\+P\+U()}{cpu\_freeGPU()}}
+{\footnotesize\ttfamily void cpu\+\_\+free\+G\+PU (\begin{DoxyParamCaption}\item[{\hyperlink{structGPU}{G\+PU} $\ast$const}]{gpu }\end{DoxyParamCaption})}
+
+
+
+This function frees the gpu. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em gpu} & gpu \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{cpu_8h_afb6f1bb5286860ac584b34c310c8c704}\label{cpu_8h_afb6f1bb5286860ac584b34c310c8c704}} 
+\index{cpu.\+h@{cpu.\+h}!cpu\+\_\+init\+G\+PU@{cpu\+\_\+init\+G\+PU}}
+\index{cpu\+\_\+init\+G\+PU@{cpu\+\_\+init\+G\+PU}!cpu.\+h@{cpu.\+h}}
+\subsubsection{\texorpdfstring{cpu\+\_\+init\+G\+P\+U()}{cpu\_initGPU()}}
+{\footnotesize\ttfamily void cpu\+\_\+init\+G\+PU (\begin{DoxyParamCaption}\item[{\hyperlink{structGPU}{G\+PU} $\ast$const}]{gpu,  }\item[{uint32\+\_\+t}]{width,  }\item[{uint32\+\_\+t}]{height }\end{DoxyParamCaption})}
+
+
+
+This function inits the \hyperlink{structGPU}{G\+PU}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em gpu} & gpu \\
+\hline
+{\em width} & width of the window \\
+\hline
+{\em height} & height of the window \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{cpu_8h_adb793bcafb95b9de45765d64e17030d6}\label{cpu_8h_adb793bcafb95b9de45765d64e17030d6}} 
+\index{cpu.\+h@{cpu.\+h}!cpu\+\_\+is\+Buffer@{cpu\+\_\+is\+Buffer}}
+\index{cpu\+\_\+is\+Buffer@{cpu\+\_\+is\+Buffer}!cpu.\+h@{cpu.\+h}}
+\subsubsection{\texorpdfstring{cpu\+\_\+is\+Buffer()}{cpu\_isBuffer()}}
+{\footnotesize\ttfamily int cpu\+\_\+is\+Buffer (\begin{DoxyParamCaption}\item[{\hyperlink{structGPU}{G\+PU} const $\ast$const}]{gpu,  }\item[{\hyperlink{student_2fwd_8h_a60a12bf4868ebe47cc571ce96a03f99c}{Buffer\+ID}}]{id }\end{DoxyParamCaption})}
+
+
+
+This function check if id points to valid buffer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em gpu} & gpu \\
+\hline
+{\em id} & buffer id\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if id points to buffer, 0 otherwise 
+\end{DoxyReturn}
+\mbox{\Hypertarget{cpu_8h_aa46306844fdddafab3bfb788583354ef}\label{cpu_8h_aa46306844fdddafab3bfb788583354ef}} 
+\index{cpu.\+h@{cpu.\+h}!cpu\+\_\+is\+Program@{cpu\+\_\+is\+Program}}
+\index{cpu\+\_\+is\+Program@{cpu\+\_\+is\+Program}!cpu.\+h@{cpu.\+h}}
+\subsubsection{\texorpdfstring{cpu\+\_\+is\+Program()}{cpu\_isProgram()}}
+{\footnotesize\ttfamily int cpu\+\_\+is\+Program (\begin{DoxyParamCaption}\item[{\hyperlink{structGPU}{G\+PU} const $\ast$const}]{gpu,  }\item[{\hyperlink{student_2fwd_8h_a15e62786033208aec9487a51e808f81d}{Program\+ID}}]{id }\end{DoxyParamCaption})}
+
+
+
+This function check if id points to valid program. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em gpu} & gpu \\
+\hline
+{\em id} & vertex puller id\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if id points to valid program, 0 otherwise 
+\end{DoxyReturn}
+\mbox{\Hypertarget{cpu_8h_af86ae607a7a32847069be519358a41d1}\label{cpu_8h_af86ae607a7a32847069be519358a41d1}} 
+\index{cpu.\+h@{cpu.\+h}!cpu\+\_\+is\+Vertex\+Puller@{cpu\+\_\+is\+Vertex\+Puller}}
+\index{cpu\+\_\+is\+Vertex\+Puller@{cpu\+\_\+is\+Vertex\+Puller}!cpu.\+h@{cpu.\+h}}
+\subsubsection{\texorpdfstring{cpu\+\_\+is\+Vertex\+Puller()}{cpu\_isVertexPuller()}}
+{\footnotesize\ttfamily int cpu\+\_\+is\+Vertex\+Puller (\begin{DoxyParamCaption}\item[{\hyperlink{structGPU}{G\+PU} const $\ast$const}]{gpu,  }\item[{\hyperlink{student_2fwd_8h_a23828e2281a794e193ebaf0df3e1f17c}{Vertex\+Puller\+ID}}]{id }\end{DoxyParamCaption})}
+
+
+
+This function check if id points to valid vertex puller. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em gpu} & gpu \\
+\hline
+{\em id} & vertex puller id\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if id points to valid puller, 0 otherwise 
+\end{DoxyReturn}
+\mbox{\Hypertarget{cpu_8h_af17be71262ac6e7516869cf736765917}\label{cpu_8h_af17be71262ac6e7516869cf736765917}} 
+\index{cpu.\+h@{cpu.\+h}!cpu\+\_\+program\+Uniform1f@{cpu\+\_\+program\+Uniform1f}}
+\index{cpu\+\_\+program\+Uniform1f@{cpu\+\_\+program\+Uniform1f}!cpu.\+h@{cpu.\+h}}
+\subsubsection{\texorpdfstring{cpu\+\_\+program\+Uniform1f()}{cpu\_programUniform1f()}}
+{\footnotesize\ttfamily void cpu\+\_\+program\+Uniform1f (\begin{DoxyParamCaption}\item[{\hyperlink{structGPU}{G\+PU} $\ast$const}]{gpu,  }\item[{\hyperlink{student_2fwd_8h_a15e62786033208aec9487a51e808f81d}{Program\+ID}}]{program\+Id,  }\item[{uint32\+\_\+t}]{uniform\+Id,  }\item[{float const}]{d }\end{DoxyParamCaption})}
+
+
+
+This function sets uniform variable for selected program. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em gpu} & gpu \\
+\hline
+{\em program\+Id} & program id \\
+\hline
+{\em uniform\+Id} & uniform id \\
+\hline
+{\em d} & data \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{cpu_8h_a7eb40de0cfce0d3b53bbc3f12b3400d0}\label{cpu_8h_a7eb40de0cfce0d3b53bbc3f12b3400d0}} 
+\index{cpu.\+h@{cpu.\+h}!cpu\+\_\+program\+Uniform2f@{cpu\+\_\+program\+Uniform2f}}
+\index{cpu\+\_\+program\+Uniform2f@{cpu\+\_\+program\+Uniform2f}!cpu.\+h@{cpu.\+h}}
+\subsubsection{\texorpdfstring{cpu\+\_\+program\+Uniform2f()}{cpu\_programUniform2f()}}
+{\footnotesize\ttfamily void cpu\+\_\+program\+Uniform2f (\begin{DoxyParamCaption}\item[{\hyperlink{structGPU}{G\+PU} $\ast$const}]{gpu,  }\item[{\hyperlink{student_2fwd_8h_a15e62786033208aec9487a51e808f81d}{Program\+ID}}]{program\+Id,  }\item[{uint32\+\_\+t}]{uniform\+Id,  }\item[{\hyperlink{structVec2}{Vec2} const}]{d }\end{DoxyParamCaption})}
+
+
+
+This function sets uniform variable for selected program. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em gpu} & gpu \\
+\hline
+{\em program\+Id} & program id \\
+\hline
+{\em uniform\+Id} & uniform id \\
+\hline
+{\em d} & data \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{cpu_8h_ae4e52628af21c7d6f9a4fb5acbc7d345}\label{cpu_8h_ae4e52628af21c7d6f9a4fb5acbc7d345}} 
+\index{cpu.\+h@{cpu.\+h}!cpu\+\_\+program\+Uniform3f@{cpu\+\_\+program\+Uniform3f}}
+\index{cpu\+\_\+program\+Uniform3f@{cpu\+\_\+program\+Uniform3f}!cpu.\+h@{cpu.\+h}}
+\subsubsection{\texorpdfstring{cpu\+\_\+program\+Uniform3f()}{cpu\_programUniform3f()}}
+{\footnotesize\ttfamily void cpu\+\_\+program\+Uniform3f (\begin{DoxyParamCaption}\item[{\hyperlink{structGPU}{G\+PU} $\ast$const}]{gpu,  }\item[{\hyperlink{student_2fwd_8h_a15e62786033208aec9487a51e808f81d}{Program\+ID}}]{program\+Id,  }\item[{uint32\+\_\+t}]{uniform\+Id,  }\item[{\hyperlink{structVec3}{Vec3} const}]{d }\end{DoxyParamCaption})}
+
+
+
+This function sets uniform variable for selected program. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em gpu} & gpu \\
+\hline
+{\em program\+Id} & program id \\
+\hline
+{\em uniform\+Id} & uniform id \\
+\hline
+{\em d} & data \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{cpu_8h_aaa07bfa15a5042885acebafbb37d1794}\label{cpu_8h_aaa07bfa15a5042885acebafbb37d1794}} 
+\index{cpu.\+h@{cpu.\+h}!cpu\+\_\+program\+Uniform4f@{cpu\+\_\+program\+Uniform4f}}
+\index{cpu\+\_\+program\+Uniform4f@{cpu\+\_\+program\+Uniform4f}!cpu.\+h@{cpu.\+h}}
+\subsubsection{\texorpdfstring{cpu\+\_\+program\+Uniform4f()}{cpu\_programUniform4f()}}
+{\footnotesize\ttfamily void cpu\+\_\+program\+Uniform4f (\begin{DoxyParamCaption}\item[{\hyperlink{structGPU}{G\+PU} $\ast$const}]{gpu,  }\item[{\hyperlink{student_2fwd_8h_a15e62786033208aec9487a51e808f81d}{Program\+ID}}]{program\+Id,  }\item[{uint32\+\_\+t}]{uniform\+Id,  }\item[{\hyperlink{structVec4}{Vec4} const}]{d }\end{DoxyParamCaption})}
+
+
+
+This function sets uniform variable for selected program. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em gpu} & gpu \\
+\hline
+{\em program\+Id} & program id \\
+\hline
+{\em uniform\+Id} & uniform id \\
+\hline
+{\em d} & data \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{cpu_8h_ae0c2608a426f5a4671505f174258d19b}\label{cpu_8h_ae0c2608a426f5a4671505f174258d19b}} 
+\index{cpu.\+h@{cpu.\+h}!cpu\+\_\+program\+Uniform\+Matrix4f@{cpu\+\_\+program\+Uniform\+Matrix4f}}
+\index{cpu\+\_\+program\+Uniform\+Matrix4f@{cpu\+\_\+program\+Uniform\+Matrix4f}!cpu.\+h@{cpu.\+h}}
+\subsubsection{\texorpdfstring{cpu\+\_\+program\+Uniform\+Matrix4f()}{cpu\_programUniformMatrix4f()}}
+{\footnotesize\ttfamily void cpu\+\_\+program\+Uniform\+Matrix4f (\begin{DoxyParamCaption}\item[{\hyperlink{structGPU}{G\+PU} $\ast$const}]{gpu,  }\item[{\hyperlink{student_2fwd_8h_a15e62786033208aec9487a51e808f81d}{Program\+ID}}]{program\+Id,  }\item[{uint32\+\_\+t}]{uniform\+Id,  }\item[{\hyperlink{structMat4}{Mat4} const}]{d }\end{DoxyParamCaption})}
+
+
+
+This function sets uniform variable for selected program. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em gpu} & gpu \\
+\hline
+{\em program\+Id} & program id \\
+\hline
+{\em uniform\+Id} & uniform id \\
+\hline
+{\em d} & data \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{cpu_8h_a4cb243dfeb6443e0f9a6110ce1dd27eb}\label{cpu_8h_a4cb243dfeb6443e0f9a6110ce1dd27eb}} 
+\index{cpu.\+h@{cpu.\+h}!cpu\+\_\+set\+Vertex\+Puller@{cpu\+\_\+set\+Vertex\+Puller}}
+\index{cpu\+\_\+set\+Vertex\+Puller@{cpu\+\_\+set\+Vertex\+Puller}!cpu.\+h@{cpu.\+h}}
+\subsubsection{\texorpdfstring{cpu\+\_\+set\+Vertex\+Puller()}{cpu\_setVertexPuller()}}
+{\footnotesize\ttfamily void cpu\+\_\+set\+Vertex\+Puller (\begin{DoxyParamCaption}\item[{\hyperlink{structGPU}{G\+PU} $\ast$const}]{gpu,  }\item[{\hyperlink{student_2fwd_8h_a23828e2281a794e193ebaf0df3e1f17c}{Vertex\+Puller\+ID}}]{puller\+Id,  }\item[{uint32\+\_\+t}]{head,  }\item[{\hyperlink{gpu_8h_a349a9cde14be8097df865ba0469c0ab2}{Attribute\+Type}}]{type,  }\item[{uint64\+\_\+t}]{stride,  }\item[{uint64\+\_\+t}]{offset,  }\item[{\hyperlink{student_2fwd_8h_a60a12bf4868ebe47cc571ce96a03f99c}{Buffer\+ID}}]{buffer\+Id }\end{DoxyParamCaption})}
+
+
+
+This function sets vertex puller head. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em gpu} & gpu \\
+\hline
+{\em puller\+Id} & puller id \\
+\hline
+{\em head} & id reading head \\
+\hline
+{\em type} & type of vertex attribute \\
+\hline
+{\em stride} & reading stride \\
+\hline
+{\em offset} & reading offset \\
+\hline
+{\em buffer\+Id} & buffer id \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{cpu_8h_a4159dbbc604685e544bc296708ced5f9}\label{cpu_8h_a4159dbbc604685e544bc296708ced5f9}} 
+\index{cpu.\+h@{cpu.\+h}!cpu\+\_\+set\+Vertex\+Puller\+Indexing@{cpu\+\_\+set\+Vertex\+Puller\+Indexing}}
+\index{cpu\+\_\+set\+Vertex\+Puller\+Indexing@{cpu\+\_\+set\+Vertex\+Puller\+Indexing}!cpu.\+h@{cpu.\+h}}
+\subsubsection{\texorpdfstring{cpu\+\_\+set\+Vertex\+Puller\+Indexing()}{cpu\_setVertexPullerIndexing()}}
+{\footnotesize\ttfamily void cpu\+\_\+set\+Vertex\+Puller\+Indexing (\begin{DoxyParamCaption}\item[{\hyperlink{structGPU}{G\+PU} $\ast$const}]{gpu,  }\item[{\hyperlink{student_2fwd_8h_a23828e2281a794e193ebaf0df3e1f17c}{Vertex\+Puller\+ID}}]{puller\+Id,  }\item[{\hyperlink{gpu_8h_a2bfb0a0ff1c379a8b4e8f9d24fdd4839}{Index\+Type}}]{type,  }\item[{\hyperlink{student_2fwd_8h_a60a12bf4868ebe47cc571ce96a03f99c}{Buffer\+ID}}]{buffer }\end{DoxyParamCaption})}
+
+
+
+This function sets vertex puller indexing. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em gpu} & gpu \\
+\hline
+{\em puller\+Id} & puller id \\
+\hline
+{\em type} & type of indices \\
+\hline
+{\em buffer} & buffer that contains indices \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{cpu_8h_ae9a0898c1ebe8d914d0858f56028c591}\label{cpu_8h_ae9a0898c1ebe8d914d0858f56028c591}} 
+\index{cpu.\+h@{cpu.\+h}!cpu\+\_\+set\+V\+S2\+F\+S\+Type@{cpu\+\_\+set\+V\+S2\+F\+S\+Type}}
+\index{cpu\+\_\+set\+V\+S2\+F\+S\+Type@{cpu\+\_\+set\+V\+S2\+F\+S\+Type}!cpu.\+h@{cpu.\+h}}
+\subsubsection{\texorpdfstring{cpu\+\_\+set\+V\+S2\+F\+S\+Type()}{cpu\_setVS2FSType()}}
+{\footnotesize\ttfamily void cpu\+\_\+set\+V\+S2\+F\+S\+Type (\begin{DoxyParamCaption}\item[{\hyperlink{structGPU}{G\+PU} $\ast$const}]{gpu,  }\item[{\hyperlink{student_2fwd_8h_a15e62786033208aec9487a51e808f81d}{Program\+ID}}]{program\+Id,  }\item[{uint32\+\_\+t}]{attrib,  }\item[{\hyperlink{gpu_8h_a349a9cde14be8097df865ba0469c0ab2}{Attribute\+Type}}]{type }\end{DoxyParamCaption})}
+
+
+
+This function sets type of attributes that are interpolated by rasterizer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em gpu} & gpu \\
+\hline
+{\em program\+Id} & program id \\
+\hline
+{\em attrib} & attribute index \\
+\hline
+{\em type} & type of the attribute \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{cpu_8h_abafe6cf31c497f0eec3550474cfb4aee}\label{cpu_8h_abafe6cf31c497f0eec3550474cfb4aee}} 
+\index{cpu.\+h@{cpu.\+h}!cpu\+\_\+swap\+Buffers@{cpu\+\_\+swap\+Buffers}}
+\index{cpu\+\_\+swap\+Buffers@{cpu\+\_\+swap\+Buffers}!cpu.\+h@{cpu.\+h}}
+\subsubsection{\texorpdfstring{cpu\+\_\+swap\+Buffers()}{cpu\_swapBuffers()}}
+{\footnotesize\ttfamily void cpu\+\_\+swap\+Buffers (\begin{DoxyParamCaption}\item[{S\+D\+L\+\_\+\+Surface $\ast$const}]{surface,  }\item[{\hyperlink{structGPU}{G\+PU} $\ast$const}]{gpu }\end{DoxyParamCaption})}
+
+
+
+This function swaps \hyperlink{structGPU}{G\+PU} framebuffer to S\+D\+Lsurface. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em surface} & S\+DL surface \\
+\hline
+{\em gpu} & gpu \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{cpu_8h_a749385b47b393259d3ee7cc7f44121dc}\label{cpu_8h_a749385b47b393259d3ee7cc7f44121dc}} 
+\index{cpu.\+h@{cpu.\+h}!cpu\+\_\+unbind\+Vertex\+Puller@{cpu\+\_\+unbind\+Vertex\+Puller}}
+\index{cpu\+\_\+unbind\+Vertex\+Puller@{cpu\+\_\+unbind\+Vertex\+Puller}!cpu.\+h@{cpu.\+h}}
+\subsubsection{\texorpdfstring{cpu\+\_\+unbind\+Vertex\+Puller()}{cpu\_unbindVertexPuller()}}
+{\footnotesize\ttfamily void cpu\+\_\+unbind\+Vertex\+Puller (\begin{DoxyParamCaption}\item[{\hyperlink{structGPU}{G\+PU} $\ast$const}]{gpu }\end{DoxyParamCaption})}
+
+
+
+This function deactivates vertex puller. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em gpu} & gpu \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{cpu_8h_abed0fbac42c4335409b29a19f13809f4}\label{cpu_8h_abed0fbac42c4335409b29a19f13809f4}} 
+\index{cpu.\+h@{cpu.\+h}!cpu\+\_\+use\+Program@{cpu\+\_\+use\+Program}}
+\index{cpu\+\_\+use\+Program@{cpu\+\_\+use\+Program}!cpu.\+h@{cpu.\+h}}
+\subsubsection{\texorpdfstring{cpu\+\_\+use\+Program()}{cpu\_useProgram()}}
+{\footnotesize\ttfamily void cpu\+\_\+use\+Program (\begin{DoxyParamCaption}\item[{\hyperlink{structGPU}{G\+PU} $\ast$const}]{gpu,  }\item[{\hyperlink{student_2fwd_8h_a15e62786033208aec9487a51e808f81d}{Program\+ID}}]{program\+Id }\end{DoxyParamCaption})}
+
+
+
+This function activates selected program. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em gpu} & gpu \\
+\hline
+{\em program\+Id} & program id \\
+\hline
+\end{DoxyParams}

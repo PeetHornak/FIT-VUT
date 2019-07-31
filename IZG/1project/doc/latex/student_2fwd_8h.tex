@@ -1,0 +1,81 @@
+\hypertarget{student_2fwd_8h}{}\section{student/fwd.h File Reference}
+\label{student_2fwd_8h}\index{student/fwd.\+h@{student/fwd.\+h}}
+
+
+This file contains forward declarations and constants.  
+
+
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{student_2fwd_8h_a452bbd0834582cb4d42db8fbfd9c23ba}\label{student_2fwd_8h_a452bbd0834582cb4d42db8fbfd9c23ba}} 
+\#define \hyperlink{student_2fwd_8h_a452bbd0834582cb4d42db8fbfd9c23ba}{M\+A\+X\+\_\+\+N\+U\+M\+B\+E\+R\+\_\+\+O\+F\+\_\+\+A\+T\+T\+R\+I\+B\+U\+T\+E\+\_\+\+C\+O\+M\+P\+O\+N\+E\+N\+TS}~4
+\begin{DoxyCompactList}\small\item\em maximal number of vertex attribute components \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{student_2fwd_8h_a4d992a1f9192388588184753115f6c03}\label{student_2fwd_8h_a4d992a1f9192388588184753115f6c03}} 
+\#define \hyperlink{student_2fwd_8h_a4d992a1f9192388588184753115f6c03}{M\+A\+X\+\_\+\+A\+T\+T\+R\+I\+B\+U\+T\+ES}~8
+\begin{DoxyCompactList}\small\item\em maximal number of attributes \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{student_2fwd_8h_ae0962add35b8ccd089f9cc2cbc690d2f}\label{student_2fwd_8h_ae0962add35b8ccd089f9cc2cbc690d2f}} 
+\#define \hyperlink{student_2fwd_8h_ae0962add35b8ccd089f9cc2cbc690d2f}{C\+H\+A\+N\+N\+E\+L\+S\+\_\+\+P\+E\+R\+\_\+\+C\+O\+L\+OR}~4
+\begin{DoxyCompactList}\small\item\em number of channels per color \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{student_2fwd_8h_acdf314019539248efc2b4f247a1b97ac}\label{student_2fwd_8h_acdf314019539248efc2b4f247a1b97ac}} 
+\#define \hyperlink{student_2fwd_8h_acdf314019539248efc2b4f247a1b97ac}{M\+Y\+\_\+\+PI}~3.\+14159265359f
+\begin{DoxyCompactList}\small\item\em pi constant \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{student_2fwd_8h_af5ef9466b1253e714b5ded8b25d06246}\label{student_2fwd_8h_af5ef9466b1253e714b5ded8b25d06246}} 
+typedef struct \hyperlink{structVec2}{Vec2} \hyperlink{student_2fwd_8h_af5ef9466b1253e714b5ded8b25d06246}{Vec2}
+\begin{DoxyCompactList}\small\item\em shortcut \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{student_2fwd_8h_a20b81c7ccf425704f7fbf034c6e0afe1}\label{student_2fwd_8h_a20b81c7ccf425704f7fbf034c6e0afe1}} 
+typedef struct \hyperlink{structVec3}{Vec3} \hyperlink{student_2fwd_8h_a20b81c7ccf425704f7fbf034c6e0afe1}{Vec3}
+\begin{DoxyCompactList}\small\item\em shortcut \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{student_2fwd_8h_abd438584811431d451e07e5600aab8e7}\label{student_2fwd_8h_abd438584811431d451e07e5600aab8e7}} 
+typedef struct \hyperlink{structVec4}{Vec4} \hyperlink{student_2fwd_8h_abd438584811431d451e07e5600aab8e7}{Vec4}
+\begin{DoxyCompactList}\small\item\em shortcut \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{student_2fwd_8h_af7bd03ace5e25914db6b30a3a5d6e283}\label{student_2fwd_8h_af7bd03ace5e25914db6b30a3a5d6e283}} 
+typedef struct \hyperlink{structMat4}{Mat4} \hyperlink{student_2fwd_8h_af7bd03ace5e25914db6b30a3a5d6e283}{Mat4}
+\begin{DoxyCompactList}\small\item\em shortcut \end{DoxyCompactList}\item 
+typedef uint32\+\_\+t \hyperlink{student_2fwd_8h_a243dbbe9e1a480d787216606a1c643e1}{Object\+ID}
+\begin{DoxyCompactList}\small\item\em A instance of this type stores handle to \hyperlink{structGPU}{G\+PU} object. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{student_2fwd_8h_a60a12bf4868ebe47cc571ce96a03f99c}\label{student_2fwd_8h_a60a12bf4868ebe47cc571ce96a03f99c}} 
+typedef \hyperlink{student_2fwd_8h_a243dbbe9e1a480d787216606a1c643e1}{Object\+ID} \hyperlink{student_2fwd_8h_a60a12bf4868ebe47cc571ce96a03f99c}{Buffer\+ID}
+\begin{DoxyCompactList}\small\item\em Type for storing buffer handle. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{student_2fwd_8h_a23828e2281a794e193ebaf0df3e1f17c}\label{student_2fwd_8h_a23828e2281a794e193ebaf0df3e1f17c}} 
+typedef \hyperlink{student_2fwd_8h_a243dbbe9e1a480d787216606a1c643e1}{Object\+ID} \hyperlink{student_2fwd_8h_a23828e2281a794e193ebaf0df3e1f17c}{Vertex\+Puller\+ID}
+\begin{DoxyCompactList}\small\item\em This type represents vertex puller handle -\/ index to vertex puller configuration. \end{DoxyCompactList}\item 
+typedef \hyperlink{student_2fwd_8h_a243dbbe9e1a480d787216606a1c643e1}{Object\+ID} \hyperlink{student_2fwd_8h_a15e62786033208aec9487a51e808f81d}{Program\+ID}
+\begin{DoxyCompactList}\small\item\em This type represents shader program id. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This file contains forward declarations and constants. 
+
+\begin{DoxyAuthor}{Author}
+Tomáš Milet, \href{mailto:imilet@fit.vutbr.cz}{\tt imilet@fit.\+vutbr.\+cz} 
+\end{DoxyAuthor}
+
+
+\subsection{Typedef Documentation}
+\mbox{\Hypertarget{student_2fwd_8h_a243dbbe9e1a480d787216606a1c643e1}\label{student_2fwd_8h_a243dbbe9e1a480d787216606a1c643e1}} 
+\index{student/fwd.\+h@{student/fwd.\+h}!Object\+ID@{Object\+ID}}
+\index{Object\+ID@{Object\+ID}!student/fwd.\+h@{student/fwd.\+h}}
+\subsubsection{\texorpdfstring{Object\+ID}{ObjectID}}
+{\footnotesize\ttfamily typedef uint32\+\_\+t \hyperlink{student_2fwd_8h_a243dbbe9e1a480d787216606a1c643e1}{Object\+ID}}
+
+
+
+A instance of this type stores handle to \hyperlink{structGPU}{G\+PU} object. 
+
+Every object on \hyperlink{structGPU}{G\+PU} is represented by unsigned integer value -\/ id/name. C\+PU side can manipulate \hyperlink{structGPU}{G\+PU} object by these ids. \mbox{\Hypertarget{student_2fwd_8h_a15e62786033208aec9487a51e808f81d}\label{student_2fwd_8h_a15e62786033208aec9487a51e808f81d}} 
+\index{student/fwd.\+h@{student/fwd.\+h}!Program\+ID@{Program\+ID}}
+\index{Program\+ID@{Program\+ID}!student/fwd.\+h@{student/fwd.\+h}}
+\subsubsection{\texorpdfstring{Program\+ID}{ProgramID}}
+{\footnotesize\ttfamily typedef \hyperlink{student_2fwd_8h_a243dbbe9e1a480d787216606a1c643e1}{Object\+ID} \hyperlink{student_2fwd_8h_a15e62786033208aec9487a51e808f81d}{Program\+ID}}
+
+
+
+This type represents shader program id. 
+
+A program is collection of shaders (vertex shader, fragment shader, ...). This id points to one program on \hyperlink{structGPU}{G\+PU} 

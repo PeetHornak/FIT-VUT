@@ -1,0 +1,7 @@
+     .ippcode19#komentar
+     move GF@a   string@nani     #taky komentar
+
+                        
+                    defvar  GF@a 
+move    GF@a         string@<>&
+        defvar  GF@a      

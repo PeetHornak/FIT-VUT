@@ -1,0 +1,46 @@
+.IPPcode19
+DEFVAR GF@operace
+DEFVAR GF@op1
+DEFVAR GF@op2
+DEFVAR GF@type
+LABEL start
+WRITE string@Zadejte\032vaši\032operaci\032(+,-,*,/)\032nebo\032e\032pro\032ukončení:
+READ GF@operace string
+JUMPIFEQ konec GF@operace string@e
+#switch
+WRITE string@Zadejte\032číslo\0321:\010
+READ GF@op1 int
+WRITE string@Zadejte\032číslo\0322:\010
+READ GF@op2 int
+JUMPIFEQ plus GF@operace string@+
+JUMPIFEQ minus GF@operace string@-
+JUMPIFEQ krat GF@operace string@*
+JUMPIFEQ deleno GF@operace string@/
+JUMP error
+LABEL plus
+ADD GF@op1 GF@op1 GF@op2
+WRITE string@Váš\032výsledek:\032
+WRITE GF@op1
+WRITE string@\010
+JUMP start
+LABEL minus
+SUB GF@op1 GF@op1 GF@op2
+WRITE string@Váš\032výsledek:\032
+WRITE GF@op1
+WRITE string@\010
+JUMP start
+LABEL krat
+MUL GF@op1 GF@op1 GF@op2
+WRITE string@Váš\032výsledek:\032
+WRITE GF@op1
+WRITE string@\010
+JUMP start
+LABEL deleno
+IDIV GF@op1 GF@op1 GF@op2
+WRITE string@Váš\032výsledek:\032
+WRITE GF@op1
+WRITE string@\010
+JUMP start
+LABEL error
+WRITE string@Spatny\032vstupni\032typ!\010
+LABEL konec

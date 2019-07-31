@@ -1,0 +1,312 @@
+\hypertarget{vector_8c}{}\section{vector/src/vector/vector.c File Reference}
+\label{vector_8c}\index{vector/src/vector/vector.\+c@{vector/src/vector/vector.\+c}}
+
+
+This file contains implementation of uint32\+\_\+t vector.  
+
+
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$assert.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$vector/vector.\+h$>$}\newline
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{vector_8c_a8e683647db00fc9564cc4261646e5207}{vector\+\_\+init} (\hyperlink{structVector}{Vector} $\ast$const vector, uint32\+\_\+t element\+Size)
+\begin{DoxyCompactList}\small\item\em This function inits vector. \end{DoxyCompactList}\item 
+void \hyperlink{vector_8c_ad31be60feb66c80f626c74edcbbf9a79}{vector\+\_\+free} (\hyperlink{structVector}{Vector} $\ast$const vector)
+\begin{DoxyCompactList}\small\item\em This function frees vector. \end{DoxyCompactList}\item 
+int \hyperlink{vector_8c_a6b5250532a648660be6e12ac0bd3fc55}{vector\+\_\+empty} (\hyperlink{structVector}{Vector} const $\ast$const vector)
+\begin{DoxyCompactList}\small\item\em This function returns 1 if the vector is empty. \end{DoxyCompactList}\item 
+uint32\+\_\+t \hyperlink{vector_8c_ab1edc1e76aa589fc4d30426b79b1fd1b}{vector\+\_\+size} (\hyperlink{structVector}{Vector} const $\ast$const vector)
+\begin{DoxyCompactList}\small\item\em This function returns vector size. \end{DoxyCompactList}\item 
+uint32\+\_\+t \hyperlink{vector_8c_ae0b0df253814b919ee819a9eede31d3e}{vector\+\_\+element\+Size} (\hyperlink{structVector}{Vector} const $\ast$const vector)
+\begin{DoxyCompactList}\small\item\em This function returns the element size in bytes. \end{DoxyCompactList}\item 
+Error\+Code \hyperlink{vector_8c_a423c93577413c3fc8b47b117bd651916}{vector\+\_\+first\+Alloc} (\hyperlink{structVector}{Vector} $\ast$const vector)
+\begin{DoxyCompactList}\small\item\em This function performs the first allocation of a vector. \end{DoxyCompactList}\item 
+Error\+Code \hyperlink{vector_8c_a0a4fa9dd217ec1de815de2f789da9a2d}{vector\+\_\+realloc} (\hyperlink{structVector}{Vector} $\ast$const vector)
+\begin{DoxyCompactList}\small\item\em This functions performs the reallocation of a vector. \end{DoxyCompactList}\item 
+Error\+Code \hyperlink{vector_8c_ad96d434d0467299d2476cf3662762f3b}{vector\+\_\+resize} (\hyperlink{structVector}{Vector} $\ast$const vector)
+\begin{DoxyCompactList}\small\item\em This function resizes a vector. \end{DoxyCompactList}\item 
+Error\+Code \hyperlink{vector_8c_a2932d39cebcd45864948cb968d97c600}{vector\+\_\+pushback} (\hyperlink{structVector}{Vector} $\ast$const vector, void const $\ast$const value)
+\begin{DoxyCompactList}\small\item\em This function pushes a new value to the end of the vector. \end{DoxyCompactList}\item 
+Error\+Code \hyperlink{vector_8c_a17ce9a8614805bdee93540bd60db2d49}{vector\+\_\+get} (\hyperlink{structVector}{Vector} $\ast$const vector, uint32\+\_\+t i, void $\ast$const value)
+\begin{DoxyCompactList}\small\item\em This function gets element. \end{DoxyCompactList}\item 
+Error\+Code \hyperlink{vector_8c_ace58d491db69b9909c8c2296fb950f6c}{vector\+\_\+set} (\hyperlink{structVector}{Vector} $\ast$const vector, uint32\+\_\+t i, void const $\ast$const value)
+\begin{DoxyCompactList}\small\item\em This function sets data to an element. \end{DoxyCompactList}\item 
+void $\ast$ \hyperlink{vector_8c_a2458f0c13be663e56529420914c30f6f}{vector\+\_\+at} (\hyperlink{structVector}{Vector} $\ast$const vector, uint32\+\_\+t i)
+\begin{DoxyCompactList}\small\item\em This function returns pointer to an element. \end{DoxyCompactList}\item 
+void const  $\ast$ \hyperlink{vector_8c_aa94740916f54dbc5fd047a8d907ce1eb}{vector\+\_\+at\+Const} (\hyperlink{structVector}{Vector} const $\ast$const vector, uint32\+\_\+t i)
+\begin{DoxyCompactList}\small\item\em This function returns constant pointer to an element. \end{DoxyCompactList}\item 
+void $\ast$ \hyperlink{vector_8c_a6fee91ae3a7208a4474f5c4e13b6ee67}{vector\+\_\+data} (\hyperlink{structVector}{Vector} $\ast$const vector)
+\begin{DoxyCompactList}\small\item\em This function returns pointer to data. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This file contains implementation of uint32\+\_\+t vector. 
+
+\begin{DoxyAuthor}{Author}
+Tomáš Milet, \href{mailto:imilet@fit.vutbr.cz}{\tt imilet@fit.\+vutbr.\+cz} 
+\end{DoxyAuthor}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{vector_8c_a2458f0c13be663e56529420914c30f6f}\label{vector_8c_a2458f0c13be663e56529420914c30f6f}} 
+\index{vector.\+c@{vector.\+c}!vector\+\_\+at@{vector\+\_\+at}}
+\index{vector\+\_\+at@{vector\+\_\+at}!vector.\+c@{vector.\+c}}
+\subsubsection{\texorpdfstring{vector\+\_\+at()}{vector\_at()}}
+{\footnotesize\ttfamily void$\ast$ vector\+\_\+at (\begin{DoxyParamCaption}\item[{\hyperlink{structVector}{Vector} $\ast$const}]{vector,  }\item[{uint32\+\_\+t}]{i }\end{DoxyParamCaption})}
+
+
+
+This function returns pointer to an element. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vector} & vector \\
+\hline
+{\em i} & index of the element\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+pointer to the element or N\+U\+LL 
+\end{DoxyReturn}
+\mbox{\Hypertarget{vector_8c_aa94740916f54dbc5fd047a8d907ce1eb}\label{vector_8c_aa94740916f54dbc5fd047a8d907ce1eb}} 
+\index{vector.\+c@{vector.\+c}!vector\+\_\+at\+Const@{vector\+\_\+at\+Const}}
+\index{vector\+\_\+at\+Const@{vector\+\_\+at\+Const}!vector.\+c@{vector.\+c}}
+\subsubsection{\texorpdfstring{vector\+\_\+at\+Const()}{vector\_atConst()}}
+{\footnotesize\ttfamily void const$\ast$ vector\+\_\+at\+Const (\begin{DoxyParamCaption}\item[{\hyperlink{structVector}{Vector} const $\ast$const}]{vector,  }\item[{uint32\+\_\+t}]{i }\end{DoxyParamCaption})}
+
+
+
+This function returns constant pointer to an element. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vector} & vector \\
+\hline
+{\em i} & index of element\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+const pointer 
+\end{DoxyReturn}
+\mbox{\Hypertarget{vector_8c_a6fee91ae3a7208a4474f5c4e13b6ee67}\label{vector_8c_a6fee91ae3a7208a4474f5c4e13b6ee67}} 
+\index{vector.\+c@{vector.\+c}!vector\+\_\+data@{vector\+\_\+data}}
+\index{vector\+\_\+data@{vector\+\_\+data}!vector.\+c@{vector.\+c}}
+\subsubsection{\texorpdfstring{vector\+\_\+data()}{vector\_data()}}
+{\footnotesize\ttfamily void$\ast$ vector\+\_\+data (\begin{DoxyParamCaption}\item[{\hyperlink{structVector}{Vector} $\ast$const}]{vector }\end{DoxyParamCaption})}
+
+
+
+This function returns pointer to data. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vector} & vector\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+data pointer 
+\end{DoxyReturn}
+\mbox{\Hypertarget{vector_8c_ae0b0df253814b919ee819a9eede31d3e}\label{vector_8c_ae0b0df253814b919ee819a9eede31d3e}} 
+\index{vector.\+c@{vector.\+c}!vector\+\_\+element\+Size@{vector\+\_\+element\+Size}}
+\index{vector\+\_\+element\+Size@{vector\+\_\+element\+Size}!vector.\+c@{vector.\+c}}
+\subsubsection{\texorpdfstring{vector\+\_\+element\+Size()}{vector\_elementSize()}}
+{\footnotesize\ttfamily uint32\+\_\+t vector\+\_\+element\+Size (\begin{DoxyParamCaption}\item[{\hyperlink{structVector}{Vector} const $\ast$const}]{vector }\end{DoxyParamCaption})}
+
+
+
+This function returns the element size in bytes. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vector} & vector\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+element size in bytes 
+\end{DoxyReturn}
+\mbox{\Hypertarget{vector_8c_a6b5250532a648660be6e12ac0bd3fc55}\label{vector_8c_a6b5250532a648660be6e12ac0bd3fc55}} 
+\index{vector.\+c@{vector.\+c}!vector\+\_\+empty@{vector\+\_\+empty}}
+\index{vector\+\_\+empty@{vector\+\_\+empty}!vector.\+c@{vector.\+c}}
+\subsubsection{\texorpdfstring{vector\+\_\+empty()}{vector\_empty()}}
+{\footnotesize\ttfamily int vector\+\_\+empty (\begin{DoxyParamCaption}\item[{\hyperlink{structVector}{Vector} const $\ast$const}]{vector }\end{DoxyParamCaption})}
+
+
+
+This function returns 1 if the vector is empty. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vector} & vector\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if vector is empty, 0 otherwise 
+\end{DoxyReturn}
+\mbox{\Hypertarget{vector_8c_a423c93577413c3fc8b47b117bd651916}\label{vector_8c_a423c93577413c3fc8b47b117bd651916}} 
+\index{vector.\+c@{vector.\+c}!vector\+\_\+first\+Alloc@{vector\+\_\+first\+Alloc}}
+\index{vector\+\_\+first\+Alloc@{vector\+\_\+first\+Alloc}!vector.\+c@{vector.\+c}}
+\subsubsection{\texorpdfstring{vector\+\_\+first\+Alloc()}{vector\_firstAlloc()}}
+{\footnotesize\ttfamily Error\+Code vector\+\_\+first\+Alloc (\begin{DoxyParamCaption}\item[{\hyperlink{structVector}{Vector} $\ast$const}]{vector }\end{DoxyParamCaption})}
+
+
+
+This function performs the first allocation of a vector. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vector} & vector\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+error code 
+\end{DoxyReturn}
+\mbox{\Hypertarget{vector_8c_ad31be60feb66c80f626c74edcbbf9a79}\label{vector_8c_ad31be60feb66c80f626c74edcbbf9a79}} 
+\index{vector.\+c@{vector.\+c}!vector\+\_\+free@{vector\+\_\+free}}
+\index{vector\+\_\+free@{vector\+\_\+free}!vector.\+c@{vector.\+c}}
+\subsubsection{\texorpdfstring{vector\+\_\+free()}{vector\_free()}}
+{\footnotesize\ttfamily void vector\+\_\+free (\begin{DoxyParamCaption}\item[{\hyperlink{structVector}{Vector} $\ast$const}]{vector }\end{DoxyParamCaption})}
+
+
+
+This function frees vector. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vector} & vector \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{vector_8c_a17ce9a8614805bdee93540bd60db2d49}\label{vector_8c_a17ce9a8614805bdee93540bd60db2d49}} 
+\index{vector.\+c@{vector.\+c}!vector\+\_\+get@{vector\+\_\+get}}
+\index{vector\+\_\+get@{vector\+\_\+get}!vector.\+c@{vector.\+c}}
+\subsubsection{\texorpdfstring{vector\+\_\+get()}{vector\_get()}}
+{\footnotesize\ttfamily Error\+Code vector\+\_\+get (\begin{DoxyParamCaption}\item[{\hyperlink{structVector}{Vector} $\ast$const}]{vector,  }\item[{uint32\+\_\+t}]{i,  }\item[{void $\ast$const}]{value }\end{DoxyParamCaption})}
+
+
+
+This function gets element. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vector} & vector \\
+\hline
+{\em i} & element index \\
+\hline
+{\em value} & element\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+returns E\+R\+R\+\_\+\+OK if successful 
+\end{DoxyReturn}
+\mbox{\Hypertarget{vector_8c_a8e683647db00fc9564cc4261646e5207}\label{vector_8c_a8e683647db00fc9564cc4261646e5207}} 
+\index{vector.\+c@{vector.\+c}!vector\+\_\+init@{vector\+\_\+init}}
+\index{vector\+\_\+init@{vector\+\_\+init}!vector.\+c@{vector.\+c}}
+\subsubsection{\texorpdfstring{vector\+\_\+init()}{vector\_init()}}
+{\footnotesize\ttfamily void vector\+\_\+init (\begin{DoxyParamCaption}\item[{\hyperlink{structVector}{Vector} $\ast$const}]{vector,  }\item[{uint32\+\_\+t}]{element\+Size }\end{DoxyParamCaption})}
+
+
+
+This function inits vector. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vector} & vector \\
+\hline
+{\em element\+Size} & size of one element in bytes \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{vector_8c_a2932d39cebcd45864948cb968d97c600}\label{vector_8c_a2932d39cebcd45864948cb968d97c600}} 
+\index{vector.\+c@{vector.\+c}!vector\+\_\+pushback@{vector\+\_\+pushback}}
+\index{vector\+\_\+pushback@{vector\+\_\+pushback}!vector.\+c@{vector.\+c}}
+\subsubsection{\texorpdfstring{vector\+\_\+pushback()}{vector\_pushback()}}
+{\footnotesize\ttfamily Error\+Code vector\+\_\+pushback (\begin{DoxyParamCaption}\item[{\hyperlink{structVector}{Vector} $\ast$const}]{vector,  }\item[{void const $\ast$const}]{value }\end{DoxyParamCaption})}
+
+
+
+This function pushes a new value to the end of the vector. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vector} & vector \\
+\hline
+{\em value} & a new value\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+return E\+R\+R\+\_\+\+OK on success 
+\end{DoxyReturn}
+\mbox{\Hypertarget{vector_8c_a0a4fa9dd217ec1de815de2f789da9a2d}\label{vector_8c_a0a4fa9dd217ec1de815de2f789da9a2d}} 
+\index{vector.\+c@{vector.\+c}!vector\+\_\+realloc@{vector\+\_\+realloc}}
+\index{vector\+\_\+realloc@{vector\+\_\+realloc}!vector.\+c@{vector.\+c}}
+\subsubsection{\texorpdfstring{vector\+\_\+realloc()}{vector\_realloc()}}
+{\footnotesize\ttfamily Error\+Code vector\+\_\+realloc (\begin{DoxyParamCaption}\item[{\hyperlink{structVector}{Vector} $\ast$const}]{vector }\end{DoxyParamCaption})}
+
+
+
+This functions performs the reallocation of a vector. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vector} & vector\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+error code 
+\end{DoxyReturn}
+\mbox{\Hypertarget{vector_8c_ad96d434d0467299d2476cf3662762f3b}\label{vector_8c_ad96d434d0467299d2476cf3662762f3b}} 
+\index{vector.\+c@{vector.\+c}!vector\+\_\+resize@{vector\+\_\+resize}}
+\index{vector\+\_\+resize@{vector\+\_\+resize}!vector.\+c@{vector.\+c}}
+\subsubsection{\texorpdfstring{vector\+\_\+resize()}{vector\_resize()}}
+{\footnotesize\ttfamily Error\+Code vector\+\_\+resize (\begin{DoxyParamCaption}\item[{\hyperlink{structVector}{Vector} $\ast$const}]{vector }\end{DoxyParamCaption})}
+
+
+
+This function resizes a vector. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vector} & vector\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+error code 
+\end{DoxyReturn}
+\mbox{\Hypertarget{vector_8c_ace58d491db69b9909c8c2296fb950f6c}\label{vector_8c_ace58d491db69b9909c8c2296fb950f6c}} 
+\index{vector.\+c@{vector.\+c}!vector\+\_\+set@{vector\+\_\+set}}
+\index{vector\+\_\+set@{vector\+\_\+set}!vector.\+c@{vector.\+c}}
+\subsubsection{\texorpdfstring{vector\+\_\+set()}{vector\_set()}}
+{\footnotesize\ttfamily Error\+Code vector\+\_\+set (\begin{DoxyParamCaption}\item[{\hyperlink{structVector}{Vector} $\ast$const}]{vector,  }\item[{uint32\+\_\+t}]{i,  }\item[{void const $\ast$const}]{value }\end{DoxyParamCaption})}
+
+
+
+This function sets data to an element. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vector} & vector \\
+\hline
+{\em i} & index of element \\
+\hline
+{\em value} & data \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{vector_8c_ab1edc1e76aa589fc4d30426b79b1fd1b}\label{vector_8c_ab1edc1e76aa589fc4d30426b79b1fd1b}} 
+\index{vector.\+c@{vector.\+c}!vector\+\_\+size@{vector\+\_\+size}}
+\index{vector\+\_\+size@{vector\+\_\+size}!vector.\+c@{vector.\+c}}
+\subsubsection{\texorpdfstring{vector\+\_\+size()}{vector\_size()}}
+{\footnotesize\ttfamily uint32\+\_\+t vector\+\_\+size (\begin{DoxyParamCaption}\item[{\hyperlink{structVector}{Vector} const $\ast$const}]{vector }\end{DoxyParamCaption})}
+
+
+
+This function returns vector size. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vector} & vector\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the size of the vector 
+\end{DoxyReturn}

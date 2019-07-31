@@ -1,0 +1,104 @@
+{
+  "id": "5c49ef75-298a-4c67-83f6-9a0bb7af0a6f",
+  "version": "2.0",
+  "name": "tests",
+  "url": "http://www.fit.vutbr.cz/study/courses/ITS/public/instances.php?login=xhorna14",
+  "tests": [{
+    "id": "2be0da6f-909b-4b63-986a-fe32dcc61bad",
+    "name": "admin_login",
+    "commands": [{
+      "id": "a0bb4ab2-1f95-4eac-b518-4316959cebf5",
+      "comment": "",
+      "command": "open",
+      "target": "http://www.fit.vutbr.cz/study/courses/ITS/public/instances.php?login=xhorna14",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "b1132dd8-0d59-4dee-bd33-8af09a07aa00",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "720x877",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "033203e6-4cf1-4d79-ae2a-9dbf61dea384",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Admin area",
+      "targets": [
+        ["linkText=Admin area", "linkText"],
+        ["css=.btn-info", "css:finder"],
+        ["xpath=//a[contains(text(),'Admin area')]", "xpath:link"],
+        ["xpath=//a[@href='http://mys01.fit.vutbr.cz:8021/admin']", "xpath:href"],
+        ["xpath=//td[3]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Admin area')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "c9198ea4-2e86-4499-a173-aeed8ff1ea59",
+      "comment": "",
+      "command": "click",
+      "target": "id=input-username",
+      "targets": [
+        ["id=input-username", "id"],
+        ["name=username", "name"],
+        ["css=#input-username", "css:finder"],
+        ["xpath=//input[@id='input-username']", "xpath:attributes"],
+        ["xpath=//div[@id='content']/div/div/div/div/div[2]/form/div/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "96330a75-e5dc-4a4c-9c3e-c8ab269676fa",
+      "comment": "",
+      "command": "type",
+      "target": "id=input-username",
+      "targets": [
+        ["id=input-username", "id"],
+        ["name=username", "name"],
+        ["css=#input-username", "css:finder"],
+        ["xpath=//input[@id='input-username']", "xpath:attributes"],
+        ["xpath=//div[@id='content']/div/div/div/div/div[2]/form/div/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "admin"
+    }, {
+      "id": "bbea7d83-de5c-4066-a2f8-9f112f8d956f",
+      "comment": "",
+      "command": "type",
+      "target": "id=input-password",
+      "targets": [
+        ["id=input-password", "id"],
+        ["name=password", "name"],
+        ["css=#input-password", "css:finder"],
+        ["xpath=//input[@id='input-password']", "xpath:attributes"],
+        ["xpath=//div[@id='content']/div/div/div/div/div[2]/form/div[2]/div/input", "xpath:idRelative"],
+        ["xpath=//div[2]/div/input", "xpath:position"]
+      ],
+      "value": "admin"
+    }, {
+      "id": "37925fcb-8a8e-438f-ba91-aefd632f56df",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btn",
+      "targets": [
+        ["css=.btn", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//div[@id='content']/div/div/div/div/div[2]/form/div[3]/button", "xpath:idRelative"],
+        ["xpath=//div[3]/button", "xpath:position"],
+        ["xpath=//button[contains(.,' Login')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }],
+  "suites": [{
+    "id": "3a9efe82-ee58-48b2-87a3-58ca49e65e24",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["2be0da6f-909b-4b63-986a-fe32dcc61bad"]
+  }],
+  "urls": ["http://www.fit.vutbr.cz/study/courses/ITS/public/instances.php?login=xhorna14"],
+  "plugins": []
+}

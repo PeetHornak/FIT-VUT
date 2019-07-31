@@ -1,0 +1,239 @@
+\hypertarget{stack_8h}{}\section{stack/src/stack/stack.h File Reference}
+\label{stack_8h}\index{stack/src/stack/stack.\+h@{stack/src/stack/stack.\+h}}
+
+
+This file contains declaration of stack.  
+
+
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include $<$error\+Codes/error\+Codes.\+h$>$}\newline
+{\ttfamily \#include $<$stack/stack\+\_\+export.\+h$>$}\newline
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structStack}{Stack}
+\begin{DoxyCompactList}\small\item\em This struct represents simple uint32\+\_\+t stack. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{stack_8h_acccdaeb94a63f3757825012007215c0d}\label{stack_8h_acccdaeb94a63f3757825012007215c0d}} 
+typedef struct \hyperlink{structStack}{Stack} \hyperlink{stack_8h_acccdaeb94a63f3757825012007215c0d}{Stack}
+\begin{DoxyCompactList}\small\item\em shortcut \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+S\+T\+A\+C\+K\+\_\+\+E\+X\+P\+O\+RT void \hyperlink{stack_8h_a597cb5a7133e90d0417f04faba12336f}{stack\+\_\+init} (\hyperlink{structStack}{Stack} $\ast$const stack, uint32\+\_\+t element\+Size)
+\begin{DoxyCompactList}\small\item\em This function inits stack. \end{DoxyCompactList}\item 
+S\+T\+A\+C\+K\+\_\+\+E\+X\+P\+O\+RT void \hyperlink{stack_8h_a7303fa944dbb7badfba5a793eefc1fac}{stack\+\_\+free} (\hyperlink{structStack}{Stack} $\ast$const stack)
+\begin{DoxyCompactList}\small\item\em This function frees stack. \end{DoxyCompactList}\item 
+S\+T\+A\+C\+K\+\_\+\+E\+X\+P\+O\+RT int \hyperlink{stack_8h_ae547df08a9392b3e35f05f1e45b67027}{stack\+\_\+empty} (\hyperlink{structStack}{Stack} const $\ast$const stack)
+\begin{DoxyCompactList}\small\item\em This function returns 1 if the stack is empty. \end{DoxyCompactList}\item 
+S\+T\+A\+C\+K\+\_\+\+E\+X\+P\+O\+RT uint32\+\_\+t \hyperlink{stack_8h_a81a83ab7efd7c040d09b33bfa23736f7}{stack\+\_\+size} (\hyperlink{structStack}{Stack} const $\ast$const stack)
+\begin{DoxyCompactList}\small\item\em This function returns the number of size in the stack. \end{DoxyCompactList}\item 
+S\+T\+A\+C\+K\+\_\+\+E\+X\+P\+O\+RT uint32\+\_\+t \hyperlink{stack_8h_aa54375167ecc90e7fb833865a72f96ad}{stack\+\_\+element\+Size} (\hyperlink{structStack}{Stack} const $\ast$const stack)
+\begin{DoxyCompactList}\small\item\em This function returns the element reserved in bytes. \end{DoxyCompactList}\item 
+S\+T\+A\+C\+K\+\_\+\+E\+X\+P\+O\+RT Error\+Code \hyperlink{stack_8h_a68b4d31591b5d6e13fa3631031cfa578}{stack\+\_\+push} (\hyperlink{structStack}{Stack} $\ast$const stack, void const $\ast$const value)
+\begin{DoxyCompactList}\small\item\em This function pushes a new value to the stack. \end{DoxyCompactList}\item 
+S\+T\+A\+C\+K\+\_\+\+E\+X\+P\+O\+RT Error\+Code \hyperlink{stack_8h_a428f0932e2279be42f5e3afa1c740f66}{stack\+\_\+pop} (\hyperlink{structStack}{Stack} $\ast$const stack, void $\ast$const value)
+\begin{DoxyCompactList}\small\item\em This function pops size from the stack. \end{DoxyCompactList}\item 
+S\+T\+A\+C\+K\+\_\+\+E\+X\+P\+O\+RT void $\ast$ \hyperlink{stack_8h_a19d52057db00f64ddf153532adf42756}{stack\+\_\+top} (\hyperlink{structStack}{Stack} $\ast$const stack)
+\begin{DoxyCompactList}\small\item\em This function return pointer to the top of the stack -\/ last element. \end{DoxyCompactList}\item 
+S\+T\+A\+C\+K\+\_\+\+E\+X\+P\+O\+RT void $\ast$ \hyperlink{stack_8h_aa6bcd90d757e5fc6ff6f19f840134458}{stack\+\_\+at} (\hyperlink{structStack}{Stack} const $\ast$const stack, uint32\+\_\+t i)
+\begin{DoxyCompactList}\small\item\em This function returns pointer to an element. \end{DoxyCompactList}\item 
+S\+T\+A\+C\+K\+\_\+\+E\+X\+P\+O\+RT int \hyperlink{stack_8h_aad38a822e2bc5988e8df9e92aba16018}{stack\+\_\+contain} (\hyperlink{structStack}{Stack} const $\ast$const stack, void $\ast$d)
+\begin{DoxyCompactList}\small\item\em This function check if stack contain a value. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This file contains declaration of stack. 
+
+\begin{DoxyAuthor}{Author}
+Tomáš Milet, \href{mailto:imilet@fit.vutbr.cz}{\tt imilet@fit.\+vutbr.\+cz} 
+\end{DoxyAuthor}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{stack_8h_aa6bcd90d757e5fc6ff6f19f840134458}\label{stack_8h_aa6bcd90d757e5fc6ff6f19f840134458}} 
+\index{stack.\+h@{stack.\+h}!stack\+\_\+at@{stack\+\_\+at}}
+\index{stack\+\_\+at@{stack\+\_\+at}!stack.\+h@{stack.\+h}}
+\subsubsection{\texorpdfstring{stack\+\_\+at()}{stack\_at()}}
+{\footnotesize\ttfamily S\+T\+A\+C\+K\+\_\+\+E\+X\+P\+O\+RT void$\ast$ stack\+\_\+at (\begin{DoxyParamCaption}\item[{\hyperlink{structStack}{Stack} const $\ast$const}]{stack,  }\item[{uint32\+\_\+t}]{i }\end{DoxyParamCaption})}
+
+
+
+This function returns pointer to an element. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em stack} & stack \\
+\hline
+{\em i} & index of the element, 0 -\/ deepest\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+pointer to the element or N\+U\+LL 
+\end{DoxyReturn}
+\mbox{\Hypertarget{stack_8h_aad38a822e2bc5988e8df9e92aba16018}\label{stack_8h_aad38a822e2bc5988e8df9e92aba16018}} 
+\index{stack.\+h@{stack.\+h}!stack\+\_\+contain@{stack\+\_\+contain}}
+\index{stack\+\_\+contain@{stack\+\_\+contain}!stack.\+h@{stack.\+h}}
+\subsubsection{\texorpdfstring{stack\+\_\+contain()}{stack\_contain()}}
+{\footnotesize\ttfamily S\+T\+A\+C\+K\+\_\+\+E\+X\+P\+O\+RT int stack\+\_\+contain (\begin{DoxyParamCaption}\item[{\hyperlink{structStack}{Stack} const $\ast$const}]{stack,  }\item[{void $\ast$}]{d }\end{DoxyParamCaption})}
+
+
+
+This function check if stack contain a value. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em stack} & stack \\
+\hline
+{\em d} & point to value\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if the stack contain the element, 0 otherwise 
+\end{DoxyReturn}
+\mbox{\Hypertarget{stack_8h_aa54375167ecc90e7fb833865a72f96ad}\label{stack_8h_aa54375167ecc90e7fb833865a72f96ad}} 
+\index{stack.\+h@{stack.\+h}!stack\+\_\+element\+Size@{stack\+\_\+element\+Size}}
+\index{stack\+\_\+element\+Size@{stack\+\_\+element\+Size}!stack.\+h@{stack.\+h}}
+\subsubsection{\texorpdfstring{stack\+\_\+element\+Size()}{stack\_elementSize()}}
+{\footnotesize\ttfamily S\+T\+A\+C\+K\+\_\+\+E\+X\+P\+O\+RT uint32\+\_\+t stack\+\_\+element\+Size (\begin{DoxyParamCaption}\item[{\hyperlink{structStack}{Stack} const $\ast$const}]{stack }\end{DoxyParamCaption})}
+
+
+
+This function returns the element reserved in bytes. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em stack} & stack\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+element reserved in bytes 
+\end{DoxyReturn}
+\mbox{\Hypertarget{stack_8h_ae547df08a9392b3e35f05f1e45b67027}\label{stack_8h_ae547df08a9392b3e35f05f1e45b67027}} 
+\index{stack.\+h@{stack.\+h}!stack\+\_\+empty@{stack\+\_\+empty}}
+\index{stack\+\_\+empty@{stack\+\_\+empty}!stack.\+h@{stack.\+h}}
+\subsubsection{\texorpdfstring{stack\+\_\+empty()}{stack\_empty()}}
+{\footnotesize\ttfamily S\+T\+A\+C\+K\+\_\+\+E\+X\+P\+O\+RT int stack\+\_\+empty (\begin{DoxyParamCaption}\item[{\hyperlink{structStack}{Stack} const $\ast$const}]{stack }\end{DoxyParamCaption})}
+
+
+
+This function returns 1 if the stack is empty. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em stack} & stack\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if stack is empty, 0 otherwise 
+\end{DoxyReturn}
+\mbox{\Hypertarget{stack_8h_a7303fa944dbb7badfba5a793eefc1fac}\label{stack_8h_a7303fa944dbb7badfba5a793eefc1fac}} 
+\index{stack.\+h@{stack.\+h}!stack\+\_\+free@{stack\+\_\+free}}
+\index{stack\+\_\+free@{stack\+\_\+free}!stack.\+h@{stack.\+h}}
+\subsubsection{\texorpdfstring{stack\+\_\+free()}{stack\_free()}}
+{\footnotesize\ttfamily S\+T\+A\+C\+K\+\_\+\+E\+X\+P\+O\+RT void stack\+\_\+free (\begin{DoxyParamCaption}\item[{\hyperlink{structStack}{Stack} $\ast$const}]{stack }\end{DoxyParamCaption})}
+
+
+
+This function frees stack. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em stack} & stack \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{stack_8h_a597cb5a7133e90d0417f04faba12336f}\label{stack_8h_a597cb5a7133e90d0417f04faba12336f}} 
+\index{stack.\+h@{stack.\+h}!stack\+\_\+init@{stack\+\_\+init}}
+\index{stack\+\_\+init@{stack\+\_\+init}!stack.\+h@{stack.\+h}}
+\subsubsection{\texorpdfstring{stack\+\_\+init()}{stack\_init()}}
+{\footnotesize\ttfamily S\+T\+A\+C\+K\+\_\+\+E\+X\+P\+O\+RT void stack\+\_\+init (\begin{DoxyParamCaption}\item[{\hyperlink{structStack}{Stack} $\ast$const}]{stack,  }\item[{uint32\+\_\+t}]{element\+Size }\end{DoxyParamCaption})}
+
+
+
+This function inits stack. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em stack} & stack \\
+\hline
+{\em element\+Size} & size of one element in bytes \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{stack_8h_a428f0932e2279be42f5e3afa1c740f66}\label{stack_8h_a428f0932e2279be42f5e3afa1c740f66}} 
+\index{stack.\+h@{stack.\+h}!stack\+\_\+pop@{stack\+\_\+pop}}
+\index{stack\+\_\+pop@{stack\+\_\+pop}!stack.\+h@{stack.\+h}}
+\subsubsection{\texorpdfstring{stack\+\_\+pop()}{stack\_pop()}}
+{\footnotesize\ttfamily S\+T\+A\+C\+K\+\_\+\+E\+X\+P\+O\+RT Error\+Code stack\+\_\+pop (\begin{DoxyParamCaption}\item[{\hyperlink{structStack}{Stack} $\ast$const}]{stack,  }\item[{void $\ast$const}]{value }\end{DoxyParamCaption})}
+
+
+
+This function pops size from the stack. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em stack} & stack \\
+\hline
+{\em value} & the size value of the stack\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+return E\+R\+R\+\_\+\+OK on success 
+\end{DoxyReturn}
+\mbox{\Hypertarget{stack_8h_a68b4d31591b5d6e13fa3631031cfa578}\label{stack_8h_a68b4d31591b5d6e13fa3631031cfa578}} 
+\index{stack.\+h@{stack.\+h}!stack\+\_\+push@{stack\+\_\+push}}
+\index{stack\+\_\+push@{stack\+\_\+push}!stack.\+h@{stack.\+h}}
+\subsubsection{\texorpdfstring{stack\+\_\+push()}{stack\_push()}}
+{\footnotesize\ttfamily S\+T\+A\+C\+K\+\_\+\+E\+X\+P\+O\+RT Error\+Code stack\+\_\+push (\begin{DoxyParamCaption}\item[{\hyperlink{structStack}{Stack} $\ast$const}]{stack,  }\item[{void const $\ast$const}]{value }\end{DoxyParamCaption})}
+
+
+
+This function pushes a new value to the stack. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em stack} & stack \\
+\hline
+{\em value} & a new value\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+return E\+R\+R\+\_\+\+OK on success 
+\end{DoxyReturn}
+\mbox{\Hypertarget{stack_8h_a81a83ab7efd7c040d09b33bfa23736f7}\label{stack_8h_a81a83ab7efd7c040d09b33bfa23736f7}} 
+\index{stack.\+h@{stack.\+h}!stack\+\_\+size@{stack\+\_\+size}}
+\index{stack\+\_\+size@{stack\+\_\+size}!stack.\+h@{stack.\+h}}
+\subsubsection{\texorpdfstring{stack\+\_\+size()}{stack\_size()}}
+{\footnotesize\ttfamily S\+T\+A\+C\+K\+\_\+\+E\+X\+P\+O\+RT uint32\+\_\+t stack\+\_\+size (\begin{DoxyParamCaption}\item[{\hyperlink{structStack}{Stack} const $\ast$const}]{stack }\end{DoxyParamCaption})}
+
+
+
+This function returns the number of size in the stack. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em stack} & stack\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+number of size in the stack 
+\end{DoxyReturn}
+\mbox{\Hypertarget{stack_8h_a19d52057db00f64ddf153532adf42756}\label{stack_8h_a19d52057db00f64ddf153532adf42756}} 
+\index{stack.\+h@{stack.\+h}!stack\+\_\+top@{stack\+\_\+top}}
+\index{stack\+\_\+top@{stack\+\_\+top}!stack.\+h@{stack.\+h}}
+\subsubsection{\texorpdfstring{stack\+\_\+top()}{stack\_top()}}
+{\footnotesize\ttfamily S\+T\+A\+C\+K\+\_\+\+E\+X\+P\+O\+RT void$\ast$ stack\+\_\+top (\begin{DoxyParamCaption}\item[{\hyperlink{structStack}{Stack} $\ast$const}]{stack }\end{DoxyParamCaption})}
+
+
+
+This function return pointer to the top of the stack -\/ last element. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em stack} & stack\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+pointer to the top of the stack -\/ last element 
+\end{DoxyReturn}

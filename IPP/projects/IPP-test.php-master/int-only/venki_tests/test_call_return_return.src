@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<program language="IPPcode19">
+  <instruction order="1" opcode="CALL">
+    <arg1 type="label">label</arg1>
+  </instruction>
+  <instruction order="2" opcode="LABEL">
+    <arg1 type="label">label</arg1>
+  </instruction>
+  <instruction order="3" opcode="RETURN"/>
+</program>

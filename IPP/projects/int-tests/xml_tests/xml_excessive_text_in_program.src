@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<program language="IPPcode19">a
+  <instruction order="1" opcode="DEFVAR">
+    <arg1 type="var">GF@ahoj</arg1>
+  </instruction>
+  <instruction order="2" opcode="DEFVAR">
+    <arg1 type="var">GF@cau</arg1>
+  </instruction>
+  <instruction order="3" opcode="STRLEN">
+    <arg1 type="var">GF@cau</arg1>
+    <arg2 type="string">ahoj\020</arg2>
+  </instruction>
+</program>

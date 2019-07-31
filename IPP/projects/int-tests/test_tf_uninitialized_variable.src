@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<program language="IPPcode19">
+  <instruction order="1" opcode="CREATEFRAME"/>
+  <instruction order="2" opcode="DEFVAR">
+    <arg1 type="var">TF@ahoj</arg1>
+  </instruction>
+  <instruction order="3" opcode="WRITE">
+    <arg1 type="var">TF@ahoj</arg1>
+  </instruction>
+</program>

@@ -1,0 +1,20 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../errorCodes/src/errorCodes/errorCodes.h
+errorCodes/errorcodes_export.h
+-
+
+/Users/peto/Documents/IZG/1project/errorCodes/src/errorCodes/errorCodes.c
+stdint.h
+-
+errorCodes/errorCodes.h
+-
+
+errorCodes/errorCodes/errorcodes_export.h
+

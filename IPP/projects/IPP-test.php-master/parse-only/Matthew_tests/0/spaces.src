@@ -1,0 +1,10 @@
+.IPPcode19
+
+DEFVAR GF@counter
+
+
+
+
+
+
+MOVE GF@counter string@co\123unter

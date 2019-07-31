@@ -1,0 +1,34 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../errorCodes/src/errorCodes/errorCodes.h
+errorCodes/errorcodes_export.h
+-
+
+../stack/src/stack/stack.h
+stdint.h
+-
+errorCodes/errorCodes.h
+-
+stack/stack_export.h
+-
+
+/Users/peto/Documents/IZG/1project/stack/src/stack/stack.c
+stdlib.h
+-
+assert.h
+-
+string.h
+-
+stack/stack.h
+-
+
+errorCodes/errorCodes/errorcodes_export.h
+
+stack/stack/stack_export.h
+

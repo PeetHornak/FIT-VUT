@@ -1,0 +1,33 @@
+.IPPcode19
+MOVE LF@par int@2
+CREATEFRAME
+PUSHFRAME
+POPFRAME
+DEFVAR TF@test
+CALL label
+RETURN
+PUSHS GF@var
+POPS TF@var
+ADD TF@var int@1 int@+2
+SUB LF@x int@2 int@2
+MUL TF@var int@2 int@2
+IDIV LF@var int@2 int@2
+LT LF@var int@2 int@2
+GT LF@var int@2 int@2
+EQ LF@var int@2 int@2
+AND LF@var int@2 int@2
+OR LF@var int@2 int@2 
+NOT LF@var int@2
+INT2CHAR LF@var int@2
+STRI2INT LF@var int@2 int@2
+WRITE int@2
+CONCAT LF@var int@2 int@2
+STRLEN LF@var string@ahoj
+GETCHAR LF@var int@2 int@2
+TYPE LF@var GF@var
+LABEL label
+JUMPIFEQ label GF@dvacet TF@tricet
+JUMPIFNEQ label GF@hups TF@lups
+EXIT TF@ups
+DPRINT int@2
+BREAK

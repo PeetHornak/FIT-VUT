@@ -1,0 +1,65 @@
+
+\begin{DoxyRefList}
+\item[\label{todo__todo000001}%
+\Hypertarget{todo__todo000001}%
+Global \hyperlink{group__gpu__side_gad786da6785f12139855c4484767a45fb}{gpu\+\_\+draw\+Triangles} (\hyperlink{structGPU}{G\+PU} $\ast$const gpu, uint32\+\_\+t nof\+Vertices)]Naimplementujte vykreslování trojúhelníků. nof\+Vertices -\/ počet vrcholů gpu -\/ data na grafické kartě Vašim úkolem je naimplementovat chování grafické karty. Úkol je složen\+:
+\begin{DoxyEnumerate}
+\item z implementace Vertex Pulleru
+\item zavolání vertex shaderu pro každý vrchol
+\item rasterizace
+\item zavolání fragment shaderu pro každý fragment
+\item zavolání per fragment operací nad fragmenty (depth test, zápis barvy a hloubky) Více v připojeném videu.  
+\end{DoxyEnumerate}
+\item[\label{todo__todo000003}%
+\Hypertarget{todo__todo000003}%
+Global \hyperlink{group__shader__side_gae61352614f36dbf1625c51d6963d1aeb}{phong\+\_\+\+FS} (\hyperlink{structGPUFragmentShaderData}{G\+P\+U\+Fragment\+Shader\+Data} $\ast$const data)]Naimplementujte fragment shader, který počítá phongův osvětlovací model s phongovým stínováním.~\newline
+ {\bfseries Vstup\+:}~\newline
+ Vstupní fragment by měl v nultém fragment atributu obsahovat interpolovanou pozici ve world-\/space a v prvním fragment atributu obsahovat interpolovanou normálu ve world-\/space.~\newline
+ {\bfseries Výstup\+:}~\newline
+ Barvu zapište do proměnné gl\+\_\+\+Frag\+Color ve výstupní struktuře.~\newline
+ {\bfseries Uniformy\+:}~\newline
+ Pozici kamery přečtěte z uniformní 3 a pozici světla přečtěte z uniformní 2. ~\newline
+ Dejte si pozor na velikost normálového vektoru, při lineární interpolaci v rasterizaci může dojít ke zkrácení. Zapište barvu do proměnné color ve výstupní struktuře. Shininess faktor nastavte na 40.\+f Difuzní barvu materiálu nastavte podle normály povrchu. V případě, že normála směřuje kolmo vzhůru je difuzní barva čistě bílá. V případě, že normála směřuje vodorovně nebo dolů je difuzní barva čiště zelená. Difuzní barvu spočtěte lineární interpolací zelené a bíle barvy pomocí interpolačního parameteru t. Interpolační parameter t spočtěte z y komponenty normály pomocí t = y$\ast$y (samozřejmě s ohledem na negativní čísla). Spekulární barvu materiálu nastavte na čistou bílou. Barvu světla nastavte na bílou. Nepoužívejte ambientní světlo.~\newline
+  
+\item[\label{todo__todo000005}%
+\Hypertarget{todo__todo000005}%
+Global \hyperlink{group__cpu__side_ga077fd875cff025bec23bb738ac61278a}{phong\+\_\+on\+Draw} (void $\ast$a)]Doprogramujte kreslící funkci. Zde byste měli aktivovat shader program, aktivovat vertex puller, nahrát data do uniformních proměnných a vykreslit trojúhelníky pomocí funkce cpu\+\_\+draw\+Triangles. Data pro uniformní proměnné naleznete v externích globálních proměnnénych view\+Matrix, projection\+Matrix, camera\+Position a light\+Position {\bfseries Seznam funkcí, které jistě využijete\+:}
+\begin{DoxyItemize}
+\item \hyperlink{cpu_8c_abed0fbac42c4335409b29a19f13809f4}{cpu\+\_\+use\+Program()}
+\item \hyperlink{cpu_8c_a18a87fa3883575459a9d12bd8c2c4fea}{cpu\+\_\+bind\+Vertex\+Puller()}
+\item cpu\+\_\+uniform\+Matrix4f()
+\item cpu\+\_\+uniform3f()
+\item \hyperlink{cpu_8c_a13c52301446924ffbc425a07f8a14ed2}{cpu\+\_\+draw\+Triangles()}
+\item cpu\+\_\+unbind\+Vertex\+Puller  
+\end{DoxyItemize}
+\item[\label{todo__todo000006}%
+\Hypertarget{todo__todo000006}%
+Global \hyperlink{group__cpu__side_gada78d4a6f5eb4c7cff394ae84b414e10}{phong\+\_\+on\+Exit} (void $\ast$a)]Zde uvolněte alokované zdroje  
+\item[\label{todo__todo000004}%
+\Hypertarget{todo__todo000004}%
+Global \hyperlink{group__cpu__side_gab4efb950833c87be9cd3b3850be50e77}{phong\+\_\+on\+Init} (void $\ast$a)]Doprogramujte inicializační funkci. Zde byste měli vytvořit buffery na \hyperlink{structGPU}{G\+PU}, nahrát data do bufferů, vytvořit vertex puller a správně jej nakonfigurovat, vytvořit program, připojit k němu shadery a nastavit atributy, které se posílají mezi vs a fs. Do bufferů nahrajte vrcholy králička (pozice, normály) a indexy na vrcholy ze souboru \hyperlink{bunny_8h}{bunny.\+h}. Shader program by měl odkazovat na funkce/shadery phong\+\_\+\+VS a phong\+\_\+\+FS. V konfiguraci vertex pulleru nastavte dvě čtecí hlavy. Jednu pro pozice vrcholů a druhou pro normály vrcholů. Nultý vertex/fragment atribut by měl obsahovat pozici vertexu. První vertex/fragment atribut by měl obsahovat normálu vertexu. Nastavte, které atributy (jaký typ) se posílají z vertex shaderu do fragment shaderu. {\bfseries Seznam funkcí, které jistě využijete\+:}
+\begin{DoxyItemize}
+\item \hyperlink{cpu_8c_a94245836b857a36f392bf86087e8e776}{cpu\+\_\+create\+Buffer()}
+\item \hyperlink{cpu_8c_aee5c818b862ef2e411f121fbdfb1c634}{cpu\+\_\+buffer\+Data()}
+\item \hyperlink{cpu_8c_a3ec68476772605b8be33329f88ae4d97}{cpu\+\_\+create\+Vertex\+Puller()}
+\item \hyperlink{cpu_8c_a4cb243dfeb6443e0f9a6110ce1dd27eb}{cpu\+\_\+set\+Vertex\+Puller()}
+\item \hyperlink{cpu_8c_a5a6ce215f054d26134c7598714cfb453}{cpu\+\_\+enable\+Vertex\+Puller\+Head()}
+\item \hyperlink{cpu_8c_a4159dbbc604685e544bc296708ced5f9}{cpu\+\_\+set\+Vertex\+Puller\+Indexing()}
+\item \hyperlink{cpu_8c_af3da8b71aea1c26e6a90af7da9d0e85c}{cpu\+\_\+create\+Program()}
+\item \hyperlink{cpu_8c_a76c50b0e120265198fe036abdc42d271}{cpu\+\_\+attach\+Shaders()}
+\item \hyperlink{cpu_8c_ae9a0898c1ebe8d914d0858f56028c591}{cpu\+\_\+set\+V\+S2\+F\+S\+Type()}  
+\end{DoxyItemize}
+\item[\label{todo__todo000002}%
+\Hypertarget{todo__todo000002}%
+Global \hyperlink{group__shader__side_gaed1d11e6e120b6a6513075c2e2c7ab19}{phong\+\_\+\+VS} (\hyperlink{structGPUVertexShaderData}{G\+P\+U\+Vertex\+Shader\+Data} $\ast$const data)]Naimplementujte vertex shader, který transformuje vstupní vrcholy do clip-\/space.~\newline
+ {\bfseries Vstupy\+:}~\newline
+ Vstupní vrchol by měl v nultém atributu obsahovat pozici vrcholu ve world-\/space (vec3) a v prvním atributu obsahovat normálu vrcholu ve world-\/space (vec3).~\newline
+ {\bfseries Výstupy\+:}~\newline
+ Výstupní vrchol by měl v nultém atributu obsahovat pozici vrcholu (vec3) ve world-\/space a v prvním atributu obsahovat normálu vrcholu ve world-\/space (vec3). Výstupní vrchol obsahuje pozici a normálu vrcholu proto, že chceme počítat osvětlení ve world-\/space ve fragment shaderu.~\newline
+ {\bfseries Uniformy\+:}~\newline
+ Vertex shader by měl pro transformaci využít uniformní proměnné obsahující view a projekční matici. View matici čtěte z nulté uniformní proměnné a projekční matici čtěte z první uniformní proměnné. ~\newline
+ Využijte vektorové a maticové funkce. Nepředávajte si data do shaderu pomocí globálních proměnných. Vrchol v clip-\/space by měl být zapsán do proměnné gl\+\_\+\+Position ve výstupní struktuře.  
+\item[\label{todo__todo000007}%
+\Hypertarget{todo__todo000007}%
+Global \hyperlink{structPhongData_abe8d787c8d298a58614c7d98dbf43a91}{Phong\+Data\+:\+:prg} ]Zde si vytvořte proměnné, které budete potřebovat (id bufferů, programu, ...) 
+\end{DoxyRefList}

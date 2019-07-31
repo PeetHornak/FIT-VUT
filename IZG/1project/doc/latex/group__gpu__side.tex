@@ -1,0 +1,39 @@
+\hypertarget{group__gpu__side}{}\section{Implementace vykreslovacího řetězce -\/ vykreslování trojúhelníků}
+\label{group__gpu__side}\index{Implementace vykreslovacího řetězce -\/ vykreslování trojúhelníků@{Implementace vykreslovacího řetězce -\/ vykreslování trojúhelníků}}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{group__gpu__side_gad786da6785f12139855c4484767a45fb}{gpu\+\_\+draw\+Triangles} (\hyperlink{structGPU}{G\+PU} $\ast$const gpu, uint32\+\_\+t nof\+Vertices)
+\begin{DoxyCompactList}\small\item\em This function should draw triangles. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{group__gpu__side_gad786da6785f12139855c4484767a45fb}\label{group__gpu__side_gad786da6785f12139855c4484767a45fb}} 
+\index{Implementace vykreslovacího řetězce -\/ vykreslování trojúhelníků@{Implementace vykreslovacího řetězce -\/ vykreslování trojúhelníků}!gpu\+\_\+draw\+Triangles@{gpu\+\_\+draw\+Triangles}}
+\index{gpu\+\_\+draw\+Triangles@{gpu\+\_\+draw\+Triangles}!Implementace vykreslovacího řetězce -\/ vykreslování trojúhelníků@{Implementace vykreslovacího řetězce -\/ vykreslování trojúhelníků}}
+\subsubsection{\texorpdfstring{gpu\+\_\+draw\+Triangles()}{gpu\_drawTriangles()}}
+{\footnotesize\ttfamily void gpu\+\_\+draw\+Triangles (\begin{DoxyParamCaption}\item[{\hyperlink{structGPU}{G\+PU} $\ast$const}]{gpu,  }\item[{uint32\+\_\+t}]{nof\+Vertices }\end{DoxyParamCaption})}
+
+
+
+This function should draw triangles. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em gpu} & gpu \\
+\hline
+{\em nof\+Vertices} & number of vertices \\
+\hline
+\end{DoxyParams}
+\begin{DoxyRefDesc}{Todo}
+\item[\hyperlink{todo__todo000001}{Todo}]Naimplementujte vykreslování trojúhelníků. nof\+Vertices -\/ počet vrcholů gpu -\/ data na grafické kartě Vašim úkolem je naimplementovat chování grafické karty. Úkol je složen\+:
+\begin{DoxyEnumerate}
+\item z implementace Vertex Pulleru
+\item zavolání vertex shaderu pro každý vrchol
+\item rasterizace
+\item zavolání fragment shaderu pro každý fragment
+\item zavolání per fragment operací nad fragmenty (depth test, zápis barvy a hloubky) Více v připojeném videu. 
+\end{DoxyEnumerate}\end{DoxyRefDesc}

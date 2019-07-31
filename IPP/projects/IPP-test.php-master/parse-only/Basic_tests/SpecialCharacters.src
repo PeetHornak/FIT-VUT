@@ -1,0 +1,3 @@
+.IPPcode19
+DEFVAR TF@&ahoj
+MOVE TF@&ahoj string@<>&
