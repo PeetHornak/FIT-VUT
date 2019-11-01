@@ -3,6 +3,7 @@
 #include <sys/socket.h>
 #include <sys/fcntl.h>
 #include <netinet/in.h>
+#include <sys/poll.h>
 #include <cstdlib>
 #include <iostream>
 #include <unistd.h>
@@ -11,21 +12,18 @@
 #include <vector>
 #include <map>
 
-#define PORT 1339
 #define BUFFER 4096
 
 enum response_type {GET_BOARDS, POST_BOARDS, DELETE_BOARDS, GET_BOARD, POST_BOARD, PUT_ID, DELETE_ID};
 
-std::string get_response_type (int response) {
-    std::string arr[8] = {"GET_BOARDS", "POST_BOARDS", "DELETE_BOARDS", "GET_BOARD", "POST_BOARD", "PUT_ID", "DELETE_ID", "ERR"};
-    if (response > 7){
-        response = 7;
-    }
-    return arr[response];
+void logger(const std::string& tag, const std::string& message) {
+    std::cerr << "[" + tag + "]: " + message + "\n";
 }
 
-void logger(const std::string tag, const std::string message) {
-    std::cerr << "[" + tag + "]: " + message + "\n";
+void print_help() {
+    std::cout << "Usage:" << std::endl;
+    std::cout << "\t" << "-h\t\t\tShow help message" << std::endl;
+    std::cout << "\t" << "-p PORT\t\tSet port for server" << std::endl;
 }
 
 std::string get_ok_200() {
@@ -46,19 +44,15 @@ std::string get_404() {
 }
 
 std::string get_409(){
-    return "HTTP/1.1 404 Conflict\r\n";
-}
-
-std::string get_413(){
-    return "HTTP/1.1 413 Payload Too Large\r\n";
+    return "HTTP/1.1 409 Conflict\r\n";
 }
 
 class Dashboard{
     public:
         explicit Dashboard(std::string new_name);
         void create_post(std::string message);
-        void delete_post(int id);
-        void edit_post(int id, std::string message);
+        int delete_post(int id);
+        int edit_post(int id, std::string message);
         std::string get_all_posts();
     private:
         std::string name;
@@ -73,18 +67,23 @@ void Dashboard::create_post(std::string message) {
     posts.push_back(message);
 }
 
-// TODO: Return code if post doesnt exist
-void Dashboard::delete_post(int id) {
+int Dashboard::delete_post(int id) {
+    try {
+        posts.at(id - 1);
+    } catch (const std::out_of_range& e) {
+        return 404;
+    }
     posts.erase(posts.begin() + id - 1);
+    return 0;
 }
 
-// TODO: Return code if post doesnt exist
-void Dashboard::edit_post(int id, std::string message) {
+int Dashboard::edit_post(int id, std::string message) {
     try {
         posts.at(id - 1) = message;
     } catch (const std::out_of_range& e) {
-
+        return 404;
     }
+    return 0;
 }
 
 std::string Dashboard::get_all_posts() {
@@ -103,7 +102,7 @@ std::string Dashboard::get_all_posts() {
 class Handler{
     public:
         std::string handle_request();
-        void set_request_params(int response_type, std::string board_name, int post_id, std::string request_body);
+        void set_request_params(int type, std::string name, int id, std::string body);
     private:
         std::string get_boards();
         std::string post_boards();
@@ -119,11 +118,11 @@ class Handler{
         std::map<std::string, Dashboard*> dashboard_list;
 };
 
-void Handler::set_request_params(int response_type, std::string board_name, int post_id, std::string request_body) {
-    Handler::response_type = response_type;
-    Handler::board_name = std::move(board_name);
-    Handler::post_id = post_id;
-    Handler::request_body = std::move(request_body);
+void Handler::set_request_params(int type, std::string name, int id, std::string body) {
+    Handler::response_type = type;
+    Handler::board_name = std::move(name);
+    Handler::post_id = id;
+    Handler::request_body = std::move(body);
 }
 
 std::string Handler::handle_request() {
@@ -219,28 +218,27 @@ std::string Handler::post_board() {
 std::string Handler::delete_id() {
     auto pos = dashboard_list.find(board_name);
     if (pos != dashboard_list.end()){
-        pos->second->delete_post(post_id);
-        return get_ok_200();
-    } else {
-        return get_404();
+        if (pos->second->delete_post(post_id) == 0) {
+            return get_ok_200();
+        }
     }
+    return get_404();
 }
 
 std::string Handler::put_id() {
     auto pos = dashboard_list.find(board_name);
     if (pos != dashboard_list.end()){
-        pos->second->edit_post(post_id, request_body);
-        return get_ok_200();
-    } else {
-        return get_404();
+        if (pos->second->edit_post(post_id, request_body) == 0) {
+            return get_ok_200();
+        }
     }
+    return get_404();
 }
 
 class Body{
     public:
         std::string get_body();
         void set_body(std::string body_string);
-        void append_body(char* request, int bytes_read);
     private:
         std::string body;
 };
@@ -253,25 +251,20 @@ void Body::set_body(std::string body_string) {
     body = std::move(body_string);
 }
 
-void Body::append_body(char *request, int bytes_read) {
-    std::string body_string(request);
-    body_string = body_string.substr(0, bytes_read);
-    body.append(body_string);
-}
-
 class Header
 {
     public:
         void create_request_string(char *request, int bytes_read);
+        void append_request_string(char *request, int bytes_read);
         std::string get_request_string();
         void parse_first_line();
         int get_response();
-        int parse_header();
+        void parse_header();
         std::string get_board_name();
         int get_post_id();
         int check_content_length();
+
     private:
-        int byte_length;
         std::string request_type;
         std::string board;
         std::string name;
@@ -291,10 +284,15 @@ void Header::create_request_string(char *request, int bytes_read) {
     response = 404;
     content_length = -1;
     id = -1;
-    byte_length = bytes_read;
     std::string request_string(request);
     request_string = request_string.substr(0, bytes_read);
     raw_request = request_string;
+}
+
+void Header::append_request_string(char *request, int bytes_read) {
+    std::string request_string(request);
+    request_string = request_string.substr(0, bytes_read);
+    raw_request.append(request_string);
 }
 
 std::string Header::get_request_string() {
@@ -345,17 +343,12 @@ void Header::parse_first_line() {
     }
 }
 
-int Header::parse_header() {
+void Header::parse_header() {
     std::string token;
     while(true) {
         token = get_line_from_request();
         if (token.empty()) {
-            if (byte_length == BUFFER) {
-                throw (std::length_error("Header too big"));
-            }
-            else {
-                throw (std::invalid_argument("Header has wrong format"));
-            }
+            throw (std::invalid_argument("Header has wrong format"));
         }
 
         std::smatch match;
@@ -367,8 +360,6 @@ int Header::parse_header() {
             break;
         }
     }
-    int remaining_bytes = content_length - raw_request.length();
-    return remaining_bytes;
 }
 
 void Header::parse_get() {
@@ -446,21 +437,53 @@ int Header::get_post_id() {
 }
 
 int Header::check_content_length() {
-    if (content_length == 0 && (request_type == "POST" || request_type == "PUT")){
+    if (content_length == 0 && (response == POST_BOARD || response == PUT_ID)){
         return 400;
     } else {
         return 200;
     }
 }
 
-int main() {
+int main(int argc, char *argv[]) {
+    int PORT = 0;
+    if (argc < 2) {
+        print_help();
+        return -1;
+    }
+
+    std::string param;
+    std::size_t pos;
+    if (std::string(argv[1]) == "-h") {
+        print_help();
+        return 0;
+    } else if (std::string(argv[1]) == "-p") {
+        if (2 < argc) {
+            param = std::string(argv[2]);
+            try {
+                PORT = stoi(param, &pos, 10);
+                if (pos != param.size()) {
+                    throw std::runtime_error("Cant parse PORT param");
+                }
+            } catch (...) {
+                print_help();
+                return -1;
+            }
+        } else {
+            print_help();
+            return -1;
+        }
+    } else {
+        print_help();
+        return -1;
+    }
+
     Header header;
     Handler handler;
     sockaddr_in client;
+    pollfd file_descriptor{};
 
     int server_socket, connection, bytes_read, optval;
-    char header_buffer[BUFFER];
-    char body_buffer[BUFFER];
+    char buffer[BUFFER];
 
     if ((server_socket = socket(AF_INET, SOCK_STREAM, 0)) < 0){
         logger("ERROR", "Cannot create socket");
@@ -473,11 +496,11 @@ int main() {
         return errno;
     }
 
-    if (fcntl(server_socket, O_NONBLOCK, 0) < 0){
-        logger("ERROR", "Setting socket to non blocking failed");
-        close(server_socket);
-        return errno;
-    }
+//    if (fcntl(server_socket, O_NONBLOCK, 0) < 0){
+//        logger("ERROR", "Setting socket to non blocking failed");
+//        close(server_socket);
+//        return errno;
+//    }
 
     sockaddr_in server;
     server.sin_family = AF_INET;
@@ -495,21 +518,37 @@ int main() {
         return errno;
     }
 
+    file_descriptor.fd = server_socket;
+    file_descriptor.events = POLLIN;
 
     while(true) {
-        auto addrlen = sizeof(client);
-        logger("INFO", "Wating for connection");
+        memset(buffer, 0, BUFFER);
+        int addrlen = sizeof(client);
 
+        logger("INFO", "Wating for connection");
+        int rc = poll(&file_descriptor, 1, 5000);
+        if (rc == -1) {
+            logger("ERROR", "Poll unsuccessful");
+            return errno;
+        } else if (rc == 0) {
+            logger("INFO", "Data not received");
+            continue;
+        } else if (!(file_descriptor.revents & POLLIN)){
+            continue;
+        }
         if ((connection = accept(server_socket, (struct sockaddr *) &client, (socklen_t *) &addrlen)) == -1) {
             logger("ERROR", "Accepting connection failed");
             close(server_socket);
             close(connection);
             return errno;
         }
-        memset(header_buffer, 0, BUFFER);
-        bytes_read = read(connection, header_buffer, BUFFER);
-        logger("INFO", "I have read the message");
-        header.create_request_string(header_buffer, bytes_read);
+        bytes_read = recv(connection, buffer, BUFFER, 0);
+        header.create_request_string(buffer, bytes_read);
+        while(bytes_read > 0) {
+            memset(buffer, 0, BUFFER);
+            bytes_read = recv(connection, buffer, BUFFER, MSG_DONTWAIT);
+            header.append_request_string(buffer, bytes_read);
+        }
         header.parse_first_line();
         int response_code = header.get_response();
         std::string response;
@@ -519,14 +558,8 @@ int main() {
             close(connection);
             continue;
         }
-        int remaining_bytes;
         try {
-            remaining_bytes = header.parse_header();
-        } catch (std::length_error& e) {
-            response = get_413();
-            write(connection, response.c_str(), response.size());
-            close(connection);
-            continue;
+            header.parse_header();
         } catch (std::invalid_argument& e) {
             response = get_404();
             write(connection, response.c_str(), response.size());
@@ -541,13 +574,6 @@ int main() {
         }
         Body body;
         body.set_body(header.get_request_string());
-        // TODO: READ BUFFER SIZE OR REMAINING_BYTES SIZE IF ITS LESS THAN BUFFER SIZE?
-        while(remaining_bytes > 0) {
-            memset(body_buffer, 0, BUFFER);
-            bytes_read = read(connection, body_buffer, BUFFER);
-            body.append_body(body_buffer, bytes_read);
-            remaining_bytes -= bytes_read;
-        }
         handler.set_request_params(response_code, header.get_board_name(), header.get_post_id(), body.get_body());
         response = handler.handle_request();
         write(connection, response.c_str(), response.size());
