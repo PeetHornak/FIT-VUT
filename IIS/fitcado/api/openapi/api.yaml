@@ -1,0 +1,1204 @@
+openapi: "3.0.0"
+info:
+  version: 1.0.0
+  title: Fitcado
+  license:
+    name: MIT
+paths:
+  /ping:
+    get:
+      summary: Ping-Pong
+      operationId: fitcado.api.app.endpoints.ping
+      responses:
+        '200':
+          description: Pong
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: pong
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+
+  /authenticate:
+    get:
+      summary: Validate cookie session
+      operationId: fitcado.api.app.endpoints.authenticate
+      responses:
+        '200':
+          description: Cookie
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AuthResponse"
+        '401':
+          description: Unathorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UnauthorizedResponse"
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+  /login:
+    post:
+      summary: Logs in and returns session cookie
+      operationId: fitcado.api.app.endpoints.login
+      requestBody:
+        description: A JSON object containing username and password.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/LoginRequest"
+      responses:
+        '200':
+          description: Successfully authenticated with session id returned as cookie.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/LoginSuccessResponse"
+        '401':
+          description: Wrong password was sent
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/LoginErrorResponse"
+        '404':
+          description: User does not exist
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/LoginErrorResponse"
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+  /password:
+    put:
+      summary: Update user password
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                new_password:
+                  type: string
+                old_password:
+                  type: string
+      operationId: fitcado.api.app.endpoints.change_password
+      responses:
+        '200':
+          description: User added
+          content:
+            text/plain:
+              schema:
+                type: boolean
+                example: True
+
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UnauthorizedResponse"
+
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref:  "#/components/schemas/Error"
+
+  /exercise:
+    get:
+      summary: Get all available exercises
+      operationId: fitcado.api.app.endpoints.get_exercise_all
+      responses:
+        '200':
+          description: All exercises returned
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                     $ref: "#/components/schemas/Exercise"
+    post:
+      summary: Add Exercise
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Exercise"
+
+
+      operationId: fitcado.api.app.endpoints.add_exercise
+      responses:
+        '200':
+          description: Exercise Added
+          content:
+            text/plain:
+              schema:
+                type: boolean
+                example: True
+
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UnauthorizedResponse"
+
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+  /exercise/{exercise_id}:
+    delete:
+      summary: Delete exercise
+      operationId: fitcado.api.app.endpoints.delete_exercise
+      parameters:
+        - in: path
+          name: exercise_id
+          schema:
+            type: integer
+          required: True
+          description: ID of exercise
+      responses:
+        '200':
+          description: Good boy
+
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UnauthorizedResponse"
+
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+  /user:
+    post:
+      summary: Add user
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/User"
+      operationId: fitcado.api.app.endpoints.add_user
+      responses:
+        '200':
+          description: User added
+          content:
+            text/plain:
+              schema:
+                type: boolean
+                example: True
+
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UnauthorizedResponse"
+
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref:  "#/components/schemas/Error"
+
+
+    get:
+      summary: Get infos about user
+      operationId: fitcado.api.app.endpoints.user_get
+      responses:
+        '200':
+          description: Infos about user returned
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UnauthorizedResponse"
+
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+    put:
+      summary: Update user infos.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                nickname:
+                  type: string
+                email:
+                  type: string
+
+      operationId: fitcado.api.app.endpoints.update_user
+      responses:
+        '200':
+          description: User updated
+          content:
+            text/plain:
+              schema:
+                type: boolean
+                example: True
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+
+  /users:
+    get:
+      summary: Get infos about users
+      operationId: fitcado.api.app.endpoints.get_users
+      responses:
+        '200':
+          description: Infos about users
+          content:
+            application/json:
+                schema:
+                  type: object
+                  properties:
+                    items:
+                      type: array
+                      items:
+                        $ref: "#/components/schemas/User"
+
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UnauthorizedResponse"
+
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+
+
+  /user/{user_id}:
+    delete:
+      summary: Deactivate user
+      operationId: fitcado.api.app.endpoints.deactivate_user
+      parameters:
+        - in: path
+          name: user_id
+          schema:
+            type: integer
+          required: True
+          description: ID of user
+      responses:
+        '200':
+          description: Good boy
+
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UnauthorizedResponse"
+
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+    put:
+      summary: Activate user
+      operationId: fitcado.api.app.endpoints.activate_user
+      parameters:
+        - in: path
+          name: user_id
+          schema:
+            type: integer
+          required: True
+          description: ID of user
+      responses:
+        '200':
+          description: Good boy
+
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UnauthorizedResponse"
+
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+
+  /body_size:
+    post:
+      summary: Add body size for user
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Body_size"
+      operationId: fitcado.api.app.endpoints.submit_body_size
+      responses:
+        '200':
+          description: Size added
+          content:
+            text/plain:
+              schema:
+                type: boolean
+                example: True
+
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UnauthorizedResponse"
+
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    get:
+      summary: Get all body size params for specific user
+      operationId: fitcado.api.app.endpoints.get_user_body_size
+      responses:
+        '200':
+          description: Body params returned
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/Body_size"
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UnauthorizedResponse"
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+  /body_size/{body_size_id}:
+    delete:
+      summary: Delete body_size
+      operationId: fitcado.api.app.endpoints.delete_body_size
+      parameters:
+        - in: path
+          name: body_size_id
+          schema:
+            type: integer
+          required: True
+          description: ID of weight
+      responses:
+        '200':
+          description: Good boy
+
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UnauthorizedResponse"
+
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+  /body_weight:
+    post:
+      summary: Add body weight for user
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Body_weight"
+      operationId: fitcado.api.app.endpoints.submit_body_weight
+      responses:
+        '200':
+          description: Weight added
+          content:
+            text/plain:
+              schema:
+                type: boolean
+                example: True
+
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UnauthorizedResponse"
+
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    get:
+        summary: Get all body weight params for specific user
+        operationId: fitcado.api.app.endpoints.get_user_body_weight
+        responses:
+          '200':
+            description: Body params returned
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    items:
+                      type: array
+                      items:
+                        $ref: "#/components/schemas/Body_weight"
+
+          '401':
+            description: Unauthorized
+            content:
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/UnauthorizedResponse"
+
+          default:
+            description: unexpected error
+            content:
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/Error"
+
+  /body_weight/{body_weight_id}:
+    delete:
+      summary: Delete body_weight
+      operationId: fitcado.api.app.endpoints.delete_body_weight
+      parameters:
+        - in: path
+          name: body_weight_id
+          schema:
+            type: integer
+          required: True
+          description: ID of weight
+      responses:
+        '200':
+          description: Good boy
+
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UnauthorizedResponse"
+
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+  /training:
+    post:
+      summary: Add training
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                training:
+                  $ref: "#/components/schemas/Training"
+                series:
+                  type: array
+                  items:
+                    $ref: "#/components/schemas/Series"
+
+      operationId: fitcado.api.app.endpoints.add_training
+      responses:
+        '200':
+          description: Training added
+          content:
+            text/plain:
+              schema:
+                type: boolean
+                example: True
+
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UnauthorizedResponse"
+
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    get:
+      summary: Get all trainings
+      operationId: fitcado.api.app.endpoints.get_trainings
+      responses:
+        '200':
+          description: Body params returned
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        training:
+                          $ref: "#/components/schemas/Training"
+                        series:
+                          type: array
+                          items:
+                            $ref: "#/components/schemas/Series"
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+  /trainig/{training_id}:
+    delete:
+      summary: Delete training
+      operationId: fitcado.api.app.endpoints.delete_training
+      parameters:
+        - in: path
+          name: training_id
+          schema:
+            type: integer
+          required: True
+          description: ID of training
+      responses:
+        '200':
+          description: Good boy
+
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UnauthorizedResponse"
+
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+  /series:
+    post:
+      summary: Get series by provided ids
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: array
+                  items:
+                    type: integer
+      operationId: fitcado.api.app.endpoints.get_series
+      responses:
+        '200':
+          description: Series with attached exercise returned
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        series:
+                          $ref: "#/components/schemas/Series"
+                        exercise:
+                          $ref: "#/components/schemas/Exercise"
+
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    put:
+      summary: Update series in training
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                training_id:
+                  type: integer
+                series_id:
+                  type: integer
+                series:
+                  $ref: "#/components/schemas/Series"
+
+      operationId: fitcado.api.app.endpoints.update_series
+      responses:
+        '200':
+          description: Series successfully updated
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /plan:
+    post:
+      summary: Add training plan
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                start_date:
+                  type: string
+                end_date:
+                  type: string
+                days_in_week:
+                  type: array
+                  items:
+                    type: string
+                training:
+                  $ref: "#/components/schemas/Training"
+      operationId: fitcado.api.app.endpoints.add_plan
+      responses:
+        '200':
+          description: Training added
+          content:
+            text/plain:
+              schema:
+                type: boolean
+                example: True
+
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UnauthorizedResponse"
+
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+    get:
+      summary: Get all training plans for given user
+      operationId: fitcado.api.app.endpoints.get_plans
+      responses:
+        '200':
+          description: Training added
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                        start_date:
+                          type: string
+                        end_date:
+                          type: string
+                        days_in_week:
+                          type: array
+                          items:
+                            type: string
+                        training:
+                          $ref: "#/components/schemas/Training"
+
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UnauthorizedResponse"
+
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+  /plan/{plan_id}:
+    delete:
+      summary: Get all training plans for given user
+      operationId: fitcado.api.app.endpoints.delete_plan
+      parameters:
+        - in: path
+          name: plan_id
+          schema:
+            type: integer
+          required: True
+          description: ID of plan
+      responses:
+        '200':
+          description: Good boy
+
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UnauthorizedResponse"
+
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+  /user_plan:
+    post:
+      summary: Add user to training plan
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: integer
+      operationId: fitcado.api.app.endpoints.connect_user_plan
+      responses:
+        '200':
+          description: Trainer added for user
+          content:
+            text/plain:
+              schema:
+                type: boolean
+                example: True
+
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UnauthorizedResponse"
+
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+  /make_trainer:
+    get:
+      summary: Add user as trainer
+      operationId: fitcado.api.app.endpoints.make_trainer
+      responses:
+        '200':
+          description: User submitted as trainer
+          content:
+            text/plain:
+              schema:
+                type: boolean
+                example: True
+
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UnauthorizedResponse"
+
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+  /trainer:
+    get:
+      summary: Get all trainer users
+      operationId: fitcado.api.app.endpoints.get_trainer_users
+      responses:
+        '200':
+          description: All trainer's users listed
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      type: string
+
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UnauthorizedResponse"
+
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+  /is_trainer:
+    get:
+      summary: Checks if user is trainer
+      operationId: fitcado.api.app.endpoints.is_trainer
+      responses:
+        '200':
+          description: He is
+
+        '400':
+          description: He is not
+
+  /trainer_propose:
+    post:
+      summary: Trainer proposing to  train  user
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                nickname:
+                  type: string
+      operationId: fitcado.api.app.endpoints.trainer_propose
+      responses:
+        '200':
+          description: User submitted as trainer
+          content:
+            text/plain:
+              schema:
+                type: boolean
+                example: True
+
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UnauthorizedResponse"
+
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+    put:
+      summary: Add trainer to user
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                trainer_nickname:
+                  type: string
+                accept:
+                  type: boolean
+      operationId: fitcado.api.app.endpoints.add_trainer
+      responses:
+        '200':
+          description: Trainer added for user
+          content:
+            text/plain:
+              schema:
+                type: boolean
+                example: True
+
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UnauthorizedResponse"
+
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /image:
+    post:
+      requestBody:
+        content:
+          image/*:
+            schema:
+              type: string
+              format: binary
+      operationId: fitcado.api.app.endpoints.upload_image
+      responses:
+        '200':
+          description: Trainer added for user
+          content:
+            text/plain:
+              schema:
+                type: boolean
+                example: True
+
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UnauthorizedResponse"
+
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+
+    get:
+      operationId: fitcado.api.app.endpoints.download_image
+      responses:
+        '200':
+          description: Trainer added for user
+          content:
+            image/*:
+              schema:
+                type: string
+                format: binary
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UnauthorizedResponse"
+
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+components:
+  schemas:
+    Error:
+      type: object
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+
+    Exercise:
+      type: object
+      properties:
+        name:
+          type: string
+        exercise_type:
+          type: string
+        muscles:
+          type: array
+          items:
+            type: string
+        body_part:
+          type: string
+        multi_joint:
+          type: boolean
+      example:
+        exercise_type: bench press
+        muscles: chest
+        muscles_group: large
+        body_part: upper body
+        multi_join: whatever
+
+    AuthResponse:
+      type: object
+      properties:
+        userName:
+          type: string
+
+    UnauthorizedResponse:
+      type: object
+      properties:
+        status:
+          type: string
+      required:
+        - status
+
+    LoginRequest:
+      type: object
+      properties:
+        username:
+          type: string
+          description: Username input
+        password:
+          type: string
+          description: Password input
+      required:
+        - username
+        - password
+
+    LoginSuccessResponse:
+      type: object
+      properties:
+        userName:
+          type: string
+
+    LoginErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Message what went wrong
+
+    User:
+      type: object
+      properties:
+        name:
+          type: string
+        nickname:
+          type: string
+        password:
+          type: string
+        birthdate:
+          type: string
+          format: date
+        role:
+          type: string
+        email:
+          type: string
+
+    Body_size:
+      type: object
+      properties:
+        biceps:
+          type: number
+        waist:
+          type: number
+        neck:
+          type: number
+        date:
+          type: string
+
+    Body_weight:
+      type: object
+      properties:
+          weight:
+            type: number
+          date:
+            type: string
+
+    Series:
+      type: object
+      properties:
+        repetitions:
+          type: integer
+        weight:
+          type: number
+        break_duration:
+          type: integer
+        exercise_duration:
+          type: integer
+        exercise:
+            $ref: "#/components/schemas/Exercise"
+
+    Training:
+        type: object
+        properties:
+          name:
+            type: string
+          description:
+            type: string
+          type:
+            type: string

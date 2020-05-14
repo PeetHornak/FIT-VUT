@@ -1,0 +1,55 @@
+<mxfile host="www.draw.io" modified="2019-11-22T20:44:40.304Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:70.0) Gecko/20100101 Firefox/70.0" etag="a1y-k908LABlPF_FwKU4" version="12.2.9" type="gitlab" pages="1">
+  <diagram id="C93ICw7ZhLXM_YYcObkj" name="Page-1">
+    <mxGraphModel dx="393" dy="584" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="AszKhIPa47d5jOA5oxyY-11" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="AszKhIPa47d5jOA5oxyY-9" target="AszKhIPa47d5jOA5oxyY-10">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="AszKhIPa47d5jOA5oxyY-14" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="AszKhIPa47d5jOA5oxyY-9" target="AszKhIPa47d5jOA5oxyY-13">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="AszKhIPa47d5jOA5oxyY-9" value="&lt;div&gt;User&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="shape=umlActor;verticalLabelPosition=bottom;labelBackgroundColor=#ffffff;verticalAlign=top;html=1;outlineConnect=0;" vertex="1" parent="1">
+          <mxGeometry x="170" y="460" width="30" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="AszKhIPa47d5jOA5oxyY-13" value="&lt;div&gt;Trainer&lt;/div&gt;" style="shape=umlActor;verticalLabelPosition=bottom;labelBackgroundColor=#ffffff;verticalAlign=top;html=1;outlineConnect=0;" vertex="1" parent="1">
+          <mxGeometry x="170" y="600" width="30" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="AszKhIPa47d5jOA5oxyY-10" value="Admin" style="shape=umlActor;verticalLabelPosition=bottom;labelBackgroundColor=#ffffff;verticalAlign=top;html=1;outlineConnect=0;" vertex="1" parent="1">
+          <mxGeometry x="290" y="600" width="30" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="AszKhIPa47d5jOA5oxyY-16" value="&lt;div&gt;Add Exercise&lt;/div&gt;" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="170" y="210" width="90" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="AszKhIPa47d5jOA5oxyY-26" value="Delete Account" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="280" y="210" width="90" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="AszKhIPa47d5jOA5oxyY-27" value="Check Plan" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="390" y="210" width="90" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="AszKhIPa47d5jOA5oxyY-28" value="&lt;div&gt;Check Calendar&lt;/div&gt;" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="390" y="280" width="90" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="AszKhIPa47d5jOA5oxyY-29" value="&lt;div&gt;Check Weight&lt;/div&gt;" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="390" y="350" width="90" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="AszKhIPa47d5jOA5oxyY-30" value="&lt;div&gt;Check BodyParams&lt;/div&gt;" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="390" y="420" width="90" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="AszKhIPa47d5jOA5oxyY-21" value="&lt;div&gt;Add Training&lt;/div&gt;" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="170" y="280" width="90" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="AszKhIPa47d5jOA5oxyY-23" value="&lt;div&gt;Delete Training&lt;/div&gt;" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="280" y="280" width="90" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="AszKhIPa47d5jOA5oxyY-22" value="&lt;div&gt;Add Weight&lt;/div&gt;" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="170" y="350" width="90" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="AszKhIPa47d5jOA5oxyY-25" value="&lt;div&gt;Add BodyParams&lt;/div&gt;" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="280" y="350" width="90" height="60" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

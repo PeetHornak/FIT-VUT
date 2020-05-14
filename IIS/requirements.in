@@ -1,0 +1,8 @@
+Flask
+SQLAlchemy
+Connexion
+connexion[swagger-ui]
+flask-cors
+alembic
+psycopg2
+redis

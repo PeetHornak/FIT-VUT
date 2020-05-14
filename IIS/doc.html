@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=iso-8859-2"/>
+    <title>Projekt IIS</title>
+    <style type="text/css">
+    	table { border-collapse: collapse; }
+    	td, th { border: 1px solid black; padding: 0.3em 0.5em; text-align: left; }
+    	dt { font-weight: bold; margin-top: 0.5em; }
+    </style>
+</head>
+<img>
+
+<!-- Zkontrolujte prosím nastavení kódování v hlavičce dokumentu
+     podle použitého editoru -->
+
+<h1>Fitcado (Fitness aplikácia)</h1> <!-- Nahradte názvem svého zadání -->
+
+<dl>
+	<dt>Autoři</dt>
+	<dd>Filip Čaládi <!-- Nahraďte skutečným jménem a e-mailem autora a popisem činnosti -->
+	    <a href="mailto:xcalad01@stud.fit.vutbr.cz">xcalad01@stud.fit.vutbr.cz</a> -
+		Backend, databáza
+	</dd>
+	<dd>Peter Horňák <!-- Nahraďte skutečným jménem a e-mailem autora a popisem činnosti -->
+	    <a href="mailto:xhorna14@stud.fit.vutbr.cz">xhorna14@stud.fit.vutbr.cz</a> -
+		Frontend, databáza
+	</dd>
+  <dd>Andrej Zaujec <!-- Nahraďte skutečným jménem a e-mailem autora a popisem činnosti -->
+	    <a href="mailto:xzauje00@stud.fit.vutbr.cz">xzauje00@stud.fit.vutbr.cz</a> -
+		Frontend, databáza, backend
+	</dd>
+	<dt>URL aplikace</dt>
+	<dd><a href="37.205.14.85:8080">37.205.14.85:8080</a></dd>
+	<dd>(pokud má aplikace více vstupních stránek, napište obdobně další URL)</dd>
+</dl>
+
+<h2>Uživatelé systému pro testování</h2>
+<p>Uveďte prosím existující zástupce <strong>všech rolí uživatelů</strong>.</p>
+<table>
+<tr><th>Login</th><th>Heslo</th><th>Role</th></tr>
+<tr><td>admin</td><td>admin</td><td>Administrátor</td></tr>
+    <tr><td>peter</td><td>peter</td><td>Administrátor</td></tr>
+
+</table>
+
+<h2>Implementace</h2>
+
+<span>Zoznam dôležitých častí projektu</span>
+<ul>
+    <li><i>fitcado/api/app/endpoints.py</i>: Implementácia všetkých potrebných endpointov.</li>
+    <li><i>fitcado/api/openapi/api.yaml</i>: Prehľad všetkých endpointov popísaných pomocou open api 3 syntaxe.</li>
+    <li><i>fitcado/database/models.py</i>: Popis jednotlivých tabuliek databáze pomocou sqlalchemy</li>
+    <li><i>client/</i>: Implementácia frontendu vo Vue.js</li>
+    <li><i>diagrams/</i>: ERD a use case diagramy</li>
+
+</ul>
+<h3>Databáze</h3>
+
+<img src="diagrams/DB_image.png" width="600" height="400">
+
+<h2>Instalace</h2>
+
+Stručně popište:
+<ul>
+<li>postup instalace na server,</li>
+<li>softwarové požadavky: docker, docker-compose,</li>
+    <li>projekt rozbalte príkazom <i>unzip xzauje00</i>, následne v priečinku xzauje00/iis-fitcado spustte <i>docker-compose up --build</i>
+    pre rozbehnutie databáze, REST API a iných vecí potrebných pre beh aplikácie. Potom v priečinku iis-fitcado/client spustte sériu príkazov npm install a npm run serve </li>
+</ul>
+
+</body>
+</html>
