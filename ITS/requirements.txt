@@ -94,7 +94,7 @@ testfixtures==4.14.3
 toml==0.10.0
 traitlets==4.3.2
 unidiff==0.5.5
-urllib3==1.22
+urllib3==1.24.2
 user-agent==0.1.9
 virtualenv==16.4.3
 vulture==0.10
