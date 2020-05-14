@@ -1,2 +1,0 @@
-/Library/Developer/CommandLineTools/usr/bin/ar qc libvector.a  CMakeFiles/vector.dir/src/vector/vector.c.o
-/Library/Developer/CommandLineTools/usr/bin/ranlib libvector.a
