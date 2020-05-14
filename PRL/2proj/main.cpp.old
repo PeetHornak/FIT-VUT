@@ -1,0 +1,110 @@
+#include <mpi.h>
+#include <iostream>
+#include <vector>
+#include <sstream>
+#include <math.h>
+#include <chrono>
+
+#define DEBUG
+
+int main(int argc, char *argv[]) {
+    int proc_num;
+    int my_id;
+
+    MPI_Status mpi_stat;
+    MPI_Init(&argc, &argv);
+    MPI_Comm_size(MPI_COMM_WORLD, &proc_num);
+    MPI_Comm_rank(MPI_COMM_WORLD, &my_id);
+
+    std::string input;
+    std::vector<int> numbers;
+    // Read and parse input
+    std::cin >> input;
+
+    std::stringstream ss(input);
+    for (int i; ss >> i;) {
+        numbers.push_back(i);
+        if (ss.peek() == ',')
+            ss.ignore();
+    }
+
+    int input_size = numbers.size();
+    // Broadcast input size
+    MPI_Bcast(&input_size, 1, MPI_INT, 0, MPI_COMM_WORLD);
+
+    int arr[input_size];
+
+    // Load arr
+    if (my_id == 0) {
+        for (int i = 0; i < numbers.size(); i++) {
+            arr[i] = numbers[i];
+        }
+    }
+    // Broadcast input
+    MPI_Bcast(arr, input_size, MPI_INT, 0, MPI_COMM_WORLD);
+
+    // Compute diff between first and other points
+    for (int i = 0; i <= ((input_size - 1) / proc_num); i++) {
+        if (i * proc_num + my_id == 0) {
+            continue;
+        }
+        arr[i*proc_num + my_id] = arr[i*proc_num + my_id] - arr[0];
+    }
+
+    // Each process broadcasts it's changed numbers to other processes
+    for (int i = 0; i < input_size; i++) {
+        MPI_Bcast(&arr[i], 1, MPI_INT, i % proc_num, MPI_COMM_WORLD);
+    }
+
+#ifdef DEBUG
+    if (my_id == 0) {
+        for (int &c: arr) {
+            std::cout << c << " ";
+        }
+        std::cout << std::endl;
+    }
+#endif
+
+    int log = log2(input_size);
+    // Reduce
+    for (int d = 0; d < log; d++) {
+        for (int i = 0; i <= ((input_size -1) / proc_num); i++) {
+            int power = pow(2, d + 1);
+            int index = my_id + i * proc_num;
+            if ((index + 1) % power == 0) {
+                if (index < input_size) {
+                    std::cout << i << "|" << my_id << ": sum(" << index << ", " << index - power / 2 << ") = "
+                              << arr[index] << " + " << arr[index - power / 2] << std::endl;
+                    arr[index] = arr[index] + arr[index - power / 2]; // SUM
+//                arr[index] = std::max(arr[index], arr[index - power / 2]); // MAX
+                }
+            }
+
+        }
+        // Each process broadcasts it's changed numbers to other processes
+        for (int i = 0; i < input_size; i++) {
+            MPI_Bcast(&arr[i], 1, MPI_INT, i % proc_num, MPI_COMM_WORLD);
+        }
+
+#ifdef DEBUG
+        if (my_id == 0) {
+            for (int &c: arr) {
+                std::cout << c << " ";
+            }
+            std::cout << std::endl;
+        }
+#endif
+
+
+
+    }
+
+
+
+//    for (int d = log - 1 ;d >= 0; d--) {
+//        for (int i = 0; i)
+//    }
+
+    MPI_Finalize();
+    return 0;
+}

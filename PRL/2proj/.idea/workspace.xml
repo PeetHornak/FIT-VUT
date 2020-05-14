@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true">
+    <generated>
+      <config projectName="2proj" targetName="2proj" />
+    </generated>
+  </component>
+  <component name="CMakeSettings" AUTO_RELOAD="true">
+    <configurations>
+      <configuration PROFILE_NAME="Debug" CONFIG_NAME="Debug" />
+    </configurations>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="3fff19fa-1ccc-4ed6-a840-121784cf3c89" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ClangdSettings">
+    <option name="formatViaClangd" value="false" />
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand />
+    <select />
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>chrono</find>
+    </findStrings>
+  </component>
+  <component name="ProjectId" id="1agIc1VSq2tc0ayqi33XGSDIAzd" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Python.vid_test">
+    <configuration name="2proj" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="2proj" TARGET_NAME="2proj" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="2proj" RUN_TARGET_NAME="2proj">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="vid_test" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+      <module name="2proj" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="/usr/local/bin/python3.7" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <EXTENSION ID="net.ashald.envfile">
+        <option name="IS_ENABLED" value="false" />
+        <option name="IS_SUBST" value="false" />
+        <option name="IS_PATH_MACRO_SUPPORTED" value="false" />
+        <option name="IS_IGNORE_MISSING_FILES" value="false" />
+        <option name="IS_ENABLE_EXPERIMENTAL_INTEGRATIONS" value="false" />
+        <ENTRIES>
+          <ENTRY IS_ENABLED="true" PARSER="runconfig" />
+        </ENTRIES>
+      </EXTENSION>
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/vid_test.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Python.vid_test" />
+    </list>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="3fff19fa-1ccc-4ed6-a840-121784cf3c89" name="Default Changelist" comment="" />
+      <created>1585424095953</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1585424095953</updated>
+      <workItem from="1585424097309" duration="333000" />
+      <workItem from="1585510045386" duration="488000" />
+      <workItem from="1585510902907" duration="2562000" />
+      <workItem from="1585677347488" duration="5318000" />
+      <workItem from="1585995637352" duration="27338000" />
+      <workItem from="1586101453009" duration="7640000" />
+      <workItem from="1586195628126" duration="8769000" />
+      <workItem from="1586281646552" duration="864000" />
+      <workItem from="1586294212886" duration="2326000" />
+      <workItem from="1586802982122" duration="751000" />
+      <workItem from="1587065126004" duration="2349000" />
+      <workItem from="1587150887084" duration="1676000" />
+      <workItem from="1587458094051" duration="11000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="184" y="123" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1587152161644">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state x="184" y="123" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1440.877@0.23.1440.877" timestamp="1587152161644" />
+    <state x="367" y="161" width="659" height="579" key="#xdebugger.evaluate" timestamp="1587152630858">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state x="367" y="161" width="659" height="579" key="#xdebugger.evaluate/0.23.1440.877@0.23.1440.877" timestamp="1587152630858" />
+    <state width="1398" height="230" key="GridCell.Tab.0.bottom" timestamp="1587154138638">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="230" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1587154138638" />
+    <state width="1398" height="285" key="GridCell.Tab.0.bottom/0.23.1440.877@0.23.1440.877" timestamp="1587152635591" />
+    <state width="1398" height="230" key="GridCell.Tab.0.center" timestamp="1587154138637">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="230" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1587154138637" />
+    <state width="1398" height="285" key="GridCell.Tab.0.center/0.23.1440.877@0.23.1440.877" timestamp="1587152635589" />
+    <state width="1398" height="230" key="GridCell.Tab.0.left" timestamp="1587154138636">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="230" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1587154138636" />
+    <state width="1398" height="285" key="GridCell.Tab.0.left/0.23.1440.877@0.23.1440.877" timestamp="1587152635587" />
+    <state width="1398" height="230" key="GridCell.Tab.0.right" timestamp="1587154138637">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="230" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1587154138637" />
+    <state width="1398" height="285" key="GridCell.Tab.0.right/0.23.1440.877@0.23.1440.877" timestamp="1587152635590" />
+    <state width="1398" height="285" key="GridCell.Tab.1.bottom" timestamp="1587154138633">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="285" key="GridCell.Tab.1.bottom/0.0.1440.900@0.0.1440.900" timestamp="1587154138633" />
+    <state width="1398" height="285" key="GridCell.Tab.1.bottom/0.23.1440.877@0.23.1440.877" timestamp="1587152635594" />
+    <state width="1398" height="285" key="GridCell.Tab.1.center" timestamp="1587154138632">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="285" key="GridCell.Tab.1.center/0.0.1440.900@0.0.1440.900" timestamp="1587154138632" />
+    <state width="1398" height="285" key="GridCell.Tab.1.center/0.23.1440.877@0.23.1440.877" timestamp="1587152635592" />
+    <state width="1398" height="285" key="GridCell.Tab.1.left" timestamp="1587154138631">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="285" key="GridCell.Tab.1.left/0.0.1440.900@0.0.1440.900" timestamp="1587154138631" />
+    <state width="1398" height="285" key="GridCell.Tab.1.left/0.23.1440.877@0.23.1440.877" timestamp="1587152635592" />
+    <state width="1398" height="285" key="GridCell.Tab.1.right" timestamp="1587154138633">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="285" key="GridCell.Tab.1.right/0.0.1440.900@0.0.1440.900" timestamp="1587154138633" />
+    <state width="1398" height="285" key="GridCell.Tab.1.right/0.23.1440.877@0.23.1440.877" timestamp="1587152635593" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/vid_test.py</url>
+          <line>80</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/vid_test.py</url>
+          <line>79</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/2proj$vid_test.coverage" NAME="vid_test Coverage Results" MODIFIED="1587152622348" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+  </component>
+</project>

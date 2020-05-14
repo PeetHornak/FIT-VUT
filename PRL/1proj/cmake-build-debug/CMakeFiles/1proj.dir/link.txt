@@ -1,0 +1,1 @@
+/Library/Developer/CommandLineTools/usr/bin/c++  -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names;-L/usr/local/Cellar/libevent/2.1.11_1/lib  CMakeFiles/1proj.dir/oets.cpp.o  -o 1proj 
