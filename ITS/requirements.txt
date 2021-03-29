@@ -66,7 +66,7 @@ proselint==0.7.0
 pycodestyle==2.5.0
 pydocstyle==1.1.1
 pyflakes==1.4.0
-Pygments==2.4.2
+Pygments==2.7.4
 pylint==1.9.4
 pyparsing==2.4.1.1
 PyPrint==0.2.6
