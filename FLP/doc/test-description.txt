@@ -1,0 +1,14 @@
+test1:
+    - tests one character as input
+test2:
+    - tests empty character
+test3:
+    - tests concatenation
+test4:
+    - tests unification
+test5:
+    - tests iteration
+test6:
+    - tests iteration of brackets
+test7:
+    - tests everything combined
