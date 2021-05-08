@@ -1,0 +1,15 @@
+black
+pandas
+numpy
+pymongo
+psycopg2-binary
+pip-tools
+ipython
+python-dotenv
+requests
+aiohttp
+orjson
+seaborn
+mpld3
+fastapi
+uvicorn

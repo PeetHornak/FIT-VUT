@@ -1,0 +1,37 @@
+# Run locally with pre-commit run --hook-stage manual --all-files
+default_language_version:
+  python: python3.8
+default_stages: [commit, manual]
+
+variables:
+  exclude_regex: &regex
+        ^(database).*$
+
+repos:
+-   repo: https://github.com/ambv/black
+    rev: stable
+    hooks:
+    - id: black
+      args: [--line-length=120]
+      types: [python]
+
+-   repo: https://gitlab.com/pycqa/flake8
+    rev: 3.7.9
+    hooks:
+    - id: flake8
+      exclude: *regex
+      args: [--max-line-length=120, --max-complexity=10, "--ignore=E203,W503,C901"]
+
+-   repo: https://github.com/pre-commit/mirrors-isort
+    rev: v4.3.21
+    hooks:
+      - id: isort
+        args: [--line-width=120, --multi-line=3, --section-default=THIRDPARTY, --trailing-comma]
+        exclude: *regex
+
+-   repo: https://github.com/PyCQA/pydocstyle
+    rev: 4.0.1
+    hooks:
+      - id: pydocstyle
+        args: ["--ignore=D100,D101,D102,D103,D104,D105,D106,D107,D203,D213,D406,D407,D408,D409"]
+        exclude: *regex

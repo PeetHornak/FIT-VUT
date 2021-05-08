@@ -1,0 +1,48 @@
+version: '3'
+
+services:
+  postgres:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: root 
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: postgres # db name
+      PGDATA: /data/postgres
+    volumes:
+      - ./database/postgres:/data/postgres
+      - ./database/create_tables.sql:/docker-entrypoint-initdb.d/create_tables.sql
+    ports:
+      - "5432:5432"
+
+  mongo:
+    image: mongo
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: password
+      MONGO_INITDB_DATABASE: defaultdb # db name
+    volumes:
+      - ./database/mongo:/data/db
+    ports:
+      - "27017:27017"
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      MONGO_USERNAME: root
+      MONGO_PASSWORD: password
+      MONGO_DATABASE: defaultdb
+      MONGO_HOSTNAME: mongo
+      MONGO_COLLECTION: tests
+      BATCH_SIZE: 32000
+      POSTGRES_URI: postgresql://root:password@postgres:5432/postgres
+    depends_on:
+      - mongo
+      - postgres
+    volumes:
+      - ./database/raw:/app/database/raw
+    ports:
+    - "8000:8000"
