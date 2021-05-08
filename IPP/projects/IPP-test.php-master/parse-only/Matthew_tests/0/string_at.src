@@ -1,3 +1,0 @@
-.IPPcode19 #foo
-DEFVAR GF@counter
-MOVE GF@counter string@coun@@t@e@r

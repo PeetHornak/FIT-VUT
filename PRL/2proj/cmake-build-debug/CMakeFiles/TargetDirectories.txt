@@ -1,3 +1,0 @@
-/Users/peto/Documents/FIT-NO-GIT/PRL/2proj/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/Users/peto/Documents/FIT-NO-GIT/PRL/2proj/cmake-build-debug/CMakeFiles/edit_cache.dir
-/Users/peto/Documents/FIT-NO-GIT/PRL/2proj/cmake-build-debug/CMakeFiles/2proj.dir
