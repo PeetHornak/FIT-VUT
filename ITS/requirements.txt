@@ -6,7 +6,7 @@ astroid==1.6.6
 attrs==19.1.0
 autoflake==0.6.6
 autopep8==1.4.4
-Babel==2.7.0
+Babel==2.9.1
 bandit==1.6.2
 beautifulsoup4==4.6.0
 binaryornot==0.4.4
