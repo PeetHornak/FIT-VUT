@@ -21,7 +21,7 @@ coala-bears==0.11.1
 coala-utils==0.6.7
 colorama==0.3.9
 colorlog==2.10.0
-cookiecutter==1.6.0
+cookiecutter==2.1.1
 cppclean==0.12
 cpplint==1.4.4
 decorator==4.4.0
