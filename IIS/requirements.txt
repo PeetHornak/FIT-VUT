@@ -5,37 +5,84 @@
 #    pip-compile --output-file=requirements.txt requirements.in
 #
 alembic==1.3.1
-attrs==19.3.0             # via jsonschema
-certifi==2019.9.11        # via requests
-chardet==3.0.4            # via requests
-click==7.0                # via clickclick, flask
-clickclick==1.2.2         # via connexion
+    # via -r requirements.in
+attrs==19.3.0
+    # via jsonschema
+certifi==2022.12.7
+    # via requests
+chardet==3.0.4
+    # via requests
+click==7.0
+    # via
+    #   clickclick
+    #   flask
+clickclick==1.2.2
+    # via connexion
 connexion[swagger-ui]==2.4.0
-flask-cors==3.0.8
+    # via -r requirements.in
 flask==1.1.1
-idna==2.8                 # via requests
-importlib-metadata==0.23  # via jsonschema
-inflection==0.3.1         # via connexion
-itsdangerous==1.1.0       # via flask
-jinja2==2.10.3            # via flask, swagger-ui-bundle
-jsonschema==3.2.0         # via connexion, openapi-spec-validator
-mako==1.1.0               # via alembic
-markupsafe==1.1.1         # via jinja2, mako
-more-itertools==7.2.0     # via zipp
-openapi-spec-validator==0.2.8  # via connexion
+    # via
+    #   -r requirements.in
+    #   connexion
+    #   flask-cors
+flask-cors==3.0.8
+    # via -r requirements.in
+idna==2.8
+    # via requests
+inflection==0.3.1
+    # via connexion
+itsdangerous==1.1.0
+    # via flask
+jinja2==2.10.3
+    # via
+    #   flask
+    #   swagger-ui-bundle
+jsonschema==3.2.0
+    # via
+    #   connexion
+    #   openapi-spec-validator
+mako==1.1.0
+    # via alembic
+markupsafe==1.1.1
+    # via
+    #   jinja2
+    #   mako
+openapi-spec-validator==0.2.8
+    # via connexion
 psycopg2==2.8.4
-pyrsistent==0.15.5        # via jsonschema
-python-dateutil==2.8.1    # via alembic
-python-editor==1.0.4      # via alembic
-pyyaml==5.1.2             # via clickclick, connexion, openapi-spec-validator
+    # via -r requirements.in
+pyrsistent==0.15.5
+    # via jsonschema
+python-dateutil==2.8.1
+    # via alembic
+python-editor==1.0.4
+    # via alembic
+pyyaml==5.1.2
+    # via
+    #   clickclick
+    #   connexion
+    #   openapi-spec-validator
 redis==3.3.11
-requests==2.22.0          # via connexion
-six==1.13.0               # via connexion, flask-cors, jsonschema, openapi-spec-validator, pyrsistent, python-dateutil
+    # via -r requirements.in
+requests==2.22.0
+    # via connexion
+six==1.13.0
+    # via
+    #   connexion
+    #   flask-cors
+    #   jsonschema
+    #   openapi-spec-validator
+    #   python-dateutil
 sqlalchemy==1.3.11
-swagger-ui-bundle==0.0.6  # via connexion
-urllib3==1.25.7           # via requests
-werkzeug==0.16.0          # via flask
-zipp==0.6.0               # via importlib-metadata
+    # via
+    #   -r requirements.in
+    #   alembic
+swagger-ui-bundle==0.0.6
+    # via connexion
+urllib3==1.25.7
+    # via requests
+werkzeug==0.16.0
+    # via flask
 
 # The following packages are considered to be unsafe in a requirements file:
-# setuptools==42.0.1        # via jsonschema
+# setuptools
